@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Brokable : MonoBehaviour
+public class Breakable : MonoBehaviour
 {
     [SerializeField] private int count = 3;
 
