@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Test.StateMachine.ScriptableObjects
+namespace Pudding.StateMachine.ScriptableObjects
 {
     [CreateAssetMenu(fileName = "New State", menuName = "State Machines/State")]
     public class StateSO : ScriptableObject

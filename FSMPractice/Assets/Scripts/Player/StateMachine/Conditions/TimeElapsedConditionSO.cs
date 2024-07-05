@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Test.StateMachine;
-using Test.StateMachine.ScriptableObjects;
+using Pudding.StateMachine;
+using Pudding.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "TimeElapsedCondition", menuName = "State Machines/Conditions/Time Elapsed Condition")]
 public class TimeElapsedConditionSO : StateConditionSO<TimeElapsedCondition>

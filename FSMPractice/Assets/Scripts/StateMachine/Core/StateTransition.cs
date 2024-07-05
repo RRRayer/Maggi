@@ -1,4 +1,4 @@
-namespace Test.StateMachine
+namespace Pudding.StateMachine
 {
     public class StateTransition : IStateComponent
     {

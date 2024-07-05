@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Test.StateMachine.ScriptableObjects
+namespace Pudding.StateMachine.ScriptableObjects
 {
 	/// <summary>
 	/// Base class for StateMachine ScriptableObjects that need a public description field.

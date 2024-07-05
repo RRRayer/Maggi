@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Test.StateMachine;
-using Test.StateMachine.ScriptableObjects;
+using Pudding.StateMachine;
+using Pudding.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "IsHoldingJumpCondition", menuName = "State Machines/Conditions/Is Holding Jump Condition")]
 public class IsHoldingJumpConditionSO : StateConditionSO<IsHoldingJumpCondition> { }

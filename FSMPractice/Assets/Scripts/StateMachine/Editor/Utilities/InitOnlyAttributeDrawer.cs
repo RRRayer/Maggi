@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Test.StateMachine.Editor
+namespace Pudding.StateMachine.Editor
 {
 	[CustomPropertyDrawer(typeof(InitOnlyAttribute))]
 	public class InitOnlyAttributeDrawer : PropertyDrawer

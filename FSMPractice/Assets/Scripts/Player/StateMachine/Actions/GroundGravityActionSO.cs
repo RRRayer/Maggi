@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Test.StateMachine;
-using Test.StateMachine.ScriptableObjects;
+using Pudding.StateMachine;
+using Pudding.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "GroundGravityAction", menuName = "State Machines/Actions/Ground Gravity Action")]
 public class GroundGravityActionSO : StateActionSO<GroundGravityAction>

@@ -2,11 +2,11 @@
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using Test.StateMachine.ScriptableObjects;
+using Pudding.StateMachine.ScriptableObjects;
 using static UnityEditor.EditorGUILayout;
 using Object = UnityEngine.Object;
 
-namespace Test.StateMachine.Editor
+namespace Pudding.StateMachine.Editor
 {
 	[CustomEditor(typeof(TransitionTableSO))]
 	internal class TransitionTableEditor : UnityEditor.Editor

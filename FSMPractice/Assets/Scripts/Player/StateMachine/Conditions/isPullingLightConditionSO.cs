@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Test.StateMachine;
-using Test.StateMachine.ScriptableObjects;
+using Pudding.StateMachine;
+using Pudding.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "isPullingLightCondition", menuName = "State Machines/Conditions/is Pulling Light Condition")]
 public class isPullingLightConditionSO : StateConditionSO<isPullingLightCondition> { }

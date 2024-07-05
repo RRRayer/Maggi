@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Test.StateMachine;
-using Test.StateMachine.ScriptableObjects;
+using Pudding.StateMachine;
+using Pudding.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "AscendAction", menuName = "State Machines/Actions/Ascend Action")]
 public class AscendActionSO : StateActionSO<AscendAction>

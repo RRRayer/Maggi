@@ -1,6 +1,6 @@
-using Test.StateMachine.ScriptableObjects;
+using Pudding.StateMachine.ScriptableObjects;
 
-namespace Test.StateMachine
+namespace Pudding.StateMachine
 {
     public abstract class Condition : IStateComponent
     {

@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Test.StateMachine.ScriptableObjects;
+using Pudding.StateMachine.ScriptableObjects;
 
-namespace Test.StateMachine.Editor
+namespace Pudding.StateMachine.Editor
 {
 	internal class TransitionTableEditorWindow : EditorWindow
 	{

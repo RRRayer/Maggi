@@ -3,7 +3,7 @@ using UnityEditorInternal;
 using UnityEngine;
 using static UnityEditor.EditorGUI;
 
-namespace Test.StateMachine.Editor
+namespace Pudding.StateMachine.Editor
 {
 	internal class TransitionDisplayHelper
 	{

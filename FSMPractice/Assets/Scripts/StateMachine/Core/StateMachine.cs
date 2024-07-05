@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Test.StateMachine
+namespace Pudding.StateMachine
 {
     public class StateMachine : MonoBehaviour
     {

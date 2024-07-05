@@ -2,10 +2,10 @@
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
-using Test.StateMachine.ScriptableObjects;
+using Pudding.StateMachine.ScriptableObjects;
 using static UnityEditor.EditorGUI;
 
-namespace Test.StateMachine.Editor
+namespace Pudding.StateMachine.Editor
 {
 	internal class AddTransitionHelper : IDisposable
 	{

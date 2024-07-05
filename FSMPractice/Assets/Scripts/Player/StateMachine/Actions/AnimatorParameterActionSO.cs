@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using Test.StateMachine;
-using Test.StateMachine.ScriptableObjects;
-using Moment = Test.StateMachine.StateAction.SpecificMoment;
+using Pudding.StateMachine;
+using Pudding.StateMachine.ScriptableObjects;
+using Moment = Pudding.StateMachine.StateAction.SpecificMoment;
 
 [CreateAssetMenu(fileName = "AnimatorParameterAction", menuName = "State Machines/Actions/Animator Parameter Action")]
 public class AnimatorParameterActionSO : StateActionSO

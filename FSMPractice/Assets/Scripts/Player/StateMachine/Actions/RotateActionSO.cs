@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Test.StateMachine;
-using Test.StateMachine.ScriptableObjects;
+using Pudding.StateMachine;
+using Pudding.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "RotateAction", menuName = "State Machines/Actions/Rotate Action")]
 public class RotateActionSO : StateActionSO<RotateAction>
