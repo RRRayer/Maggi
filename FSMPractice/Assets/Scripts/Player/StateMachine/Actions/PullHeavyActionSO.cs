@@ -47,6 +47,33 @@ public class PullHeavyAction : StateAction
             );
             _offset = _interactionManager.currentInteractiveObject.transform.position - _player.transform.position;
         }
+        else if (-distanceVector.x >= interactiveObjectSize / 2) // 오에서 잡음
+        {
+            _player.transform.position = new Vector3(
+                _interactionManager.currentInteractiveObject.transform.position.x + distance,
+                _player.transform.position.y,
+                _interactionManager.currentInteractiveObject.transform.position.z
+            );
+            _offset = _interactionManager.currentInteractiveObject.transform.position - _player.transform.position;
+        }
+        else if (distanceVector.z >= interactiveObjectSize / 2) // 앞에서 잡음
+        {
+            _player.transform.position = new Vector3(
+                _interactionManager.currentInteractiveObject.transform.position.x ,
+                _player.transform.position.y,
+                _interactionManager.currentInteractiveObject.transform.position.z - distance
+            );
+            _offset = _interactionManager.currentInteractiveObject.transform.position - _player.transform.position;
+        }
+        else if (-distanceVector.z >= interactiveObjectSize / 2) // 뒤에서 잡음
+        {
+            _player.transform.position = new Vector3(
+                _interactionManager.currentInteractiveObject.transform.position.x,
+                _player.transform.position.y,
+                _interactionManager.currentInteractiveObject.transform.position.z + distance
+            );
+            _offset = _interactionManager.currentInteractiveObject.transform.position - _player.transform.position;
+        }
     }
 
     public override void OnUpdate()

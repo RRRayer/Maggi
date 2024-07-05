@@ -31,7 +31,7 @@ public class PullLightAction : StateAction
             mousePosition.y = _player.transform.position.y;
 
             Vector3 direction = (mousePosition - _player.transform.position).normalized;
-            _interactionManager.currentInteractiveObject.transform.position = _player.transform.position + direction * 2.0f;
+            _interactionManager.currentInteractiveObject.transform.position = _player.transform.position + direction * 1.0f;
 
             _interactionManager.currentInteractiveObject.transform.LookAt(mousePosition);
         }
