@@ -9,8 +9,6 @@ public class InteractionManager : MonoBehaviour
     [SerializeField] private InputReader _inputReader = default;
 
     // Events for the different interaction types
-    // Type 별로 OnTrigger로 처리해줘야해. Condition을 설정해 해당 state로 넘어갈 수 있게
-
     [ReadOnly] public InteractionType currentInteractionType;
     [ReadOnly] public GameObject currentInteractiveObject;
     [ReadOnly] public bool pushInput;

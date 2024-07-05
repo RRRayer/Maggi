@@ -13,14 +13,21 @@ public class PullLightAction : StateAction
 	protected new PullLightActionSO _originSO => (PullLightActionSO)base.OriginSO;
 	private Player _player;
 	private InteractionManager _interactionManager;
+    private Collider _interactiveObjectCollider;
 
 	public override void Awake(StateMachine stateMachine)
 	{
 		_player = stateMachine.GetComponent<Player>();
         _interactionManager = stateMachine.GetComponent<InteractionManager>();
     }
-	
-	public override void OnUpdate()
+
+    public override void OnStateEnter()
+    {
+        _interactiveObjectCollider = _interactionManager.currentInteractiveObject.GetComponent<Collider>();
+        _interactiveObjectCollider.enabled = false;
+    }
+
+    public override void OnUpdate()
 	{
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -35,5 +42,9 @@ public class PullLightAction : StateAction
 
             _interactionManager.currentInteractiveObject.transform.LookAt(mousePosition);
         }
+    }
+    public override void OnStateExit()
+    {
+        _interactiveObjectCollider.enabled = true;
     }
 }
