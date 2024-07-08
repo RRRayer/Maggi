@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Test.StateMachine;
-using Test.StateMachine.ScriptableObjects;
+using Pudding.StateMachine;
+using Pudding.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "IsBoundOfWallCondition", menuName = "State Machines/Conditions/Is Bound Of Wall Condition")]
 public class IsBoundOfWallConditionSO : StateConditionSO<IsBoundOfWallCondition> {}

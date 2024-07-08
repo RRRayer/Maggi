@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
-using Test.StateMachine;
-using Test.StateMachine.ScriptableObjects;
+using Pudding.StateMachine;
+using Pudding.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "PushWallAction", menuName = "State Machines/Actions/Push Wall Action")]
 public class PushWallActionSO : StateActionSO<PushWallAction> 
 {
-	public float pushForce = 10.0f;
+	public float pushForce = 100.0f;
 }
 
 public class PushWallAction : StateAction

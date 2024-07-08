@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Test.StateMachine;
-using Test.StateMachine.ScriptableObjects;
+using Pudding.StateMachine;
+using Pudding.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "isPushingWallCondition", menuName = "State Machines/Conditions/is Pushing Wall Condition")]
 public class isPushingWallConditionSO : StateConditionSO<isPushingWallCondition> { }

@@ -1,6 +1,6 @@
 using UnityEngine;
-using Test.StateMachine;
-using Test.StateMachine.ScriptableObjects;
+using Pudding.StateMachine;
+using Pudding.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "VerticalMoveAction", menuName = "State Machines/Actions/Vertical Move Action")]
 public class VerticalMoveActionSO : StateActionSO<VerticalMoveAction>

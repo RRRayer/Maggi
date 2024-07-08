@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Test.StateMachine;
-using Test.StateMachine.ScriptableObjects;
+using Pudding.StateMachine;
+using Pudding.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "VerticalFixAction", menuName = "State Machines/Actions/Vertical Fix Action")]
 public class VerticalFixActionSO : StateActionSO

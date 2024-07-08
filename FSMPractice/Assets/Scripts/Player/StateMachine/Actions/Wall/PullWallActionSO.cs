@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Test.StateMachine;
-using Test.StateMachine.ScriptableObjects;
+using Pudding.StateMachine;
+using Pudding.StateMachine.ScriptableObjects;
 using UnityEngine.UIElements;
 using System.Threading.Tasks;
 
