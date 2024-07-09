@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 60036a0293febe84b851196289fba956, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: e97bfe0b8bbfca14294093c0aee9b332, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _managersScene: {fileID: 11400000, guid: 054679293e29b594ba7267ad84207380, type: 2}
-  _menuToLoad: {fileID: 11400000, guid: 0f69dee51c9cdc74993866dcd4855591, type: 2}
+  _menuToLoad: {fileID: 11400000, guid: e8ecf7f0174a25d4c8516deb70b5e4c9, type: 2}
   _menuLoadChannel:
     m_AssetGUID: 3e1cc171219d32b47b807e5fe803d984
     m_SubObjectName: 

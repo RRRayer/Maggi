@@ -13,7 +13,7 @@ public class SaveLoadSystem : ScriptableObject
         {
             if (FileManager.WriteToFile(saveFilename, saveData.ToJson()))
             {
-                Debug.Log("Save successful " + saveFilename);
+                //Debug.Log("Save successful " + saveFilename);
             }
         }
     }
@@ -26,6 +26,11 @@ public class SaveLoadSystem : ScriptableObject
             return true;
         }
         return false;
+    }
+
+    public void WriteEmptySaveFile()
+    {
+        FileManager.WriteToFile(saveFilename, "");
     }
 
     public void SetNewGameData()

@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3a91dc0a5438914e97685d69a257225, type: 3}
-  m_Name: MainMenu
+  m_Script: {fileID: 11500000, guid: 53866e015a03a7048b9df6d391757da8, type: 3}
+  m_Name: SaveLoadSystem
   m_EditorClassIdentifier: 
-  description: 
-  sceneType: 1
-  sceneReference:
-    m_AssetGUID: a7eb3f8da8f84c348b441c1c521a8cbc
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_EditorAssetChanged: 0
+  saveFilename: save.pudding
+  backupSaveFilename: save.pudding.bak
