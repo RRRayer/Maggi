@@ -5,7 +5,7 @@ using Pudding.StateMachine.ScriptableObjects;
 [CreateAssetMenu(fileName = "PullLightAction", menuName = "State Machines/Actions/PullLightAction")]
 public class PullLightActionSO : StateActionSO<PullLightAction> 
 {
-    public LayerMask floorLayerMask;
+    public LayerMask mouseClickLayerMask;
 }
 
 public class PullLightAction : StateAction
@@ -25,6 +25,9 @@ public class PullLightAction : StateAction
     {
         _interactiveObjectCollider = _interactionManager.currentInteractiveObject.GetComponent<Collider>();
         _interactiveObjectCollider.enabled = false;
+
+        // When Pulling Light Object, it needs to remove from list of Potential Interactions
+        _interactionManager.OnTriggerChangeDetected(false, _interactionManager.currentInteractiveObject);
     }
 
     public override void OnUpdate()
@@ -32,7 +35,7 @@ public class PullLightAction : StateAction
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, _originSO.floorLayerMask))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, _originSO.mouseClickLayerMask))
         {
             Vector3 mousePosition = hit.point;
             mousePosition.y = _player.transform.position.y;

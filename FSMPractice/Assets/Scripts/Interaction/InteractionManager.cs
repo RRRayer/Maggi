@@ -13,7 +13,7 @@ public class InteractionManager : MonoBehaviour
     [ReadOnly] public GameObject currentInteractiveObject;
     [ReadOnly] public bool pushInput;
 
-    private LinkedList<Interaction> _potentialInteractions = new LinkedList<Interaction>(); //To store the objects we the player could potentially interact with
+    private LinkedList<Interaction> _potentialInteractions = new LinkedList<Interaction>(); // To store the objects we the player could potentially interact with
 
     private void OnEnable()
     {

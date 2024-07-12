@@ -7,7 +7,6 @@ public class PushLightActionSO : StateActionSO<PushLightAction>
 {
 	public float pushForce = 5.0f;
 	public float pushHeight = 0.5f;
-	public LayerMask floorLayerMask;
 }
 
 public class PushLightAction : StateAction
