@@ -28,7 +28,8 @@ public class IsBoundOfWallCondition : Condition
 		if (playerY < ymin || playerY > ymax) {
 			Debug.Log("boundary over");
 			return true;
+		} else {
+			return false;
 		}
-		return false;
 	}
 }
