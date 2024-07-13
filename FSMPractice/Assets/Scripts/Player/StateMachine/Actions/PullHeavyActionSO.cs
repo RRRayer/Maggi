@@ -38,7 +38,7 @@ public class PullHeavyAction : StateAction
         float interactiveObjectSize = _interactionManager.currentInteractiveObject.transform.localScale.x; // 박스의 한 변의 길이의 절반
         float distance = interactiveObjectSize / 2 + _player.transform.localScale.x - 0.2f;
 
-        #region Set Offset
+        #region Calculate Offset
         if (distanceVector.x >= interactiveObjectSize / 2) // 왼에서 잡음
         {
             _offset = new Vector3(distance, currentInteractiveObjectPosition.y - _player.transform.position.y, 0);
@@ -77,11 +77,16 @@ public class PullHeavyAction : StateAction
         // 벽과 접촉한 경우, 벽면에 수직으로 이동
         else
         {
+            // 외적으로 진행방향과 수직인 벡터를 구함
             Vector3 slideDirection = Vector3.Cross(Vector3.up, direction).normalized;
-            // 슬라이드 방향의 외적 값이 양수인지 음수인지 결정
+            // 내적으로 슬라이드 방향이 음수인지 양수인지 구함
             if (Vector3.Dot(_player.movementInput, slideDirection) < 0)
             {
                 slideDirection = -slideDirection;
+            }
+            else if (Vector3.Dot(_player.movementInput, slideDirection) == 0)
+            {
+                slideDirection = Vector3.zero;
             }
 
             newPosition = _interactiveObjectRigidbody.position + slideDirection * _originSO.moveSpeed * Time.deltaTime;
