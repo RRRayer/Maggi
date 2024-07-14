@@ -5,7 +5,7 @@ using Pudding.StateMachine.ScriptableObjects;
 [CreateAssetMenu(fileName = "PushWallAction", menuName = "State Machines/Actions/Push Wall Action")]
 public class PushWallActionSO : StateActionSO<PushWallAction> 
 {
-	public float pushForce = 100.0f;
+	public float pushForce;
 }
 
 public class PushWallAction : StateAction
@@ -26,7 +26,7 @@ public class PushWallAction : StateAction
 	
     public override void OnStateExit()
 	{
-		_player.movementVector += _transform.up*_originSO.pushForce;
+		_player.movementVector = _transform.up*_originSO.pushForce + Vector3.up*9.8f;
 		_interactionManager.currentInteractionType = InteractionType.None;
 		_interactionManager.currentInteractiveObject = null;
 	}

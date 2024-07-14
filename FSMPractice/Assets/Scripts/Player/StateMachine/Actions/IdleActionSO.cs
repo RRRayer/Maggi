@@ -10,10 +10,18 @@ public class IdleActionSO : StateActionSO
 
 public class IdleAction : StateAction
 {
+
 	protected new IdleActionSO OriginSO => (IdleActionSO)base.OriginSO;
+
+    // private Transform _transform;
+	// public override void Awake(StateMachine stateMachine)
+	// {
+    //     _transform = stateMachine.GetComponent<Transform>();
+    // }
 
     public override void OnUpdate()
     {
-        //Debug.Log("Idle Action");z
+        //Debug.Log("Idle Action");
+        // Debug.Log(_transform.position);
     }
 }
