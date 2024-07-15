@@ -9,13 +9,11 @@ public class InteractionManager : MonoBehaviour
     [SerializeField] private InputReader _inputReader = default;
 
     // Events for the different interaction types
-    // Type ���� OnTrigger�� ó���������. Condition�� ������ �ش� state�� �Ѿ �� �ְ�
-
     [ReadOnly] public InteractionType currentInteractionType;
     [ReadOnly] public GameObject currentInteractiveObject;
     [ReadOnly] public bool pushInput;
 
-    private LinkedList<Interaction> _potentialInteractions = new LinkedList<Interaction>(); //To store the objects we the player could potentially interact with
+    private LinkedList<Interaction> _potentialInteractions = new LinkedList<Interaction>(); // To store the objects we the player could potentially interact with
 
     private void OnEnable()
     {
