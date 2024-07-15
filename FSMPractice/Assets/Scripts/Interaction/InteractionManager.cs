@@ -60,6 +60,7 @@ public class InteractionManager : MonoBehaviour
         else if (obj.CompareTag("Wall")) newPotentialInteraction.type = InteractionType.Wall;
         else if (obj.CompareTag("Point")) newPotentialInteraction.type = InteractionType.Point;
 
+        Debug.Log(obj.tag);
 
         if (newPotentialInteraction.type != InteractionType.None)
         {
