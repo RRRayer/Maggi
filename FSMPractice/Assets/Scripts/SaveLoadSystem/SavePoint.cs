@@ -10,6 +10,7 @@ public class SavePoint : MonoBehaviour
     };
 
     public Level level = default;
+    public PointSO PointPath => _savePoint;
 
     [SerializeField] private PointSO _savePoint = default;
     [SerializeField] private PointStorageSO _pointStorage = default; // This is where the last point taken will be stored

@@ -137,7 +137,8 @@ public class SceneLoader : MonoBehaviour
             if (_currentlyLoadedScene.sceneReference.OperationHandle.IsValid())
             {
                 //Unload the scene through its AssetReference, i.e. through the Addressable system
-                _currentlyLoadedScene.sceneReference.UnLoadScene(); // 여기가 문젠데
+                var unloadHandle = _currentlyLoadedScene.sceneReference.UnLoadScene();
+                yield return unloadHandle;
             }
 #if UNITY_EDITOR
             else
@@ -145,11 +146,13 @@ public class SceneLoader : MonoBehaviour
                 //Only used when, after a "cold start", the player moves to a new scene
                 //Since the AsyncOperationHandle has not been used (the scene was already open in the editor),
                 //the scene needs to be unloaded using regular SceneManager instead of as an Addressable
-                SceneManager.UnloadSceneAsync(_currentlyLoadedScene.sceneReference.editorAsset.name);
+                var unloadOperation = SceneManager.UnloadSceneAsync(_currentlyLoadedScene.sceneReference.editorAsset.name);
+                yield return unloadOperation;
             }
 #endif
         }
 
+        // Unload 가 끝나면 실행되야함
         LoadNewScene();
     }
 
