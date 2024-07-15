@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53866e015a03a7048b9df6d391757da8, type: 3}
   m_Name: SaveLoadSystem
   m_EditorClassIdentifier: 
+  _loadLocation: {fileID: 11400000, guid: 5f7dea594b7e7204bbb2270a8b6f8e05, type: 2}
+  _pointStorage: {fileID: 11400000, guid: aff70ca1889daf04f96230e35d028773, type: 2}
   saveFilename: save.pudding
   backupSaveFilename: save.pudding.bak
+  saveData:
+    _locationId: 
+    _point: {fileID: 0}

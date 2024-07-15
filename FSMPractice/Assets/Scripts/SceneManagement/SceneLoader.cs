@@ -26,7 +26,7 @@ public class SceneLoader : MonoBehaviour
 
     //Parameters coming from scene loading requests
     private GameSceneSO _sceneToLoad;
-    private GameSceneSO _currentlyLoadedScene;
+    /*For Debug*/[SerializeField] private GameSceneSO _currentlyLoadedScene;
     private bool _showLoadingScreen;
 
     private SceneInstance _gameplayManagerSceneInstance = new SceneInstance();
@@ -137,7 +137,7 @@ public class SceneLoader : MonoBehaviour
             if (_currentlyLoadedScene.sceneReference.OperationHandle.IsValid())
             {
                 //Unload the scene through its AssetReference, i.e. through the Addressable system
-                _currentlyLoadedScene.sceneReference.UnLoadScene();
+                _currentlyLoadedScene.sceneReference.UnLoadScene(); // 여기가 문젠데
             }
 #if UNITY_EDITOR
             else

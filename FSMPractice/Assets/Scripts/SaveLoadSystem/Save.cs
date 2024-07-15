@@ -5,8 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class Save
 {
-    public int CurrentStage => _currentStage;
-    private int _currentStage = default;
+    public string _locationId;
+    public PointSO _point;
 
     public string ToJson()
     {
