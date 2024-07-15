@@ -27,6 +27,11 @@ public class PullPointAction : StateAction
         _interactionManager = stateMachine.GetComponent<InteractionManager>();
 	}
 
+    public override void OnStateEnter()
+    {
+        Debug.Log(_interactionManager.currentInteractiveObject.transform.name);
+    }
+
     public override void OnUpdate()
     {
         _transform.rotation = _interactionManager.currentInteractiveObject.transform.rotation * Quaternion.Euler(new Vector3(180f,-90.0f,0f));
