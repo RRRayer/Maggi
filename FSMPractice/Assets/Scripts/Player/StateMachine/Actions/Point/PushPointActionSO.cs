@@ -2,15 +2,15 @@
 using Pudding.StateMachine;
 using Pudding.StateMachine.ScriptableObjects;
 
-[CreateAssetMenu(fileName = "PushWallAction", menuName = "State Machines/Actions/Push Wall Action")]
-public class PushWallActionSO : StateActionSO<PushWallAction> 
+[CreateAssetMenu(fileName = "PushPointAction", menuName = "State Machines/Actions/Push Point Action")]
+public class PushPointActionSO : StateActionSO<PushPointAction>
 {
 	public float pushForce;
 }
 
-public class PushWallAction : StateAction
+public class PushPointAction : StateAction
 {
-	protected new PushWallActionSO _originSO => (PushWallActionSO)base.OriginSO;
+	protected new PushPointActionSO _originSO => (PushPointActionSO)base.OriginSO;
 	private InteractionManager _interactionManager;
 
 	private Player _player;
@@ -26,7 +26,9 @@ public class PushWallAction : StateAction
 	
     public override void OnStateExit()
 	{
-		_player.movementVector = _transform.up*_originSO.pushForce + Vector3.up*9.8f;
+		_player.movementVector = _transform.up*_originSO.pushForce + Vector3.up*14.8f;
+		Debug.Log(_player.movementVector);
+
 		_interactionManager.currentInteractionType = InteractionType.None;
 		_interactionManager.currentInteractiveObject = null;
 	}
@@ -34,5 +36,4 @@ public class PushWallAction : StateAction
 	public override void OnUpdate()
 	{
 	}
-	
 }
