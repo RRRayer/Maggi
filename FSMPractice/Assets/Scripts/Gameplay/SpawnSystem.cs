@@ -7,6 +7,7 @@ public class SpawnSystem : MonoBehaviour
 {
     [Header("Asset References")]
     [SerializeField] private Player _playerPrefab = default;
+    [SerializeField] private TransformAnchor _playerTransformAnchor = default;
     [SerializeField] private PointStorageSO _pointTaken = default;
 
 
@@ -56,6 +57,8 @@ public class SpawnSystem : MonoBehaviour
 
         Transform spawnPoint = _defaultSpawnPoint; //GetSpawnPoint();
         Player playerInstance = Instantiate(_playerPrefab, spawnPoint.position, spawnPoint.rotation);
+
+        _playerTransformAnchor.Provide(playerInstance.transform);
 
         Debug.Log(spawnPoint.transform);
     }
