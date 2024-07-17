@@ -8,6 +8,7 @@ public class SpawnSystem : MonoBehaviour
     [Header("Asset References")]
     [SerializeField] private Player _playerPrefab = default;
     [SerializeField] private TransformAnchor _playerTransformAnchor = default;
+    // [SerializeField] private TransformEventChannelSO _playerInstantiatedChannel = default; /* TimelineBinder¿¡¼­ Listen to */
     [SerializeField] private PointStorageSO _pointTaken = default;
 
 
@@ -19,6 +20,7 @@ public class SpawnSystem : MonoBehaviour
 
     private void Awake()
     {
+        _spawnPoints = GameObject.FindObjectsOfType<SavePoint>();
         _defaultSpawnPoint = transform.GetChild(0);
     }
 
@@ -53,13 +55,10 @@ public class SpawnSystem : MonoBehaviour
 
     private void SpawnPlayer()
     {
-        Debug.Log("Spawn Player");
-
-        Transform spawnPoint = _defaultSpawnPoint; //GetSpawnPoint();
+        Transform spawnPoint = GetSpawnPoint();
         Player playerInstance = Instantiate(_playerPrefab, spawnPoint.position, spawnPoint.rotation);
 
+        // _playerInstantiatedChannel.RaiseEvent(playerInstance.transform);
         _playerTransformAnchor.Provide(playerInstance.transform);
-
-        Debug.Log(spawnPoint.transform);
     }
 }

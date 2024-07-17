@@ -21,6 +21,7 @@ public class SavePoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("ÀúÀå");
+            _pointStorage.lastPointTaken = _savePoint;
             _saveLoadSystem.SaveDataToDisk();
         }
     }
