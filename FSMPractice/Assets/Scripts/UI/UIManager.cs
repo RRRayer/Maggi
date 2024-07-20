@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private UISetting _UISetting = default;
+    [SerializeField] private InputReader _inputReader = default;
     [SerializeField] private SaveLoadSystem _saveLoadSystem = default; // 얘는 나중에 다른 곳으로 옮겨야 할지도
     [SerializeField] private PointStorageSO _pointStorageSO = default; // 얘는 나중에 다른 곳으로 옮겨야 할지도
 
@@ -17,16 +17,12 @@ public class UIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        _UISetting.RestartButtonAction += Restart;
-        _UISetting.NewGameButtonAction += StartNewGame;
-        _UISetting.GoMainMenuButtonAction += GoMainMenu;
+        _inputReader.MenuPauseEvent += OpenUIPause;
     }
 
     private void OnDisable()
     {
-        _UISetting.RestartButtonAction -= Restart;
-        _UISetting.NewGameButtonAction -= StartNewGame;
-        _UISetting.GoMainMenuButtonAction -= GoMainMenu;
+        _inputReader.MenuPauseEvent -= OpenUIPause;
     }
 
     private void Restart()
@@ -45,5 +41,12 @@ public class UIManager : MonoBehaviour
     private void GoMainMenu()
     {
         _loadMenuEvent.RaiseEvent(_mainMenu, false);
+    }
+
+    private void OpenUIPause()
+    {
+        Time.timeScale = 0.0f;
+
+        Debug.Log("퍼즈");
     }
 }

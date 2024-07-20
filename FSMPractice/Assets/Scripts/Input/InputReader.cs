@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 [CreateAssetMenu(fileName = "InputReader", menuName = "Game/Input Reader")]
-public class InputReader : ScriptableObject, GameInput.IGameplayActions
+public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInput.IMenusActions
 {
     // GamePlay
     public event UnityAction<Vector2> MoveEvent = delegate { };
@@ -12,6 +13,12 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions
     public event UnityAction PullEvent = delegate { };
     public event UnityAction PushEvent = delegate { };
     public event UnityAction PushCancelEvent = delegate { };
+
+    // Menus
+    public event UnityAction MenuPauseEvent = delegate { };
+    public event UnityAction MenuCloseEvent = delegate { };
+    public event UnityAction MoveSelectionEvent = delegate { };
+    public event UnityAction MenuMouseMoveEvent = delegate { };
 
     private GameInput _gameInput;
 
@@ -51,5 +58,54 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions
             PushEvent.Invoke();
         else if (context.phase == InputActionPhase.Canceled)
             PushCancelEvent.Invoke();
+    }
+
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            MenuPauseEvent.Invoke();
+    }
+
+    public void OnCancel(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            MenuCloseEvent.Invoke();
+    }
+
+    public void OnMouseMove(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            MenuMouseMoveEvent.Invoke();
+    }
+
+    public void OnMoveSelection(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            MoveSelectionEvent.Invoke();
+    }
+
+    public void OnPoint(InputAction.CallbackContext context)
+    {
+        
+    }
+
+    public void OnClick(InputAction.CallbackContext context)
+    {
+        
+    }
+
+    public void OnRightClick(InputAction.CallbackContext context)
+    {
+        
+    }
+
+    public void OnNavigate(InputAction.CallbackContext context)
+    {
+        
+    }
+
+    public void OnSubmit(InputAction.CallbackContext context)
+    {
+        
     }
 }
