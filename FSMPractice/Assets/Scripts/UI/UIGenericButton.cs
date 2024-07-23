@@ -9,6 +9,13 @@ public class UIGenericButton : MonoBehaviour
 
     public UnityAction Clicked = default;
 
+    private void OnDisable()
+    {
+        _button.IsSelected = false;
+    }
 
-
+    public void Click()
+    {
+        Clicked.Invoke();
+    }
 }

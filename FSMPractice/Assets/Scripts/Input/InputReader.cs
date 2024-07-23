@@ -64,6 +64,7 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
     {
         if (context.phase == InputActionPhase.Performed)
             MenuPauseEvent.Invoke();
+            
     }
 
     public void OnCancel(InputAction.CallbackContext context)

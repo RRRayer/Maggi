@@ -18,7 +18,7 @@ public class SceneLoader : MonoBehaviour
     [SerializeField] private LoadEventChannelSO _coldStartupLocation = default;
 
     [Header("Broadcasting on")]
-    [SerializeField] private BoolEventChannellSO _toggleLoadingScreen = default;
+    [SerializeField] private BoolEventChannelSO _toggleLoadingScreen = default;
     [SerializeField] private VoidEventChannelSO _onSceneReady = default; //picked up by the SpawnSystem
 
     private AsyncOperationHandle<SceneInstance> _loadingOperationHandle;

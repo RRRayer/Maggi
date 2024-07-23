@@ -7,7 +7,7 @@ public class LoadingInterfaceController : MonoBehaviour
     [SerializeField] private GameObject _loadingInterface = default;
 
     [Header("Listening on")]
-    [SerializeField] private BoolEventChannellSO _toggleLoadingScreen = default;
+    [SerializeField] private BoolEventChannelSO _toggleLoadingScreen = default;
 
     private void OnEnable()
     {
