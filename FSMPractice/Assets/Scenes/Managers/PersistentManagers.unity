@@ -407,6 +407,7 @@ MonoBehaviour:
   _coldStartupLocation: {fileID: 11400000, guid: c7d9a673edad6564db86aa889ac3f0df, type: 2}
   _toggleLoadingScreen: {fileID: 11400000, guid: 12e94d4061ccbc348804ed248791a3a3, type: 2}
   _onSceneReady: {fileID: 11400000, guid: 1e66ac23f63d2a146a3d88fc23d10dd8, type: 2}
+  _currentlyLoadedScene: {fileID: 0}
 --- !u!1 &2031377765
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,7 +419,6 @@ GameObject:
   - component: {fileID: 2031377769}
   - component: {fileID: 2031377768}
   - component: {fileID: 2031377767}
-  - component: {fileID: 2031377766}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -426,23 +426,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2031377766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2031377765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &2031377767
 MonoBehaviour:
   m_ObjectHideFlags: 0

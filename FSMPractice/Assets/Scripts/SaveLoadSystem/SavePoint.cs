@@ -20,7 +20,7 @@ public class SavePoint : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("저장");
+            Debug.Log("저장"); // 나중에 이게 UI 띄워주는거로 빠껴야 겠지
             _pointStorage.lastPointTaken = _savePoint;
             _saveLoadSystem.SaveDataToDisk();
         }

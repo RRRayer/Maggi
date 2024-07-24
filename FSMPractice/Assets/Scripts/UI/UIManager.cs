@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour
 {
     [Header("Scene UI")]
     [SerializeField] private UIPause _pauseScreen = default;
+    [SerializeField] private UISetting _settingScreen = default;
    
     [Header("Gameplay")]
     [SerializeField] private MenuSO _mainMenu;
@@ -39,7 +40,6 @@ public class UIManager : MonoBehaviour
     {
         _inputReader.MenuPauseEvent -= OpenUIPause;
 
-        Debug.Log("퍼즈");
         Time.timeScale = 0.0f; // Pause Time
 
         _pauseScreen.Restarted += RestartAtLastSavePoint;
@@ -52,12 +52,9 @@ public class UIManager : MonoBehaviour
 
     private void RestartAtLastSavePoint()
     {
-        _onStartGame.RaiseEvent();
-    }
+        CloseUIPause();
 
-    private void OpenSettingScreen()
-    {
-        Debug.Log("설정창 열기");
+        _onStartGame.RaiseEvent();
     }
 
     private void CloseUIPause()
@@ -65,8 +62,6 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1.0f;
 
         _inputReader.MenuPauseEvent += OpenUIPause;
-
-        Debug.Log("메뉴 닫기");
 
         _pauseScreen.Restarted -= RestartAtLastSavePoint;
         _pauseScreen.SettingScreenOpened -= OpenSettingScreen;
@@ -76,8 +71,28 @@ public class UIManager : MonoBehaviour
         _pauseScreen.gameObject.SetActive(false);
     }
 
+    private void OpenSettingScreen()
+    {
+        _settingScreen.Closed += CloseSettingScreen;
+
+        _pauseScreen.gameObject.SetActive(false);
+
+        _settingScreen.gameObject.SetActive(true);
+    }
+
+    private void CloseSettingScreen()
+    {
+        _settingScreen.Closed -= CloseSettingScreen;
+
+        _pauseScreen.gameObject.SetActive(true);
+
+        _settingScreen.gameObject.SetActive(false);
+    }
+
     private void ShowBackToMenuConfirmationPopup()
     {
+        Debug.Log("메인 메뉴로!!");
+        CloseUIPause();
         _loadMenuEvent.RaiseEvent(_mainMenu, false);
     }
 }
