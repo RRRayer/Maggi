@@ -26,7 +26,7 @@ public class SceneLoader : MonoBehaviour
 
     //Parameters coming from scene loading requests
     private GameSceneSO _sceneToLoad;
-    /*For Debug*/[SerializeField] private GameSceneSO _currentlyLoadedScene;
+    private GameSceneSO _currentlyLoadedScene;
     private bool _showLoadingScreen;
 
     private SceneInstance _gameplayManagerSceneInstance = new SceneInstance();

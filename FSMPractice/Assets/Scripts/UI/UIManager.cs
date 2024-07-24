@@ -91,7 +91,7 @@ public class UIManager : MonoBehaviour
 
     private void ShowBackToMenuConfirmationPopup()
     {
-        Debug.Log("메인 메뉴로!!");
+        // 여기에 확인 팝업창을 띄우는 작업을 추가해야 함
         CloseUIPause();
         _loadMenuEvent.RaiseEvent(_mainMenu, false);
     }
