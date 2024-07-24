@@ -14,6 +14,7 @@ public class EditorColdStartup : MonoBehaviour
     [SerializeField] private GameSceneSO _persistentManagersSO = default;
     [SerializeField] private AssetReference _notifyColdStartupChannel = default;
     [SerializeField] private VoidEventChannelSO _onSceneReadyChannel = default;
+    [SerializeField] private PointStorageSO _pointStorage = default;
     [SerializeField] private SaveLoadSystem _saveSystem = default;
 
     private bool isColdStart = false;
@@ -22,6 +23,8 @@ public class EditorColdStartup : MonoBehaviour
         if (!SceneManager.GetSceneByName(_persistentManagersSO.sceneReference.editorAsset.name).isLoaded)
         {
             isColdStart = true;
+
+            _pointStorage.lastPointTaken = null;
         }
         CreateSaveFileIfNotPresent();
     }

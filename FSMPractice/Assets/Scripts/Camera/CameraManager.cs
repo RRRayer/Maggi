@@ -43,7 +43,8 @@ public class CameraManager : MonoBehaviour
         {
             virtualCam.Follow = target;
             virtualCam.LookAt = target;
-            virtualCam.OnTargetObjectWarped(target, target.position - virtualCam.transform.position - Vector3.forward);
+            if (target != null)
+                virtualCam.OnTargetObjectWarped(target, target.position - virtualCam.transform.position - Vector3.forward);
         }
     }
 

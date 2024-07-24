@@ -28,14 +28,6 @@ public class UIManager : MonoBehaviour
         _inputReader.MenuPauseEvent -= OpenUIPause;
     }
 
-    private void StartNewGame() // 얘는 메인메뉴로 옮겨야겠다
-    {
-        _saveLoadSystem.WriteEmptySaveFile();
-        _saveLoadSystem.SetNewGameData();
-        _pointStorageSO.lastPointTaken = null;
-        _onStartGame.RaiseEvent();
-    }
-
     private void OpenUIPause()
     {
         _inputReader.MenuPauseEvent -= OpenUIPause;

@@ -6,7 +6,7 @@ using UnityEngine;
 public class Save
 {
     public string _locationId;
-    public PointSO _point;
+    public PointStorageSO _pointStorage;
 
     public string ToJson()
     {

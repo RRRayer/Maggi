@@ -7,7 +7,7 @@ public class SpawnSystem : MonoBehaviour
     [SerializeField] private Player _playerPrefab = default;
     [SerializeField] private TransformAnchor _playerTransformAnchor = default;
     // [SerializeField] private TransformEventChannelSO _playerInstantiatedChannel = default; /* TimelineBinder¿¡¼­ Listen to */
-    [SerializeField] private PointStorageSO _pointTaken = default;
+    [SerializeField] private PointStorageSO _pointTaken = null;
 
 
     [Header("Scene Ready Event")]

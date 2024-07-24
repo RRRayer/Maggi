@@ -38,7 +38,7 @@ public class SaveLoadSystem : ScriptableObject
 
     public void SaveDataToDisk()
     {
-        saveData._point = _pointStorage.lastPointTaken;
+        saveData._pointStorage = _pointStorage;
 
         if (FileManager.MoveFile(saveFilename, backupSaveFilename))
         {
@@ -67,6 +67,8 @@ public class SaveLoadSystem : ScriptableObject
     public void SetNewGameData()
     {
         FileManager.WriteToFile(saveFilename, "");
+        if (_pointStorage)
+            _pointStorage.lastPointTaken = null;
         SaveDataToDisk();
     }
 }

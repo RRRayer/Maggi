@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class SavePoint : MonoBehaviour
 {
-    public enum Level
-    {
-        ONE, TWO, THREE, FOUR
-    };
-
-    public Level level = default;
     public PointSO PointPath => _savePoint;
 
     [SerializeField] private PointSO _savePoint = default;
