@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class CameraZoomEffect : MonoBehaviour
 {
-    public CinemachineVirtualCamera _virtualCamera;
-
     public float zoomedInFOV = 20f;
     public float zoomedOutFOV = 60f;
     public float zoomDuration = 1.0f;
@@ -16,20 +14,31 @@ public class CameraZoomEffect : MonoBehaviour
     public float _targetFOV;
     public float _zoomStartTime;
 
+    [SerializeField] private CameraSO _currentCamera;
+    private CinemachineVirtualCamera[] _virtualCams;
+
     public Vector2 _center; // Zoom Collider center, X, Z 좌표에 대한 거리 계산
     public float _r; // Zoom Collider radious
 
     private void Awake()
     {
-        if (_virtualCamera == null)
-        {
-            Debug.LogError("There is no virtual camera / CameraZoomEffect.cs");
-            return;
-        }
+        //_virtualCams = GetComponentsInChildren<CinemachineVirtualCamera>();
+        //if (_virtualCams.Length == 0)
+        //{
+        //    Debug.LogError("There is no virtual camera / CameraZoomEffect.cs");
+        //    return;
+        //}
     }
 
     private void Start()
     {
+        _virtualCams = transform.root.GetComponentsInChildren<CinemachineVirtualCamera>();
+        if (_virtualCams.Length == 0)
+        {
+            Debug.LogError("There is no virtual camera / CameraZoomEffect.cs");
+            return;
+        }
+
         Collider collider = GetComponent<Collider>();
         _center = new Vector2(collider.bounds.center.x, collider.bounds.center.z);
         _r = collider.bounds.size.x / 2;
@@ -81,7 +90,7 @@ public class CameraZoomEffect : MonoBehaviour
                 _isZooming = false;
             }
 
-            _virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(_virtualCamera.m_Lens.FieldOfView, _targetFOV, t);
+            _virtualCams[_currentCamera.index].m_Lens.FieldOfView = Mathf.Lerp(_virtualCams[_currentCamera.index].m_Lens.FieldOfView, _targetFOV, t);
         }
     }
 
