@@ -56,6 +56,11 @@ public class CameraManager : MonoBehaviour
         for (int i = 0; i < virtualCams.Length; ++i)
         {
             virtualCams[i].Priority = (i == _currentCamera.index) ? 1 : 0;
+            var composer = virtualCams[i].GetCinemachineComponent<CinemachineComposer>();
+            if (composer != null)
+            {
+                composer.m_TrackedObjectOffset = new Vector3(0, 1.5f, 0); // 카메라의 조준 오프셋 변경
+            }
         }
     }
 }
