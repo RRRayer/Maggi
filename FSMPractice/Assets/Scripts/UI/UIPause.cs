@@ -11,7 +11,7 @@ public class UIPause : MonoBehaviour
     [SerializeField] private UIGenericButton _backToMenuButton = default;
     [SerializeField] private UIGenericButton _resumeButton = default;
 
-    [Header("Listening to")]
+    [Header("Broadcasting on")]
     [SerializeField] private BoolEventChannelSO _onPauseOpened = default;
 
     public event UnityAction Restarted = default;

@@ -7,7 +7,8 @@ public class UIMenuManager : MonoBehaviour
     [SerializeField] private UIMainMenu _mainMenuPanel = default;
 
     [Header("Broadcasting on")]
-    [SerializeField] private VoidEventChannelSO _startGameEvent = default;
+    [SerializeField] private VoidEventChannelSO _startNewGameEvent = default;
+    [SerializeField] private VoidEventChannelSO _continueGameEvent = default;
 
     private IEnumerator Start()
     {
@@ -17,11 +18,17 @@ public class UIMenuManager : MonoBehaviour
 
     private void SetMenuScreen()
     {
-        _mainMenuPanel.StartGameAction += ButtonStartGameClicked;
+        _mainMenuPanel.NewGameButtonAction += ButtonStartNewGameClicked;
+        _mainMenuPanel.ContinueButtonAction += ButtonContinueGameClicked;
     }
 
-    private void ButtonStartGameClicked()
+    private void ButtonStartNewGameClicked()
     {
-        _startGameEvent.OnEventRaised();
+        _startNewGameEvent.OnEventRaised();
+    }
+
+    private void ButtonContinueGameClicked()
+    {
+        _continueGameEvent.OnEventRaised();
     }
 }

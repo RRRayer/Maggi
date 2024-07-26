@@ -6,12 +6,19 @@ using UnityEngine.UI;
 
 public class UIMainMenu : MonoBehaviour
 {
-    [SerializeField] private Button _startButton = default;
+    [SerializeField] private Button _newGameButton = default;
+    [SerializeField] private Button _continueButton = default;
 
-    public UnityAction StartGameAction;
+    public UnityAction NewGameButtonAction;
+    public UnityAction ContinueButtonAction;
 
-    public void StartButton()
+    public void NewGameButton()
     {
-        StartGameAction.Invoke();
+        NewGameButtonAction.Invoke();
+    }
+
+    public void ContinueButton()
+    {
+        ContinueButtonAction.Invoke();
     }
 }
