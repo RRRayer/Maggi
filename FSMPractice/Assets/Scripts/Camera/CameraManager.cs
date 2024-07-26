@@ -9,6 +9,7 @@ public class CameraManager : MonoBehaviour
     public Camera mainCamera;
 
     [SerializeField] private TransformAnchor _playerTransformAnchor = default;
+    [SerializeField] private TransformAnchor _cameraTransformAnchor = default;
     [SerializeField] private CameraSO _currentCamera;
 
     [Header("Listening to")]
@@ -20,11 +21,14 @@ public class CameraManager : MonoBehaviour
     {
         _playerTransformAnchor.OnAnchorProvided += SetupPlaerVirtualCamera;
         _onSwitchCamera.OnEventRaised += SwitchToCamera;
+
+        _cameraTransformAnchor.Provide(mainCamera.transform);
     }
 
     private void OnDisable()
     {
         _playerTransformAnchor.OnAnchorProvided -= SetupPlaerVirtualCamera;
+        _onSwitchCamera.OnEventRaised -= SwitchToCamera;
     }
 
     private void Start()
@@ -42,7 +46,7 @@ public class CameraManager : MonoBehaviour
         foreach (var virtualCam in virtualCams)
         {
             virtualCam.Follow = target;
-            //virtualCam.LookAt = target;
+            virtualCam.LookAt = target;
             if (target != null)
                 virtualCam.OnTargetObjectWarped(target, target.position - virtualCam.transform.position - Vector3.forward);
         }

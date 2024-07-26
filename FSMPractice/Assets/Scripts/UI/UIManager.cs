@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Broadcasting on")]
     [SerializeField] private LoadEventChannelSO _loadMenuEvent = default;
-    [SerializeField] private VoidEventChannelSO _onStartGame = default;
+    [SerializeField] private VoidEventChannelSO _onContinueButton = default;
 
     private void OnEnable()
     {
@@ -46,7 +46,7 @@ public class UIManager : MonoBehaviour
     {
         CloseUIPause();
 
-        _onStartGame.RaiseEvent();
+        _onContinueButton.RaiseEvent();
     }
 
     private void CloseUIPause()

@@ -4,6 +4,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader = default;
+    [SerializeField] private TransformAnchor _gameplayCameraTransform = default;
 
     private Vector2 _inputVector; // _inputVector.x : x movement, _inputVector.y : z movement
     private float _previousSpeed;
@@ -44,7 +45,20 @@ public class Player : MonoBehaviour
         float targetSpeed;
         Vector3 adjustedMovement;
 
-        adjustedMovement = new Vector3(_inputVector.x, 0.0f, _inputVector.y);
+        if (_gameplayCameraTransform.isSet)
+        {
+            Vector3 cameraForward = _gameplayCameraTransform.Value.forward;
+            cameraForward.y = .0f;
+            Vector3 cameraRight = _gameplayCameraTransform.Value.right;
+            cameraRight.y = .0f;
+
+            adjustedMovement = cameraRight.normalized * _inputVector.x + cameraForward.normalized * _inputVector.y;
+        }
+        else
+        {
+            Debug.LogWarning("No gameplay camera in the scene. Movement orientation will not be correct.");
+            adjustedMovement = new Vector3(_inputVector.x, 0f, _inputVector.y);
+        }
 
         targetSpeed = Mathf.Clamp01(_inputVector.magnitude);
         targetSpeed = Mathf.Lerp(_previousSpeed, targetSpeed, Time.deltaTime * 4.0f);

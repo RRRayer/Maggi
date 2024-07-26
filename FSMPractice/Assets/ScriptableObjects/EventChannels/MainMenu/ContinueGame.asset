@@ -10,8 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 200ae7631d0f1684aa38f41ac3005397, type: 3}
-  m_Name: OnSwitchCamera
+  m_Name: ContinueGame
   m_EditorClassIdentifier: 
-  _guid: 185f371f63cf4894fb067f0d758362f4
-  description: "\uD50C\uB808\uC774\uC5B4 \uC704\uCE58\uC5D0 \uB530\uB77C virtual
-    camera\uC758 \uC804\uD658\uD568"
+  _guid: 91afff68790171643ad78ea2ebd40ad2
+  description: 'Listen to StartGameController
+
+    Broadcasting on Canvas-MainMenu
+
+    Used
+    also in game Restart Controller'
