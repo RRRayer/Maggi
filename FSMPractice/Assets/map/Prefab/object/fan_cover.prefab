@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 92807981659588716}
   - component: {fileID: 6296252560603788354}
   - component: {fileID: 1220430766058773416}
+  - component: {fileID: 566560687687519787}
   m_Layer: 0
   m_Name: fan_cover
   m_TagString: Untagged
@@ -133,3 +134,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &566560687687519787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4441969725023348213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e56b02590e6205e43ba809dbbbc7e82c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  count: 2

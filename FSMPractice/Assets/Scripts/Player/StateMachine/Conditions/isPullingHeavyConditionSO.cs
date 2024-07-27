@@ -28,8 +28,6 @@ public class isPullingHeavyCondition : Condition
 
             if (distanceVector.y < interactiveObjectSize / 2 && distanceVector.y > -interactiveObjectSize / 2) // 위나 아래
             {
-                Debug.Log(distanceVector.y);
-                Debug.Log(interactiveObjectSize / 2);
                 return true;
             }
         }

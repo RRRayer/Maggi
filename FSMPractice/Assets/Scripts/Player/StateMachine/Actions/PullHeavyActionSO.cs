@@ -33,6 +33,8 @@ public class PullHeavyAction : StateAction
 
         _previousPlayerPosition = _player.transform.position;
 
+        // Pull Heavy 어떤 면인지 계산하는 방법을 고쳐야 함.
+
         Vector3 currentInteractiveObjectPosition = _interactionManager.currentInteractiveObject.transform.position;
         Vector3 distanceVector = currentInteractiveObjectPosition - _player.transform.position;
         float interactiveObjectSize = _interactionManager.currentInteractiveObject.transform.localScale.x; // 박스의 한 변의 길이의 절반

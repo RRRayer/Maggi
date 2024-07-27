@@ -32,5 +32,7 @@ public class Breakable : MonoBehaviour
     private void Broken()
     {
         _collider.enabled = false;
+        // Play Broken Animation
+        // 일정 시간 뒤에 사라짐 - 코루틴
     }
 }
