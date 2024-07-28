@@ -79,7 +79,7 @@ public class CameraZoomEffect : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (_isZooming)
         {

@@ -19,7 +19,7 @@ public class CameraManager : MonoBehaviour
 
     private void OnEnable()
     {
-        _playerTransformAnchor.OnAnchorProvided += SetupPlaerVirtualCamera;
+        _playerTransformAnchor.OnAnchorProvided += SetupPlayerVirtualCamera;
         _onSwitchCamera.OnEventRaised += SwitchToCamera;
 
         _cameraTransformAnchor.Provide(mainCamera.transform);
@@ -27,7 +27,7 @@ public class CameraManager : MonoBehaviour
 
     private void OnDisable()
     {
-        _playerTransformAnchor.OnAnchorProvided -= SetupPlaerVirtualCamera;
+        _playerTransformAnchor.OnAnchorProvided -= SetupPlayerVirtualCamera;
         _onSwitchCamera.OnEventRaised -= SwitchToCamera;
     }
 
@@ -36,10 +36,10 @@ public class CameraManager : MonoBehaviour
         virtualCams = GetComponentsInChildren<CinemachineVirtualCamera>();
 
         if (_playerTransformAnchor.isSet)
-            SetupPlaerVirtualCamera();
+            SetupPlayerVirtualCamera();
     }
 
-    private void SetupPlaerVirtualCamera()
+    private void SetupPlayerVirtualCamera()
     {
         Transform target = _playerTransformAnchor.Value;
 
