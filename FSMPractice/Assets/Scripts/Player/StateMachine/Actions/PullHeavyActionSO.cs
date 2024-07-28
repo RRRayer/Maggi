@@ -16,8 +16,7 @@ public class PullHeavyAction : StateAction
     private InteractionManager _interactionManager;
 
     private Rigidbody _interactiveObjectRigidbody;
-    private Vector3 _offset;
-    private Vector3 _previousPlayerPosition;
+    private Vector3 _offset = Vector3.zero;
 
     public override void Awake(StateMachine stateMachine)
     {
@@ -25,39 +24,67 @@ public class PullHeavyAction : StateAction
         _interactionManager = stateMachine.GetComponent<InteractionManager>();
     }
 
-    public override void OnStateEnter()
+     public override void OnStateEnter()
     {
         _interactiveObjectRigidbody = _interactionManager.currentInteractiveObject.GetComponent<Rigidbody>();
         // Freeze rotation to prevent the box from rolling
         _interactiveObjectRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
 
-        _previousPlayerPosition = _player.transform.position;
-
-        // Pull Heavy 어떤 면인지 계산하는 방법을 고쳐야 함.
-
         Vector3 currentInteractiveObjectPosition = _interactionManager.currentInteractiveObject.transform.position;
-        Vector3 distanceVector = currentInteractiveObjectPosition - _player.transform.position;
-        float interactiveObjectSize = _interactionManager.currentInteractiveObject.transform.localScale.x; // 박스의 한 변의 길이의 절반
-        float distance = interactiveObjectSize / 2 + _player.transform.localScale.x - 0.2f;
+        Vector3 playerPosition = _player.transform.position;
+
+        // 박스 콜라이더의 크기와 위치 정보를 가져옴
+        BoxCollider boxCollider = _interactionManager.currentInteractiveObject.GetComponent<BoxCollider>();
+        Vector3 boxSize = boxCollider.size;
+        Vector3 boxCenter = boxCollider.center;
+
+        // 플레이어->박스 사이의 벡터
+        Vector3 distanceVector = currentInteractiveObjectPosition - playerPosition;
+        float halfBoxSizeX = boxSize.x / 2;
+        float halfBoxSizeZ = boxSize.z / 2;
+
+        // 박스의 한 변 길이와 플레이어의 크기
+        float playerHalfSize = _player.transform.localScale.x / 2;
+        float distance = halfBoxSizeX + playerHalfSize + 0.2f;
 
         #region Calculate Offset
-        if (distanceVector.x >= interactiveObjectSize / 2) // 왼에서 잡음
+        if (Mathf.Abs(distanceVector.x) > Mathf.Abs(distanceVector.z))
         {
-            _offset = new Vector3(distance, currentInteractiveObjectPosition.y - _player.transform.position.y, 0);
+            if (distanceVector.x <= -halfBoxSizeX) // 오른쪽에서 잡음 <-
+            {
+                _offset = new Vector3(-distance, 0, 0);
+            }
+            else if (distanceVector.x >= halfBoxSizeX) // 왼쪽에서 잡음 ->
+            {
+                _offset = new Vector3(distance, 0, 0);
+            }
+            else
+            {
+                Debug.LogWarning("Player and Heavy Collider is overlapped");
+                return;
+            }
+                
         }
-        else if (-distanceVector.x >= interactiveObjectSize / 2) // 오에서 잡음
+        else
         {
-            _offset = new Vector3(-distance, currentInteractiveObjectPosition.y - _player.transform.position.y, 0);
-        }
-        else if (distanceVector.z >= interactiveObjectSize / 2) // 앞에서 잡음
-        {
-            _offset = new Vector3(0, currentInteractiveObjectPosition.y - _player.transform.position.y, distance);
-        }
-        else if (-distanceVector.z >= interactiveObjectSize / 2) // 뒤에서 잡음
-        {
-            _offset = new Vector3(0, currentInteractiveObjectPosition.y - _player.transform.position.y, -distance);
+            if (distanceVector.z >= halfBoxSizeZ) // 앞쪽에서 잡음 ^
+            {
+                _offset = new Vector3(0, 0, distance);
+            }
+            else if (distanceVector.z <= -halfBoxSizeZ) // 뒤쪽에서 잡음 v
+            {
+                _offset = new Vector3(0, 0, -distance);
+            }
+            else
+            {
+                Debug.LogWarning("Player and Heavy Collider is overlapped");
+                return;
+            }
         }
         #endregion
+
+        // 높이 보정
+        _offset.y = currentInteractiveObjectPosition.y - playerPosition.y;
     }
 
     public override void OnUpdate() { }
@@ -71,7 +98,7 @@ public class PullHeavyAction : StateAction
 
         // 충돌 검사 및 이동
 
-        // 벽과 충돌한 경우
+        // 땅에서의 이동
         if (!Physics.CheckBox(newPosition, _interactiveObjectRigidbody.transform.localScale / 2, Quaternion.identity, _originSO.collisionLayerMask))
         {
             _interactiveObjectRigidbody.MovePosition(newPosition);
