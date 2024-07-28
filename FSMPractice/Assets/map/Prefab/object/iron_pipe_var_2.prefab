@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5577522114358215697}
   - component: {fileID: 1445022397822216829}
   - component: {fileID: 1443808479102463387}
+  - component: {fileID: 5644163996745108463}
   m_Layer: 0
   m_Name: iron_pipe_var_2
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.65620786, y: -0.24014275, z: 0.23299375, w: 0.6763407}
   m_LocalPosition: {x: 0.21400023, y: -1.698, z: -4.059}
-  m_LocalScale: {x: 150.00002, y: 150.00003, z: 150.00003}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -43,7 +44,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7419978192748029060}
-  m_Mesh: {fileID: 1166471166303147680, guid: f96e4d85374caef45b95bf12ba85ff85, type: 3}
+  m_Mesh: {fileID: -5342533911071590881, guid: 2567db99a02c445419d7565dcec1c646, type: 3}
 --- !u!23 &559228521838857655
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -105,8 +106,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.034378566, y: 0.002, z: 0.0019806821}
-  m_Center: {x: -0.001498282, y: 0, z: -8.0755985e-11}
+  m_Size: {x: 0.20022672, y: 0.19806829, z: 0.47620746}
+  m_Center: {x: -1.7686309, y: 0.00001641245, z: -0.1390706}
 --- !u!65 &1445022397822216829
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -126,8 +127,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.002, y: 0.0047620786, z: 0.0019806821}
-  m_Center: {x: -0.0177, y: 0.0013906949, z: -8.0755985e-11}
+  m_Size: {x: 3.4378564, y: 0.19806829, z: 0.19988845}
+  m_Center: {x: -0.14982828, y: 0.0000005284751, z: -0.00091054477}
 --- !u!54 &1443808479102463387
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -155,3 +156,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5644163996745108463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7419978192748029060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ad4cda2b507ee42a77b539d74b358d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSelected: 0

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6817840302608357125}
   - component: {fileID: 2563324862059219488}
   - component: {fileID: 5037823720788343837}
-  - component: {fileID: 7125655549671539969}
   - component: {fileID: 341321341426903679}
+  - component: {fileID: 8932605470234853348}
   m_Layer: 0
   m_Name: luggage_var_2
   m_TagString: Untagged
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071067}
   m_LocalPosition: {x: -19.73789, y: 1.632, z: -12.657695}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 528439219149052990}
-  m_Mesh: {fileID: -2625611795736764468, guid: 0d77f9947790e134f9e16db42fb4dd2e, type: 3}
+  m_Mesh: {fileID: 2166459595143963831, guid: 2567db99a02c445419d7565dcec1c646, type: 3}
 --- !u!23 &5037823720788343837
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -85,27 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7125655549671539969
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 528439219149052990}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.010611414, y: 0.0109149385, z: 0.0153792}
-  m_Center: {x: -0.0003699772, y: 0.00023213607, z: 0.0038479676}
 --- !u!54 &341321341426903679
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -133,3 +112,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!64 &8932605470234853348
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 528439219149052990}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2166459595143963831, guid: 2567db99a02c445419d7565dcec1c646, type: 3}
