@@ -10,7 +10,8 @@ public class PushHeavyActionSO : StateActionSO
 
 public class PushHeavyAction : StateAction
 {
-	//protected new PushHeavyActionSO _originSO => (PushHeavyActionSO)base.OriginSO;
+    //protected new PushHeavyActionSO _originSO => (PushHeavyActionSO)base.OriginSO;
+
     private InteractionManager _interactionManager;
 
     public override void Awake(StateMachine stateMachine)
@@ -18,13 +19,11 @@ public class PushHeavyAction : StateAction
         _interactionManager = stateMachine.GetComponent<InteractionManager>();
     }
 
-    public override void OnUpdate()
-	{
-	}
-	
-	public override void OnStateExit()
-	{
+    public override void OnStateExit()
+    {
         _interactionManager.currentInteractionType = InteractionType.None;
         _interactionManager.currentInteractiveObject = null;
     }
+
+    public override void OnUpdate() { }
 }
