@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    public InputReader inputReader;
-    public Camera mainCamera;
+    [SerializeField] private InputReader _inputReader;
+    [SerializeField] private Camera _mainCamera;
 
     [SerializeField] private TransformAnchor _playerTransformAnchor = default;
     [SerializeField] private TransformAnchor _cameraTransformAnchor = default;
@@ -19,10 +19,10 @@ public class CameraManager : MonoBehaviour
 
     private void OnEnable()
     {
+
         _playerTransformAnchor.OnAnchorProvided += SetupPlayerVirtualCamera;
         _onSwitchCamera.OnEventRaised += SwitchToCamera;
-
-        _cameraTransformAnchor.Provide(mainCamera.transform);
+        _cameraTransformAnchor.Provide(_mainCamera.transform);
     }
 
     private void OnDisable()
