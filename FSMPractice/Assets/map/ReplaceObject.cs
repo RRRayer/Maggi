@@ -4,43 +4,27 @@ using UnityEngine;
 
 public class ReplaceObject : MonoBehaviour
 {
-    public GameObject TargetPrefab;
+    [SerializeField] private GameObject _targetPrefab;
 
-    private GameObject _OriginalObject;
-
-    [SerializeField]
-    public bool IsChanged = false;
-
-    void ChangeObject()
-    {
-        
-        if (TargetPrefab != null)
-        {
-            Vector3 position = _OriginalObject.transform.position;
-            Quaternion rotation = _OriginalObject.transform.rotation;
-
-            Destroy(_OriginalObject);
-
-            GameObject newObject = Instantiate(TargetPrefab, position, rotation);
-
-            newObject.transform.localScale = new Vector3(0.95f, 0.95f, 0.95f);
-
-            _OriginalObject = newObject;
-        }
-    }
+    private GameObject _originalObject;
 
     void Start()
     {
-        _OriginalObject = this.gameObject;
-        IsChanged = false;
+        _originalObject = gameObject;
     }
 
-
-    void OnValidate()
+    public void ChangeObject()
     {
-        if (IsChanged == true)
+        if (_targetPrefab != null)
         {
-            ChangeObject();
+            Vector3 position = _originalObject.transform.position;
+            Quaternion rotation = _originalObject.transform.rotation;
+
+            Destroy(_originalObject);
+
+            GameObject newObject = Instantiate(_targetPrefab, position, rotation);
+
+            _originalObject = newObject;
         }
     }
 }

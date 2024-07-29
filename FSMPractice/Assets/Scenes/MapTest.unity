@@ -123,25 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &1012727238 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 937016031091869542, guid: dd79f7c06e355ae419bc55e440f58418, type: 3}
-  m_PrefabInstance: {fileID: 1695079233}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1012727239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1012727238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8960c63e62841314f8742e6ae7704d8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TargetPrefab: {fileID: 8441957360604241027, guid: cc81a1eda9784d74e94801243311ddbf, type: 3}
-  IsChanged: 1
 --- !u!1 &1296441585
 GameObject:
   m_ObjectHideFlags: 0
@@ -378,18 +359,6 @@ PrefabInstance:
       value: wood_box
       objectReference: {fileID: 0}
     - target: {fileID: 8360521322019526522, guid: dd79f7c06e355ae419bc55e440f58418, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8360521322019526522, guid: dd79f7c06e355ae419bc55e440f58418, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8360521322019526522, guid: dd79f7c06e355ae419bc55e440f58418, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8360521322019526522, guid: dd79f7c06e355ae419bc55e440f58418, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.58395934
       objectReference: {fileID: 0}
@@ -432,10 +401,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 937016031091869542, guid: dd79f7c06e355ae419bc55e440f58418, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1012727239}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd79f7c06e355ae419bc55e440f58418, type: 3}
 --- !u!1 &1810493562
 GameObject:
