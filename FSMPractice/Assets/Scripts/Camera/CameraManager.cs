@@ -34,6 +34,8 @@ public class CameraManager : MonoBehaviour
     private void Start()
     {
         virtualCams = GetComponentsInChildren<CinemachineVirtualCamera>();
+        if (virtualCams.Length == 0)
+            Debug.LogWarning("There is no virtual camera _ CameraManager.cs");
 
         if (_playerTransformAnchor.isSet)
             SetupPlayerVirtualCamera();

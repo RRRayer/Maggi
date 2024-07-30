@@ -14,12 +14,10 @@ public class Player : MonoBehaviour
     public Vector3 movementVector;
     public bool jumpInput;
 
-    private float speed = 2.0f;
-
     public const float AIR_RESISTANCE = 5f;
     public const float MAX_FALL_SPEED = -50f;
     public const float MAX_RISE_SPEED = 100f;
-    public const float GRAVITY_MULTIPLIER = 5f;
+    public const float GRAVITY_MULTIPLIER = 2f;
     public const float GRAVITY_COMEBACK_MULTIPLIER = 0.06f;
     public const float GRAVITY_DIVIDER = 0.6f;
 

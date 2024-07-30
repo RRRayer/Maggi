@@ -39,7 +39,8 @@ public class Breakable : MonoBehaviour
     private void ReplaceToBrokenObject()
     {
         // Play Timeline On Broken
-        _onStartTimeline.RaiseEvent(_timeline);
+        if (_onStartTimeline != null && _timeline != null)
+            _onStartTimeline.RaiseEvent(_timeline);
 
         // Destroy Gameobject and Replace to deactivate automatically
         if (TryGetComponent(out ReplaceObject _replaceObject))

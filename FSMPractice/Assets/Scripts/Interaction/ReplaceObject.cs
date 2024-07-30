@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ReplaceObject : MonoBehaviour
 {
     [SerializeField] private GameObject _targetPrefab;
-
     private GameObject _originalObject;
 
     void Start()
@@ -23,6 +20,7 @@ public class ReplaceObject : MonoBehaviour
             Destroy(_originalObject);
 
             GameObject newObject = Instantiate(_targetPrefab, position, rotation);
+            //newObject.transform.SetParent(_originalObject.transform.parent, false);
 
             _originalObject = newObject;
         }

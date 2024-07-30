@@ -45,18 +45,19 @@ public class PullHeavyAction : StateAction
 
         // 박스의 한 변 길이와 플레이어의 크기
         float playerHalfSize = _player.transform.localScale.x / 2;
-        float distance = halfBoxSizeX + playerHalfSize + 0.2f;
+        float distanceX = halfBoxSizeX + playerHalfSize + 0.2f;
+        float distanceZ = halfBoxSizeZ + playerHalfSize + 0.2f;
 
         #region Calculate Offset
         if (Mathf.Abs(distanceVector.x) > Mathf.Abs(distanceVector.z))
         {
             if (distanceVector.x <= -halfBoxSizeX) // 오른쪽에서 잡음 <-
             {
-                _offset = new Vector3(-distance, 0, 0);
+                _offset = new Vector3(-distanceX, 0, 0);
             }
             else if (distanceVector.x >= halfBoxSizeX) // 왼쪽에서 잡음 ->
             {
-                _offset = new Vector3(distance, 0, 0);
+                _offset = new Vector3(distanceX, 0, 0);
             }
             else
             {
@@ -69,11 +70,11 @@ public class PullHeavyAction : StateAction
         {
             if (distanceVector.z >= halfBoxSizeZ) // 앞쪽에서 잡음 ^
             {
-                _offset = new Vector3(0, 0, distance);
+                _offset = new Vector3(0, 0, distanceZ);
             }
             else if (distanceVector.z <= -halfBoxSizeZ) // 뒤쪽에서 잡음 v
             {
-                _offset = new Vector3(0, 0, -distance);
+                _offset = new Vector3(0, 0, -distanceZ);
             }
             else
             {

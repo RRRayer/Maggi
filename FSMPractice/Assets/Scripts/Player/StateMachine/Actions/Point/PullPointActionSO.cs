@@ -29,12 +29,9 @@ public class PullPointAction : StateAction
 
     public override void OnStateEnter()
     {
-        Debug.Log(_interactionManager.currentInteractiveObject.transform.name);
+        _transform.rotation = _interactionManager.currentInteractiveObject.transform.rotation * Quaternion.Euler(new Vector3(0.0f, 0.0f, 180.0f));
+        _transform.position = _interactionManager.currentInteractiveObject.transform.position + _transform.up * 0.3f;
     }
 
-    public override void OnUpdate()
-    {
-        _transform.rotation = _interactionManager.currentInteractiveObject.transform.rotation * Quaternion.Euler(new Vector3(180f,-90.0f,0f));
-		_transform.position = _interactionManager.currentInteractiveObject.transform.position + _transform.up * 1.0f + _transform.right * 0.5f;
-    }
+    public override void OnUpdate() { }
 }

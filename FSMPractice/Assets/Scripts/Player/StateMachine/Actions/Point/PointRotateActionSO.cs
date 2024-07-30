@@ -28,7 +28,7 @@ public class PointRotateAction : StateAction
     public override void OnUpdate()
     {
         _transform.RotateAround(_interactionManager.currentInteractiveObject.transform.position,
-                                _interactionManager.currentInteractiveObject.transform.forward,
+                                _interactionManager.currentInteractiveObject.transform.right,
                                 _player.movementInput.x * _originSO.rotationSpeed);
     }
 }

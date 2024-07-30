@@ -26,7 +26,7 @@ public class PushPointAction : StateAction
 	
     public override void OnStateExit()
 	{
-		_player.movementVector = _transform.up*_originSO.pushForce + Vector3.up*14.8f;
+		_player.movementVector = _transform.up*_originSO.pushForce + Vector3.up;
 		Debug.Log(_player.movementVector);
 
 		_interactionManager.currentInteractionType = InteractionType.None;
