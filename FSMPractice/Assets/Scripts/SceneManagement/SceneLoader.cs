@@ -11,6 +11,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     [SerializeField] private GameSceneSO _gameplayScene = default;
+    [SerializeField] private InputReader _inputReader = default;
 
     [Header("Listening to")]
     [SerializeField] private LoadEventChannelSO _loadLocation = default;
@@ -20,6 +21,7 @@ public class SceneLoader : MonoBehaviour
     [Header("Broadcasting on")]
     [SerializeField] private BoolEventChannelSO _toggleLoadingScreen = default;
     [SerializeField] private VoidEventChannelSO _onSceneReady = default; //picked up by the SpawnSystem
+    [SerializeField] private FadeChannelSO _fadeRequestChannel = default;
 
     private AsyncOperationHandle<SceneInstance> _loadingOperationHandle;
     private AsyncOperationHandle<SceneInstance> _gameplayManagerLoadingOpHandle;
@@ -130,6 +132,9 @@ public class SceneLoader : MonoBehaviour
     /// </summary>
     private IEnumerator UnloadPreviousScene()
     {
+        _inputReader.DisableAllInput();
+        _fadeRequestChannel.FadeOut(_fadeDuration);
+
         yield return new WaitForSeconds(_fadeDuration);
 
         if (_currentlyLoadedScene != null) //would be null if the game was started in Initialisation
@@ -184,7 +189,16 @@ public class SceneLoader : MonoBehaviour
         if (_showLoadingScreen)
             _toggleLoadingScreen.RaiseEvent(false);
 
+
         StartGameplay();
+        StartCoroutine(FadeInTimer(0.8f));
+    }
+
+    private IEnumerator FadeInTimer(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        _fadeRequestChannel.FadeIn(_fadeDuration);
     }
 
     private void StartGameplay()

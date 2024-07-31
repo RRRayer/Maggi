@@ -15,7 +15,7 @@ public class EditorColdStartup : MonoBehaviour
     [SerializeField] private AssetReference _notifyColdStartupChannel = default;
     [SerializeField] private VoidEventChannelSO _onSceneReadyChannel = default;
     [SerializeField] private PointStorageSO _pointStorage = default;
-    [SerializeField] private SaveLoadSystem _saveSystem = default;
+    [SerializeField] private SaveLoadSystem _saveLoadSystem = default;
 
     private bool isColdStart = false;
     private void Awake()
@@ -38,13 +38,16 @@ public class EditorColdStartup : MonoBehaviour
         }
         CreateSaveFileIfNotPresent();
     }
+
     private void CreateSaveFileIfNotPresent()
     {
-        if (_saveSystem != null && !_saveSystem.LoadSaveDataFromDisk())
+        if (_saveLoadSystem != null && !_saveLoadSystem.LoadSaveDataFromDisk())
         {
-            _saveSystem.SetNewGameData();
+            Debug.LogWarning("There is no save Fiels");
+            _saveLoadSystem.SetNewGameData();
         }
     }
+
     private void LoadEventChannel(AsyncOperationHandle<SceneInstance> obj)
     {
         _notifyColdStartupChannel.LoadAssetAsync<LoadEventChannelSO>().Completed += OnNotifyChannelLoaded;

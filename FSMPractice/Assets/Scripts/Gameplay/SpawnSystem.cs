@@ -4,10 +4,12 @@ using UnityEngine;
 public class SpawnSystem : MonoBehaviour
 {
     [Header("Asset References")]
+    [SerializeField] private InputReader _inputReader = default;
     [SerializeField] private Player _playerPrefab = default;
     [SerializeField] private TransformAnchor _playerTransformAnchor = default;
     // [SerializeField] private TransformEventChannelSO _playerInstantiatedChannel = default; /* TimelineBinder¿¡¼­ Listen to */
-    [SerializeField] private PointStorageSO _pointTaken = null;
+    [SerializeField] private PointStorageSO _pointTaken = default;
+    [SerializeField] private CameraSO _currentCamera = default;
 
 
     [Header("Scene Ready Event")]
@@ -35,7 +37,11 @@ public class SpawnSystem : MonoBehaviour
     private Transform GetSpawnPoint()
     {
         if (_pointTaken == null)
+        {
+            _currentCamera.index = 0;
             return _defaultSpawnPoint;
+        }
+            
 
         int pointIndex = Array.FindIndex(_spawnPoints, element =>
             element.PointPath == _pointTaken.lastPointTaken);
@@ -43,6 +49,7 @@ public class SpawnSystem : MonoBehaviour
         if (pointIndex == -1)
         {
             Debug.LogWarning("The player tried to spawn in an Save Point that doesn't exist, returning the default one.");
+            _currentCamera.index = 0;
             return _defaultSpawnPoint;
         }
         else
@@ -58,5 +65,7 @@ public class SpawnSystem : MonoBehaviour
 
         // _playerInstantiatedChannel.RaiseEvent(playerInstance.transform);
         _playerTransformAnchor.Provide(playerInstance.transform);
+
+        _inputReader.EnableGameplayInput();
     }
 }

@@ -8,6 +8,7 @@ public class StartGame : MonoBehaviour
 {
     [SerializeField] private GameSceneSO _locationsToLoad;
     [SerializeField] private SaveLoadSystem _saveLoadSystem = default;
+    [SerializeField] private PointStorageSO _pointTaken = default;
     [SerializeField] private bool _showLoadScreen = default;
 
     [Header("Broadcasting on")]
@@ -34,14 +35,13 @@ public class StartGame : MonoBehaviour
 
     private void StartNewGame()
     {
-        // 프로토타입 단계에서는 재시작하면 처음부터 시작
         _hasSaveData = false;
 
         _saveLoadSystem.WriteEmptySaveFile();
         _saveLoadSystem.SetNewGameData();
 
         // 프로토타입 단계에서는 로딩 화면은 구현하지 않음
-        _loadLocation.RaiseEvent(_locationsToLoad);
+        _loadLocation.RaiseEvent(_locationsToLoad, _showLoadScreen);
     }
 
     private void ContinuePreviousGame()
@@ -51,6 +51,8 @@ public class StartGame : MonoBehaviour
 
     private IEnumerator LoadSavedGame()
     {
+        _pointTaken = _saveLoadSystem.saveData._pointStorage;
+
         var locationGuid = _saveLoadSystem.saveData._locationId;
         var asyncOperationHandle = Addressables.LoadAssetAsync<LocationSO>(locationGuid);
 

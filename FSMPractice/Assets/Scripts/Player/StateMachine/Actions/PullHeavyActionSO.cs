@@ -24,7 +24,7 @@ public class PullHeavyAction : StateAction
         _interactionManager = stateMachine.GetComponent<InteractionManager>();
     }
 
-     public override void OnStateEnter()
+    public override void OnStateEnter()
     {
         _interactiveObjectRigidbody = _interactionManager.currentInteractiveObject.GetComponent<Rigidbody>();
         // Freeze rotation to prevent the box from rolling
@@ -40,41 +40,51 @@ public class PullHeavyAction : StateAction
 
         // 플레이어->박스 사이의 벡터
         Vector3 distanceVector = currentInteractiveObjectPosition - playerPosition;
-        float halfBoxSizeX = boxSize.x / 2;
-        float halfBoxSizeZ = boxSize.z / 2;
 
-        // 박스의 한 변 길이와 플레이어의 크기
-        float playerHalfSize = _player.transform.localScale.x / 2;
-        float distanceX = halfBoxSizeX + playerHalfSize + 0.2f;
-        float distanceZ = halfBoxSizeZ + playerHalfSize + 0.2f;
+        // 박스의 로컬 반지름 (half extents)
+        Vector3 halfBoxSize = boxSize * 0.5f;
+
+        // 플레이어의 크기 (반지름)
+        float playerHalfSize = _player.transform.localScale.x * 0.5f;
+
+        // 각 축에 따른 거리 계산
+        float distanceX = halfBoxSize.x + playerHalfSize + 0.2f;
+        float distanceZ = halfBoxSize.z + playerHalfSize + 0.2f;
+
+        // 로컬 축 벡터
+        Vector3 localRight = boxCollider.transform.right;
+        Vector3 localForward = boxCollider.transform.forward;
 
         #region Calculate Offset
-        if (Mathf.Abs(distanceVector.x) > Mathf.Abs(distanceVector.z))
+        // 각 축에 투영된 거리를 계산
+        float projectedDistanceX = Vector3.Dot(distanceVector, localRight);
+        float projectedDistanceZ = Vector3.Dot(distanceVector, localForward);
+
+        if (Mathf.Abs(projectedDistanceX) > Mathf.Abs(projectedDistanceZ))
         {
-            if (distanceVector.x <= -halfBoxSizeX) // 오른쪽에서 잡음 <-
+            if (projectedDistanceX <= -halfBoxSize.x) // 오른쪽에서 잡음 <-
             {
-                _offset = new Vector3(-distanceX, 0, 0);
+                _offset = -localRight * distanceX;
             }
-            else if (distanceVector.x >= halfBoxSizeX) // 왼쪽에서 잡음 ->
+            else if (projectedDistanceX >= halfBoxSize.x) // 왼쪽에서 잡음 ->
             {
-                _offset = new Vector3(distanceX, 0, 0);
+                _offset = localRight * distanceX;
             }
             else
             {
                 Debug.LogWarning("Player and Heavy Collider is overlapped");
                 return;
             }
-                
         }
         else
         {
-            if (distanceVector.z >= halfBoxSizeZ) // 앞쪽에서 잡음 ^
+            if (projectedDistanceZ >= halfBoxSize.z) // 앞쪽에서 잡음 ^
             {
-                _offset = new Vector3(0, 0, distanceZ);
+                _offset = localForward * distanceZ;
             }
-            else if (distanceVector.z <= -halfBoxSizeZ) // 뒤쪽에서 잡음 v
+            else if (projectedDistanceZ <= -halfBoxSize.z) // 뒤쪽에서 잡음 v
             {
-                _offset = new Vector3(0, 0, -distanceZ);
+                _offset = -localForward * distanceZ;
             }
             else
             {
@@ -87,6 +97,7 @@ public class PullHeavyAction : StateAction
         // 높이 보정
         _offset.y = currentInteractiveObjectPosition.y - playerPosition.y;
     }
+
 
     public override void OnUpdate() { }
 
@@ -138,14 +149,5 @@ public class PullHeavyAction : StateAction
     {
         // Unfreeze rotation if needed when exiting the state
         _interactiveObjectRigidbody.constraints = RigidbodyConstraints.None;
-    }
-
-    private void OnDrawGizmos()
-    {
-        if (_interactiveObjectRigidbody != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireCube(_interactiveObjectRigidbody.position, _interactiveObjectRigidbody.transform.localScale);
-        }
     }
 }

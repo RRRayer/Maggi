@@ -7,9 +7,8 @@ public class Breakable : MonoBehaviour
 
     [Space]
 
-    [Header("Broadcasting on")]
+    [Header("If it is Needed, Broadcasting on")]
     [SerializeField] private TimelineAssetEventChannelSO _onStartTimeline = default;
-
     [SerializeField] private TimelineAsset _timeline = default;
     
 

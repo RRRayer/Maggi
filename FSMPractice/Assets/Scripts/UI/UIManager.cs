@@ -40,6 +40,8 @@ public class UIManager : MonoBehaviour
         _pauseScreen.BackToMainRequested += ShowBackToMenuConfirmationPopup;
 
         _pauseScreen.gameObject.SetActive(true);
+
+        _inputReader.EnableMenuInput();
     }
 
     private void RestartAtLastSavePoint()
@@ -61,6 +63,8 @@ public class UIManager : MonoBehaviour
         _pauseScreen.BackToMainRequested -= ShowBackToMenuConfirmationPopup;
 
         _pauseScreen.gameObject.SetActive(false);
+
+        _inputReader.EnableGameplayInput();
     }
 
     private void OpenSettingScreen()

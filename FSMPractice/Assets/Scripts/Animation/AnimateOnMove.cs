@@ -9,21 +9,21 @@ public class AnimateOnMove : MonoBehaviour
 
     private void Start()
     {
-        _previousPosition = base.transform.position;
+        _previousPosition = transform.parent.position;
     }
 
     private void Update()
     {
-        _currentPosition = base.transform.position;
+        _currentPosition = transform.parent.position;
 
-        if (_previousPosition == _currentPosition)
+        if (_previousPosition.z == _currentPosition.z)
             return;
 
         Vector3 direction = _currentPosition - _previousPosition;
-        if (direction.x > 0) // 오른쪽으로 진행
-            transform.Rotate(0, -_rotateSpeed * Time.deltaTime * 100.0f, 0);
-        else if (direction.x < 0)
-            transform.Rotate(0, _rotateSpeed * Time.deltaTime * 100.0f, 0);
+        if (direction.z > 0) // 오른쪽으로 진행
+            transform.Rotate(_rotateSpeed * Time.deltaTime * 100.0f, 0, 0);
+        else if (direction.z < 0)
+            transform.Rotate(-_rotateSpeed * Time.deltaTime * 100.0f, 0, 0);
 
 
         _previousPosition = _currentPosition;

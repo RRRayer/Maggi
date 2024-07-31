@@ -228,9 +228,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 811d1ee2c59900d4cbf260f9f8448077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputReader: {fileID: 11400000, guid: 58ecdbb71ef371c48bead51aaf8d0740, type: 2}
   _playerPrefab: {fileID: 4937160293215591459, guid: e0b2c81b40d0edc4182232db6b4d6dc0, type: 3}
   _playerTransformAnchor: {fileID: 11400000, guid: 9e3146950d5593c42b5420d214f7a8a1, type: 2}
   _pointTaken: {fileID: 11400000, guid: aff70ca1889daf04f96230e35d028773, type: 2}
+  _currentCamera: {fileID: 11400000, guid: 3bf3e812b82762a44b0701d8500e89a5, type: 2}
   _onSceneReady: {fileID: 11400000, guid: 1e66ac23f63d2a146a3d88fc23d10dd8, type: 2}
 --- !u!4 &203256372
 Transform:
@@ -699,7 +701,7 @@ PlayableDirector:
   m_GameObject: {fileID: 1476195467}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: d9a86b27ea532a64d8df5c3d0b0b9583, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: abae0d8bbebbc2b4a8869c21b12da14e, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -764,9 +766,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: berrel_03
       objectReference: {fileID: 0}
+    - target: {fileID: 3513720312567170112, guid: b34c4db763a30c3459471eb87dbe1714, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3819649999292342416, guid: b34c4db763a30c3459471eb87dbe1714, type: 3}
       propertyPath: m_Name
       value: berrel_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 3880417490754213686, guid: b34c4db763a30c3459471eb87dbe1714, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5441582049383715101, guid: b34c4db763a30c3459471eb87dbe1714, type: 3}
       propertyPath: m_LocalRotation.w
@@ -787,6 +797,10 @@ PrefabInstance:
     - target: {fileID: 5441582049383715101, guid: b34c4db763a30c3459471eb87dbe1714, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5708693357377752248, guid: b34c4db763a30c3459471eb87dbe1714, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.695
       objectReference: {fileID: 0}
     - target: {fileID: 5708693357377752248, guid: b34c4db763a30c3459471eb87dbe1714, type: 3}
       propertyPath: m_LocalPosition.y
@@ -815,6 +829,14 @@ PrefabInstance:
     - target: {fileID: 5712709326869912284, guid: b34c4db763a30c3459471eb87dbe1714, type: 3}
       propertyPath: m_Name
       value: Warehouse
+      objectReference: {fileID: 0}
+    - target: {fileID: 6164668051252498292, guid: b34c4db763a30c3459471eb87dbe1714, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7145623063637818764, guid: b34c4db763a30c3459471eb87dbe1714, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7624748830243237114, guid: b34c4db763a30c3459471eb87dbe1714, type: 3}
       propertyPath: m_LocalPosition.x

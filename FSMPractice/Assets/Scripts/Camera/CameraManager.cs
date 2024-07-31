@@ -22,8 +22,6 @@ public class CameraManager : MonoBehaviour
         _playerTransformAnchor.OnAnchorProvided += SetupPlayerVirtualCamera;
         _onSwitchCamera.OnEventRaised += SwitchToCamera;
         _cameraTransformAnchor.Provide(_mainCamera.transform);
-
-        SwitchToCamera();
     }
 
     private void OnDisable()

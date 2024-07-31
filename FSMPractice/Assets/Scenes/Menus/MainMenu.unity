@@ -578,7 +578,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb29643e1d8db4d47986f464031005cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inputReader: {fileID: 11400000, guid: 58ecdbb71ef371c48bead51aaf8d0740, type: 2}
   _mainMenuPanel: {fileID: 713909373}
+  _saveLoadSystem: {fileID: 11400000, guid: 014c2ad714d63294c975973c4b3147ca, type: 2}
   _startNewGameEvent: {fileID: 11400000, guid: b73fd811ef403bc4685914bfc2e7eb20, type: 2}
   _continueGameEvent: {fileID: 11400000, guid: 91afff68790171643ad78ea2ebd40ad2, type: 2}
 --- !u!1 &713909370
@@ -640,8 +642,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 569b8f34e7a889542bf961c85a371e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _newGameButton: {fileID: 0}
-  _continueButton: {fileID: 0}
+  _newGameButton: {fileID: 1478012332}
+  _continueButton: {fileID: 323393466}
 --- !u!1 &1098995485
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,10 +675,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _locationsToLoad: {fileID: 11400000, guid: 49e8f7cf3a20943409a07124be123def, type: 2}
   _saveLoadSystem: {fileID: 11400000, guid: 014c2ad714d63294c975973c4b3147ca, type: 2}
-  _showLoadScreen: 0
+  _pointTaken: {fileID: 11400000, guid: aff70ca1889daf04f96230e35d028773, type: 2}
+  _showLoadScreen: 1
   _loadLocation: {fileID: 11400000, guid: 5f7dea594b7e7204bbb2270a8b6f8e05, type: 2}
-  _onNewGameButton: {fileID: 0}
-  _onContinueButton: {fileID: 0}
+  _onNewGameButton: {fileID: 11400000, guid: b73fd811ef403bc4685914bfc2e7eb20, type: 2}
+  _onContinueButton: {fileID: 11400000, guid: 91afff68790171643ad78ea2ebd40ad2, type: 2}
 --- !u!4 &1098995487
 Transform:
   m_ObjectHideFlags: 0
@@ -875,7 +878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.4433962, g: 0.19032574, b: 0.19032574, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1297,6 +1300,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 150777051961846266, guid: a3dc2fabcc54b2a45b748557d64aa112, type: 3}
+      propertyPath: _saveLoadSystem
+      value: 
+      objectReference: {fileID: 11400000, guid: 014c2ad714d63294c975973c4b3147ca, type: 2}
     - target: {fileID: 2692314068946216953, guid: a3dc2fabcc54b2a45b748557d64aa112, type: 3}
       propertyPath: m_Name
       value: EditorInitializer
