@@ -8,6 +8,7 @@ public class UIPause : MonoBehaviour
     [SerializeField] private InputReader _inputReader = default;
     [SerializeField] private UIGenericButton _restartButton = default;
     [SerializeField] private UIGenericButton _settingsButton = default;
+    [SerializeField] private UIGenericButton _controlButton = default;
     [SerializeField] private UIGenericButton _backToMenuButton = default;
     [SerializeField] private UIGenericButton _resumeButton = default;
 
@@ -16,15 +17,17 @@ public class UIPause : MonoBehaviour
 
     public event UnityAction Restarted = default;
     public event UnityAction SettingScreenOpened = default;
-    public event UnityAction BackToMainRequested = default;
+    public event UnityAction ControlScreenOpened = default;    
     public event UnityAction Resumed = default;
+    public event UnityAction BackToMainRequested = default;
 
     private void OnEnable()
     {
         _onPauseOpened.RaiseEvent(true);
 
         _restartButton.Clicked += Restart;
-        _settingsButton.Clicked += OpoenSettingScreen;
+        _settingsButton.Clicked += OpenSettingScreen;
+        _controlButton.Clicked += OpenControlScreen;
         _backToMenuButton.Clicked += BackToMainMenuConfirmation;
         _resumeButton.Clicked += CloseScreen;
     }
@@ -34,7 +37,8 @@ public class UIPause : MonoBehaviour
         _onPauseOpened.RaiseEvent(false);
 
         _restartButton.Clicked -= Restart;
-        _settingsButton.Clicked -= OpoenSettingScreen;
+        _settingsButton.Clicked -= OpenSettingScreen;
+        _controlButton.Clicked -= OpenControlScreen;
         _backToMenuButton.Clicked -= BackToMainMenuConfirmation;
         _resumeButton.Clicked -= CloseScreen;
     }
@@ -44,9 +48,14 @@ public class UIPause : MonoBehaviour
         Restarted.Invoke();
     }
 
-    private void OpoenSettingScreen()
+    private void OpenSettingScreen()
     {
         SettingScreenOpened.Invoke();
+    }
+
+    private void OpenControlScreen()
+    {
+        ControlScreenOpened.Invoke();
     }
 
     private void BackToMainMenuConfirmation()
