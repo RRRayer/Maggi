@@ -54,6 +54,7 @@ public class SpawnSystem : MonoBehaviour
         }
         else
         {
+            _currentCamera.index = pointIndex;
             return _spawnPoints[pointIndex].transform;
         }
     }

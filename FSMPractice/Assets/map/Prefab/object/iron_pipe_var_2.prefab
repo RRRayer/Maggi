@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 559228521838857655}
   - component: {fileID: 5577522114358215697}
   - component: {fileID: 1445022397822216829}
-  - component: {fileID: 1443808479102463387}
   - component: {fileID: 5644163996745108463}
   m_Layer: 0
   m_Name: iron_pipe_var_2
@@ -129,33 +128,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.4378564, y: 0.19806829, z: 0.19988845}
   m_Center: {x: -0.14982828, y: 0.0000005284751, z: -0.00091054477}
---- !u!54 &1443808479102463387
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7419978192748029060}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &5644163996745108463
 MonoBehaviour:
   m_ObjectHideFlags: 0

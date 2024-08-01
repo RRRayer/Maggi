@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
     private void OnDisable()
     {
         _inputReader.MoveEvent -= OnMovement;
+        _inputReader.JumpEvent -= OnJumpInitiated;
+        _inputReader.JumpCancelEvent -= OnJumpCancelInitiated;
     }
 
     private void Update()

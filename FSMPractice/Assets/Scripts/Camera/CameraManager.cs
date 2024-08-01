@@ -19,13 +19,16 @@ public class CameraManager : MonoBehaviour
 
     private void OnEnable()
     {
+        _inputReader.AimEvent += Aim;
         _playerTransformAnchor.OnAnchorProvided += SetupPlayerVirtualCamera;
         _onSwitchCamera.OnEventRaised += SwitchToCamera;
+
         _cameraTransformAnchor.Provide(_mainCamera.transform);
     }
 
     private void OnDisable()
     {
+        _inputReader.AimEvent -= Aim;
         _playerTransformAnchor.OnAnchorProvided -= SetupPlayerVirtualCamera;
         _onSwitchCamera.OnEventRaised -= SwitchToCamera;
     }
@@ -61,6 +64,17 @@ public class CameraManager : MonoBehaviour
         for (int i = 0; i < virtualCams.Length; ++i)
         {
             virtualCams[i].Priority = (i == _currentCamera.index) ? 1 : 0;
+        }
+    }
+
+    private void Aim(Vector2 normalDirection)
+    {
+        if (virtualCams[_currentCamera.index] != null)
+        {
+            CinemachineComposer composer = virtualCams[_currentCamera.index].GetCinemachineComponent<CinemachineComposer>();
+
+            composer.m_ScreenX = normalDirection.x == 0 ? 0.5f : 0.5f - 0.35f * normalDirection.x; 
+            composer.m_ScreenY = normalDirection.y == 0 ? 0.5f : 0.5f + 0.35f * normalDirection.y;
         }
     }
 }
