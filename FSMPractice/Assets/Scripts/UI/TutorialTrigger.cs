@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class TutorialTrigger : MonoBehaviour
 {
     [SerializeField] private TutorialSO _tutorial;
+    [SerializeField] private string _text;
+    [SerializeField] private Color _color;
 
     [Header("Broadcasting on")]
     [SerializeField] private FloatEventChannelSO _floatTutorial = default;
@@ -18,10 +20,13 @@ public class TutorialTrigger : MonoBehaviour
         _collider = GetComponent<Collider>();
     }
 
-    private void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        _tutorial.Image = transform.GetChild(0).GetComponent<Image>();
-        _tutorial.Text = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+        if (other.CompareTag("Player"))
+        {
+            _tutorial.Image.color = _color;
+            _tutorial.Text.text = _text;
+        } 
     }
 
     private void OnTriggerStay(Collider other)
@@ -32,7 +37,7 @@ public class TutorialTrigger : MonoBehaviour
             float distance = Vector3.Distance(transform.position, other.transform.position);
 
             float maxDistance = _collider.bounds.size.x / 2;
-            float alpha = Mathf.Clamp01(0.5f - distance / maxDistance);
+            float alpha = Mathf.Clamp01(1.0f - distance / maxDistance) * 2.0f;
             _floatTutorial.RaiseEvent(alpha);   
         }
     }

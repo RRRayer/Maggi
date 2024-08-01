@@ -131,49 +131,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 798073844137494736, guid: 6e291e31b40f8344fae1f97385cdfa74, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 798073844137494736, guid: 6e291e31b40f8344fae1f97385cdfa74, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 798073844137494736, guid: 6e291e31b40f8344fae1f97385cdfa74, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 798073844137494736, guid: 6e291e31b40f8344fae1f97385cdfa74, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1654452516961986685, guid: 6e291e31b40f8344fae1f97385cdfa74, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1776410636402898059, guid: 6e291e31b40f8344fae1f97385cdfa74, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1776410636402898059, guid: 6e291e31b40f8344fae1f97385cdfa74, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1776410636402898059, guid: 6e291e31b40f8344fae1f97385cdfa74, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1776410636402898059, guid: 6e291e31b40f8344fae1f97385cdfa74, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5908566015681716826, guid: 6e291e31b40f8344fae1f97385cdfa74, type: 3}
       propertyPath: m_Name
       value: Canvas-Gameplay
-      objectReference: {fileID: 0}
-    - target: {fileID: 6012030572648607819, guid: 6e291e31b40f8344fae1f97385cdfa74, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6271260758105600860, guid: 6e291e31b40f8344fae1f97385cdfa74, type: 3}
       propertyPath: m_Pivot.x
@@ -291,7 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _locationsToLoad: {fileID: 11400000, guid: 49e8f7cf3a20943409a07124be123def, type: 2}
   _saveLoadSystem: {fileID: 11400000, guid: 014c2ad714d63294c975973c4b3147ca, type: 2}
-  _pointTaked: {fileID: 11400000, guid: aff70ca1889daf04f96230e35d028773, type: 2}
+  _pointTaken: {fileID: 0}
   _showLoadScreen: 1
   _loadLocation: {fileID: 11400000, guid: 5f7dea594b7e7204bbb2270a8b6f8e05, type: 2}
   _onNewGameButton: {fileID: 11400000, guid: b73fd811ef403bc4685914bfc2e7eb20, type: 2}
