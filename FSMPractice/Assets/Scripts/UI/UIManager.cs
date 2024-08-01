@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
     [Header("Scene UI")]
     [SerializeField] private UIPause _pauseScreen = default;
     [SerializeField] private UISetting _settingScreen = default;
+    [SerializeField] private UIControl _controlScreen = default;
    
     [Header("Gameplay")]
     [SerializeField] private MenuSO _mainMenu;
@@ -36,6 +37,7 @@ public class UIManager : MonoBehaviour
 
         _pauseScreen.Restarted += RestartAtLastSavePoint;
         _pauseScreen.SettingScreenOpened += OpenSettingScreen;
+        _pauseScreen.ControlScreenOpened += OpenControlScreen;
         _pauseScreen.Resumed += CloseUIPause;
         _pauseScreen.BackToMainRequested += ShowBackToMenuConfirmationPopup;
 
@@ -59,6 +61,7 @@ public class UIManager : MonoBehaviour
 
         _pauseScreen.Restarted -= RestartAtLastSavePoint;
         _pauseScreen.SettingScreenOpened -= OpenSettingScreen;
+        _pauseScreen.ControlScreenOpened -= OpenControlScreen;
         _pauseScreen.Resumed -= CloseUIPause;
         _pauseScreen.BackToMainRequested -= ShowBackToMenuConfirmationPopup;
 
@@ -70,19 +73,29 @@ public class UIManager : MonoBehaviour
     private void OpenSettingScreen()
     {
         _settingScreen.Closed += CloseSettingScreen;
-
         _pauseScreen.gameObject.SetActive(false);
-
         _settingScreen.gameObject.SetActive(true);
+    }
+
+    private void OpenControlScreen()
+    {
+        _controlScreen.Closed += CloseControlScreen;
+        _pauseScreen.gameObject.SetActive(true);
+        _controlScreen.gameObject.SetActive(true);
     }
 
     private void CloseSettingScreen()
     {
         _settingScreen.Closed -= CloseSettingScreen;
-
         _pauseScreen.gameObject.SetActive(true);
-
         _settingScreen.gameObject.SetActive(false);
+    }
+
+    private void CloseControlScreen()
+    {
+        _controlScreen.Closed -= CloseControlScreen;
+        _pauseScreen.gameObject.SetActive(true);
+        _controlScreen.gameObject.SetActive(false);
     }
 
     private void ShowBackToMenuConfirmationPopup()
