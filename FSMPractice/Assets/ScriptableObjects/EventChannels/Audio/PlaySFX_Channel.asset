@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31cbe6b70ff6d8c4f99bce65c3090dd1, type: 3}
+  m_Name: PlaySFX_Channel
+  m_EditorClassIdentifier: 
+  _guid: c936b54e54a15b7488e0ec39e41b21bb
+  description: SFX request travel on this channel. The AudioManager will pick them
+    up and activate as many SoundEmitters from the pool as needed to play all the
+    sounds that make the AudioCue requested in the event.
