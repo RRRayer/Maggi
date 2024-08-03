@@ -26,7 +26,7 @@ public class AudioManager : MonoBehaviour
     [Range(0f, 1f)]
     [SerializeField] private float _masterVolume = 1f;
     [Range(0f, 1f)]
-    [SerializeField] private float _musicVolume = 1f;
+    [SerializeField] private float _musicVolume = 0.8f;
     [Range(0f, 1f)]
     [SerializeField] private float _sfxVolume = 1f;
 

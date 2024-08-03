@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-[CreateAssetMenu(menuName = "Game/AudioConfiguration")]
+[CreateAssetMenu(menuName = "Audio/AudioConfiguration")]
 public class AudioConfigurationSO : ScriptableObject
 {
     private enum PriorityLevel
