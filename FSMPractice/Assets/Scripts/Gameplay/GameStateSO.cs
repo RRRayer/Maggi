@@ -10,6 +10,7 @@ public enum GameState
     LocationTransition
 }
 
+//[CreateAssetMenu(fileName = "GameState", menuName = "Gameplay/GameState", order = 51)]
 public class GameStateSO : DescriptionBaseSO
 {
     public GameState CurrentGameState => _currentGameState;
