@@ -10,7 +10,7 @@ public class PushPointActionSO : StateActionSO<PushPointAction>
 
 public class PushPointAction : StateAction
 {
-	protected new PushPointActionSO _originSO => (PushPointActionSO)base.OriginSO;
+	private PushPointActionSO _originSO => (PushPointActionSO)base.OriginSO;
 	private InteractionManager _interactionManager;
 
 	private Player _player;
@@ -24,15 +24,17 @@ public class PushPointAction : StateAction
 	}
 
 	
+    public override void OnStateEnter()
+	{
+		_player.movementVector = _transform.up;
+		_player.movementVector = _player.movementVector.normalized * _originSO.pushForce;
+	}
+
     public override void OnStateExit()
-	{
-		_player.movementVector = _transform.up*_originSO.pushForce + Vector3.up;
+    {
+        _interactionManager.currentInteractionType = InteractionType.None;
+        _interactionManager.currentInteractiveObject = null;
+    }
 
-		_interactionManager.currentInteractionType = InteractionType.None;
-		_interactionManager.currentInteractiveObject = null;
-	}
-
-	public override void OnUpdate()
-	{
-	}
+    public override void OnUpdate() { }
 }

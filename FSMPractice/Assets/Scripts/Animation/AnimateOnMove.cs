@@ -28,12 +28,10 @@ public class AnimateOnMove : MonoBehaviour
         // 진행 방향에 따라 자식 오브젝트 회전
         if (dotProduct > 0) // 전방으로 진행
         {
-            Debug.Log("전방으로 굴러가기");
             transform.Rotate(Vector3.right, _rotateSpeed * Time.deltaTime * 100.0f);
         }
         else if (dotProduct < 0) // 후방으로 진행
         {
-            Debug.Log("후방으로 굴러가기");
             transform.Rotate(Vector3.right, -_rotateSpeed * Time.deltaTime * 100.0f);
         }
 
