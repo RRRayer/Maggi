@@ -40,9 +40,6 @@ public class isPullingHeavyCondition : Condition
             }
         }
 
-        _interactionManager.currentInteractionType = InteractionType.None;
-        _interactionManager.currentInteractiveObject = null;
-
         return false;
     }
 }

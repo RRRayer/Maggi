@@ -11,19 +11,31 @@ public class InteractionManager : MonoBehaviour
     // Events for the different interaction types
     [ReadOnly] public InteractionType currentInteractionType;
     [ReadOnly] public GameObject currentInteractiveObject;
-    [ReadOnly] public bool pushInput;
+    [ReadOnly] public bool pullInput = false;
+    [ReadOnly] public bool pushInput = false;
 
     private LinkedList<Interaction> _potentialInteractions = new LinkedList<Interaction>(); // To store the objects we the player could potentially interact with
 
     private void OnEnable()
     {
-        _inputReader.PullEvent += OnPull;
+        _inputReader.PullEvent += OnPullInitiated;
+        _inputReader.PullCancelEvent += OnPullCancelInitiated;
         _inputReader.PushEvent += OnPushInitiated;
         _inputReader.PushCancelEvent += OnPushCancelInitiated;
     }
 
-    private void OnPull()
+    private void OnDisable()
     {
+        _inputReader.PullEvent -= OnPullInitiated;
+        _inputReader.PullCancelEvent -= OnPullCancelInitiated;
+        _inputReader.PushEvent -= OnPushInitiated;
+        _inputReader.PushCancelEvent -= OnPushCancelInitiated;
+    }
+
+    private void OnPullInitiated()
+    {
+        pullInput = true;
+
         if (_potentialInteractions.Count == 0)
         {
             return;
@@ -41,6 +53,11 @@ public class InteractionManager : MonoBehaviour
         {
             Debug.LogWarning("There is no ToggleEffect _ InteractionManager.cs");
         }
+    }
+
+    private void OnPullCancelInitiated()
+    {
+        pullInput = false;
     }
 
     private void OnPushInitiated()

@@ -7,8 +7,6 @@ public class IsPullingPointConditionSO : StateConditionSO<IsPullingPointConditio
 
 public class IsPullingPointCondition : Condition
 {
-	protected new IsPullingPointConditionSO OriginSO => (IsPullingPointConditionSO)base.OriginSO;
-
 	private InteractionManager _interactionManager;
 
 	public override void Awake(StateMachine stateMachine)
@@ -19,7 +17,7 @@ public class IsPullingPointCondition : Condition
 	protected override bool Statement()
 	{
 		if (_interactionManager.currentInteractionType == InteractionType.Point)
-			return true;
-		return false;
+            return true;
+        return false;
 	}
 }

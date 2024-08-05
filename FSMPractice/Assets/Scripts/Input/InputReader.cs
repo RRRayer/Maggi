@@ -11,6 +11,7 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
     public event UnityAction JumpEvent = delegate { };
     public event UnityAction JumpCancelEvent = delegate { };
     public event UnityAction PullEvent = delegate { };
+    public event UnityAction PullCancelEvent = delegate { };
     public event UnityAction PushEvent = delegate { };
     public event UnityAction PushCancelEvent = delegate { };
     public event UnityAction<Vector2> AimEvent = delegate { };

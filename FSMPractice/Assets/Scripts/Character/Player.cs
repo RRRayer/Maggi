@@ -6,13 +6,13 @@ public class Player : MonoBehaviour
     [SerializeField] private InputReader _inputReader = default;
     [SerializeField] private TransformAnchor _gameplayCameraTransform = default;
 
+    //These fields are read and manipulated by the StateMachine actions
+    [HideInInspector] public Vector3 movementInput;
+    [HideInInspector] public Vector3 movementVector;
+    [HideInInspector] public bool jumpInput;
+
     private Vector2 _inputVector; // _inputVector.x : x movement, _inputVector.y : z movement
     private float _previousSpeed;
-
-    //These fields are read and manipulated by the StateMachine actions
-    public Vector3 movementInput;
-    public Vector3 movementVector;
-    public bool jumpInput;
 
     public const float AIR_RESISTANCE = 5f;
     public const float MAX_FALL_SPEED = -50f;
@@ -87,4 +87,7 @@ public class Player : MonoBehaviour
     {
         jumpInput = false;
     }
+
+    /* --- Animation Clip Functions --- */
+
 }

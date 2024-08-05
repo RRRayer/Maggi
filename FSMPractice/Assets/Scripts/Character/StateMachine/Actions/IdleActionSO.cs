@@ -26,9 +26,5 @@ public class IdleAction : StateAction
 		_interactionManager.currentInteractionType = InteractionType.None;
 		_interactionManager.currentInteractiveObject = null;
     }
-    public override void OnUpdate()
-    {
-        //Debug.Log("Idle Action");
-        // Debug.Log(_transform.position);
-    }
+    public override void OnUpdate() { }
 }
