@@ -6,7 +6,7 @@ public class UIManager : MonoBehaviour
 {
     [Header("Scene UI")]
     [SerializeField] private UIPause _pauseScreen = default;
-    [SerializeField] private UISetting _settingScreen = default;
+    [SerializeField] private UISettingController _settingScreen = default;
     [SerializeField] private UIControl _controlScreen = default;
    
     [Header("Gameplay")]
