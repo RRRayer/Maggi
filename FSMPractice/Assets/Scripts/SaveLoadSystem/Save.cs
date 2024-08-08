@@ -8,6 +8,11 @@ public class Save
     public string _locationId;
     public PointStorageSO _pointStorage;
 
+    // Settings
+    public float _masterVolume = default;
+    public float _musicVolume = default;
+    public float _sfxVolume = default;
+
     public string ToJson()
     {
         return JsonUtility.ToJson(this);

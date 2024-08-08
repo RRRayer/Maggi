@@ -11,8 +11,10 @@ public class SpawnSystem : MonoBehaviour
     [SerializeField] private PointStorageSO _pointTaken = default;
     [SerializeField] private CameraSO _currentCamera = default;
 
+    [Header("Broadcasting on")]
+    [SerializeField] private VoidEventChannelSO _onContinueButton = default;
 
-    [Header("Scene Ready Event")]
+    [Header("Listening to")]
     [SerializeField] private VoidEventChannelSO _onSceneReady = default;
 
     private SavePoint[] _spawnPoints;
@@ -27,6 +29,7 @@ public class SpawnSystem : MonoBehaviour
     private void OnEnable()
     {
         _onSceneReady.OnEventRaised += SpawnPlayer;
+
     }
 
     private void OnDisable()
@@ -41,7 +44,6 @@ public class SpawnSystem : MonoBehaviour
             _currentCamera.index = 0;
             return _defaultSpawnPoint;
         }
-            
 
         int pointIndex = Array.FindIndex(_spawnPoints, element =>
             element.PointPath == _pointTaken.lastPointTaken);

@@ -23,6 +23,7 @@ public class StartGame : MonoBehaviour
     private void Start()
     {
         _hasSaveData = _saveLoadSystem.LoadSaveDataFromDisk();
+
         _onNewGameButton.OnEventRaised += StartNewGame;
         _onContinueButton.OnEventRaised += ContinuePreviousGame;
     }
