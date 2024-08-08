@@ -7,13 +7,15 @@ public class CameraManager : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader;
     [SerializeField] private Camera _mainCamera;
+    [SerializeField] private CinemachineImpulseSource _impulseSource;
 
     [SerializeField] private TransformAnchor _playerTransformAnchor = default;
     [SerializeField] private TransformAnchor _cameraTransformAnchor = default;
     [SerializeField] private CameraSO _currentCamera;
 
     [Header("Listening to")]
-    [SerializeField] private VoidEventChannelSO _onSwitchCamera = default; 
+    [SerializeField] private VoidEventChannelSO _onSwitchCamera = default;
+    [SerializeField] private VoidEventChannelSO _cameraShakeEvent = default;
 
     private CinemachineVirtualCamera[] virtualCams;
 
@@ -22,6 +24,7 @@ public class CameraManager : MonoBehaviour
         _inputReader.AimEvent += Aim;
         _playerTransformAnchor.OnAnchorProvided += SetupPlayerVirtualCamera;
         _onSwitchCamera.OnEventRaised += SwitchToCamera;
+        _cameraShakeEvent.OnEventRaised += _impulseSource.GenerateImpulse;
 
         _cameraTransformAnchor.Provide(_mainCamera.transform);
     }
@@ -31,6 +34,7 @@ public class CameraManager : MonoBehaviour
         _inputReader.AimEvent -= Aim;
         _playerTransformAnchor.OnAnchorProvided -= SetupPlayerVirtualCamera;
         _onSwitchCamera.OnEventRaised -= SwitchToCamera;
+        _cameraShakeEvent.OnEventRaised -= _impulseSource.GenerateImpulse;
     }
 
     private void Start()
@@ -76,5 +80,11 @@ public class CameraManager : MonoBehaviour
             composer.m_ScreenX = normalDirection.x == 0 ? 0.5f : 0.5f - 0.35f * normalDirection.x; 
             composer.m_ScreenY = normalDirection.y == 0 ? 0.5f : 0.5f + 0.45f * normalDirection.y;
         }
+    }
+
+    /* Execute in Animation Clip */
+    public void ShakeCamera()
+    {
+        _cameraShakeEvent.RaiseEvent();
     }
 }
