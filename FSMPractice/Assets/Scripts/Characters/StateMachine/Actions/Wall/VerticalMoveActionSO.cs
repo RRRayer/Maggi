@@ -25,7 +25,7 @@ public class VerticalMoveAction : StateAction
 
     public override void OnUpdate()
     {
-        _player.movementVector = _player.transform.forward * -_player.movementInput.x * _originSO.speed
-                               + _player.transform.right * _player.movementInput.z * _originSO.speed;
+        Vector3 originalVector = _player.movementVector;
+        _player.movementVector = new Vector3(originalVector);
     }
 }
