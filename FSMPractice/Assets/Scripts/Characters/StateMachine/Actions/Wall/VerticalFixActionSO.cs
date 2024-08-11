@@ -20,6 +20,6 @@ public class VerticalFixAction : StateAction
 
     public override void OnUpdate()
     {
-        _player.movementVector.y = 0.0f;
+        //_player.movementVector.y = 0.0f;
     }
 }

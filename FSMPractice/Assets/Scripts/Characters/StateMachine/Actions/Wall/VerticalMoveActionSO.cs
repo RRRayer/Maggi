@@ -3,19 +3,12 @@ using Pudding.StateMachine;
 using Pudding.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "VerticalMoveAction", menuName = "State Machines/Actions/Vertical Move Action")]
-public class VerticalMoveActionSO : StateActionSO<VerticalMoveAction>
-{
-	public float speed = 4.0f;
-    public LayerMask floorLayerMask;
-
-}
+public class VerticalMoveActionSO : StateActionSO<VerticalMoveAction> { }
 
 public class VerticalMoveAction : StateAction
 {
-	private VerticalMoveActionSO _originSO => (VerticalMoveActionSO)base.OriginSO;
     private Player _player;
     private Transform _transform;
-
 
     public override void Awake(StateMachine stateMachine)
     {
@@ -25,7 +18,17 @@ public class VerticalMoveAction : StateAction
 
     public override void OnUpdate()
     {
-        Vector3 originalVector = _player.movementVector;
-        _player.movementVector = new Vector3(originalVector);
+        Vector3 newMovementVector = _player.movementVector;
+
+        RaycastHit hit;
+        if (Physics.Raycast(_transform.position, -_transform.up, out hit, 1.5f))
+        {
+            Vector3 wallNormal = hit.normal;
+
+            newMovementVector = Vector3.ProjectOnPlane(newMovementVector, wallNormal);
+            Debug.Log("øÚ¡˜¿” ∫§≈Õ : " + newMovementVector + ", ∫Æ ≥Î∏÷ ∫§≈Õ : " + wallNormal);
+        }
+
+        _player.movementVector = newMovementVector;
     }
 }

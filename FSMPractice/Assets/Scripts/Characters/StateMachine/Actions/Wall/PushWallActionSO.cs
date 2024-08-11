@@ -6,11 +6,12 @@ using Pudding.StateMachine.ScriptableObjects;
 public class PushWallActionSO : StateActionSO<PushWallAction> 
 {
 	public float pushForce;
+	public float upForce;
 }
 
 public class PushWallAction : StateAction
 {
-	protected new PushWallActionSO _originSO => (PushWallActionSO)base.OriginSO;
+	private PushWallActionSO _originSO => (PushWallActionSO)base.OriginSO;
 	private InteractionManager _interactionManager;
 
 	private Player _player;
@@ -22,17 +23,14 @@ public class PushWallAction : StateAction
 		_transform = stateMachine.GetComponent<Transform>();
 		_interactionManager = stateMachine.GetComponent<InteractionManager>();
 	}
-
 	
-    public override void OnStateExit()
+    public override void OnStateEnter()
 	{
-		_player.movementVector = _transform.up*_originSO.pushForce + Vector3.up*9.8f;
+		// 이거를 하려면 transform.up 이 아니고 xz 평면에 정사영한 방향으로 해야하는게 아닌가? 나중에  수정
+		_player.movementVector = _transform.up * _originSO.pushForce + Vector3.up * _originSO.upForce;
 		_interactionManager.currentInteractionType = InteractionType.None;
 		_interactionManager.currentInteractiveObject = null;
 	}
 
-	public override void OnUpdate()
-	{
-	}
-	
+	public override void OnUpdate() { }
 }

@@ -1,15 +1,12 @@
 ﻿using UnityEngine;
 using Pudding.StateMachine;
 using Pudding.StateMachine.ScriptableObjects;
-using UnityEngine.UIElements;
-using System.Threading.Tasks;
-using UnityEditor;
-using UnityEngine.EventSystems;
 
 [CreateAssetMenu(fileName = "PullWallAction", menuName = "State Machines/Actions/Pull Wall Action")]
 
 public class PullWallActionSO : StateActionSO<PullWallAction>
 {
+    public float Speed = 4.0f;
     public LayerMask WallLayerMask;
 }
 
@@ -29,15 +26,21 @@ public class PullWallAction : StateAction
 	
 	public override void OnUpdate()
 	{
-		// Ray ray = new Ray(_transform.position, Vector3.forward);
-		// RaycastHit slopeHit;
-		// if(Physics.Raycast(ray, out slopeHit, Mathf.Infinity, _originSO.WallLayerMask)) {
-		// 	Quaternion rot = Quaternion.FromToRotation(Vector3.up, slopeHit.normal);
-		// 	Debug.Log(rot);
-		// 	_transform.rotation = rot;
-		// }
+        _transform.rotation = _interactionManager.currentInteractiveObject.transform.rotation;
 
-        Quaternion x = _interactionManager.currentInteractiveObject.transform.rotation;
-        _transform.rotation = x;
-	}
+        Ray ray = new Ray(_transform.position, -_transform.up);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 2.0f, _originSO.WallLayerMask))
+        {
+            Vector3 wallNormal = hit.normal;
+
+            Vector3 rightOnPlane = Vector3.Cross(Vector3.back, wallNormal).normalized;
+            Vector3 forwardOnPlane = Vector3.Cross(Vector3.right, wallNormal).normalized;
+
+            Vector3 newInputVector = new Vector3(_player.movementInput.x, 0, _player.movementInput.z);
+            Vector3 newMovementVector = (newInputVector.x * rightOnPlane + newInputVector.z * forwardOnPlane).normalized;
+
+            _player.movementVector = newMovementVector * _originSO.Speed;
+        }
+    }
 }
