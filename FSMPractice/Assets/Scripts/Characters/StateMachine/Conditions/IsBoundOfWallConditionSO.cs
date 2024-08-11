@@ -1,36 +1,39 @@
 ﻿using UnityEngine;
 using Pudding.StateMachine;
 using Pudding.StateMachine.ScriptableObjects;
+using UnityEngine.UIElements;
 
 [CreateAssetMenu(fileName = "IsBoundOfWallCondition", menuName = "State Machines/Conditions/Is Bound Of Wall Condition")]
-public class IsBoundOfWallConditionSO : StateConditionSO<IsBoundOfWallCondition> {}
+public class IsBoundOfWallConditionSO : StateConditionSO<IsBoundOfWallCondition>
+{
+	public LayerMask WallLayerMask;
+}
 
 public class IsBoundOfWallCondition : Condition
 {
-	protected new IsBoundOfWallConditionSO OriginSO => (IsBoundOfWallConditionSO)base.OriginSO;
-	private InteractionManager _interactionManager;
-	private Player _player;
-
+	private IsBoundOfWallConditionSO _originSO => (IsBoundOfWallConditionSO)base.OriginSO;
+    private InteractionManager _interactionManager;
+    private Player _player;
+	private Transform _transform;
 
 	public override void Awake(StateMachine stateMachine)
 	{
-		_interactionManager = stateMachine.GetComponent<InteractionManager>();
-		_player = stateMachine.GetComponent<Player>();
+        _interactionManager = stateMachine.GetComponent<InteractionManager>();
+        _player = stateMachine.GetComponent<Player>();
+		_transform = _player.transform;
 	}
 	
 	protected override bool Statement()
 	{
-		GameObject wall = _interactionManager.currentInteractiveObject;
-		float ymin = wall.GetComponent<Collider>().bounds.min.y;
-		float ymax = wall.GetComponent<Collider>().bounds.max.y;
-		float playerY = _player.transform.position.y;
-		float padding = 0.8f;
+        Ray ray = new Ray(_transform.position, -_transform.up);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 2.0f, _originSO.WallLayerMask))
+            return true;
 
-		if (playerY < ymin-padding || playerY > ymax+padding) {
-			Debug.Log("boundary over");
-			return true;
-		} else {
-			return false;
-		}
-	}
+        Debug.Log("바운더리 나감");
+
+        _interactionManager.currentInteractionType = InteractionType.None;
+        _interactionManager.currentInteractiveObject = null;
+        return false;
+    }
 }
