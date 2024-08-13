@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum InteractionType { None = 0, Light, Heavy, Wall, Point };
+public enum InteractionType { None = 0, Light, Heavy, Wall, Point, SieveWheel, Globe};
 
 public class InteractionManager : MonoBehaviour
 {
@@ -99,6 +99,8 @@ public class InteractionManager : MonoBehaviour
         else if (obj.CompareTag("Heavy")) newPotentialInteraction.type = InteractionType.Heavy;
         else if (obj.CompareTag("Wall")) newPotentialInteraction.type = InteractionType.Wall;
         else if (obj.CompareTag("Point")) newPotentialInteraction.type = InteractionType.Point;
+        else if (obj.CompareTag("SieveWheel")) newPotentialInteraction.type = InteractionType.SieveWheel;
+        else if (obj.CompareTag("Globe")) newPotentialInteraction.type = InteractionType.Globe;
 
         if (newPotentialInteraction.type != InteractionType.None)
         {
