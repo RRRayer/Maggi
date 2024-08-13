@@ -17,8 +17,9 @@ public class WallMovementAction : StateAction
 	private Player _player;
     private Transform _transform;
 	private InteractionManager _interactionManager;
+    private const float ROTATION_TRESHOLD = 0.02f;
 
-	public override void Awake(StateMachine stateMachine)
+    public override void Awake(StateMachine stateMachine)
 	{
 		_player = stateMachine.GetComponent<Player>();
         _transform = stateMachine.GetComponent<Transform>();
@@ -69,14 +70,15 @@ public class WallMovementAction : StateAction
             _player.movementVector = (newMovementVector + gravityOnPlane) * _originSO.speed;
 
             // _transform을 이동 벡터 방향으로 회전
-            if (newMovementVector != Vector3.zero)
+            if (newMovementVector.sqrMagnitude >= ROTATION_TRESHOLD)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(newMovementVector, wallNormal);
+                // _transform.up을 기준으로 90도 회전
+                Quaternion additionalRotation = Quaternion.AngleAxis(-90.0f, _transform.up);
 
-                // wallNormal을 기준으로 한 평면에서의 추가 회전 (0, 0, 90)
-                Quaternion additionalRotation = Quaternion.LookRotation(rightOnPlane, wallNormal) * Quaternion.Euler(0, 0, 90);
+                // 현재 회전에 추가 회전을 곱함
+                targetRotation = additionalRotation * targetRotation;
 
-                targetRotation = additionalRotation;
                 _transform.rotation = Quaternion.Slerp(_transform.rotation, targetRotation, Time.deltaTime * _originSO.turnSmoothTime);
             }
         }

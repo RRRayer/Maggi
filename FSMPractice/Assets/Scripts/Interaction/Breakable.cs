@@ -10,15 +10,8 @@ public class Breakable : MonoBehaviour
     [Header("If it is Needed, Broadcasting on")]
     [SerializeField] private TimelineAssetEventChannelSO _onStartTimeline = default;
     [SerializeField] private TimelineAsset _timeline = default;
-    
 
     private bool isBroken = false;
-    private Collider _collider;
-
-    private void Awake()
-    {
-        _collider = GetComponent<Collider>();
-    }
 
     private void OnCollisionEnter(Collision collision)
     {

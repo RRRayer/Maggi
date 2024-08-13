@@ -58,15 +58,15 @@ public class EditorColdStartup : MonoBehaviour
         if (_thisSceneSO != null)
         {
             obj.Result.RaiseEvent(_thisSceneSO);
+            Debug.Log("¾À ½ºÅ¸Æ®");
         }
         else
         {
             //Raise a fake scene ready event, so the player is spawned
             _onSceneReadyChannel.RaiseEvent();
+            
             //When this happens, the player won't be able to move between scenes because the SceneLoader has no conception of which scene we are in
         }
     }
-
-
 #endif
 }
