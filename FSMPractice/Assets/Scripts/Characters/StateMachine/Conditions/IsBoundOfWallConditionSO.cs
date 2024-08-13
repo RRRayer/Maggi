@@ -30,8 +30,8 @@ public class IsBoundOfWallCondition : Condition
         if (Physics.Raycast(ray, out hit, 2.0f, _originSO.WallLayerMask))
             return true;
 
-        Debug.Log("바운더리 나감");
 
+        // Out of Boundary
         _interactionManager.currentInteractionType = InteractionType.None;
         _interactionManager.currentInteractiveObject = null;
         return false;
