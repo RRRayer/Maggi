@@ -73,9 +73,10 @@ public class WallMovementAction : StateAction
             {
                 Quaternion targetRotation = Quaternion.LookRotation(newMovementVector, wallNormal);
 
-                // 벽면에 맞게 Z축 회전을 적용 (예: Vector3.up 방향이 벽면의 법선과 일치하게 회전)
-                Quaternion additionalRotation = Quaternion.FromToRotation(Vector3.up, wallNormal) * Quaternion.Euler(0, 0, 90);
-                targetRotation = targetRotation * additionalRotation;
+                // wallNormal을 기준으로 한 평면에서의 추가 회전 (0, 0, 90)
+                Quaternion additionalRotation = Quaternion.LookRotation(rightOnPlane, wallNormal) * Quaternion.Euler(0, 0, 90);
+
+                targetRotation = additionalRotation;
                 _transform.rotation = Quaternion.Slerp(_transform.rotation, targetRotation, Time.deltaTime * _originSO.turnSmoothTime);
             }
         }
