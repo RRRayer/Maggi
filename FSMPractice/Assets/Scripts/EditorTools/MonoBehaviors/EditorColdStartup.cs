@@ -24,7 +24,7 @@ public class EditorColdStartup : MonoBehaviour
         {
             isColdStart = true;
 
-            _pointStorage.lastPointTaken = null;
+            //_pointStorage.lastPointTaken = null;
         }
         CreateSaveFileIfNotPresent();
     }
@@ -58,7 +58,6 @@ public class EditorColdStartup : MonoBehaviour
         if (_thisSceneSO != null)
         {
             obj.Result.RaiseEvent(_thisSceneSO);
-            Debug.Log("¾À ½ºÅ¸Æ®");
         }
         else
         {

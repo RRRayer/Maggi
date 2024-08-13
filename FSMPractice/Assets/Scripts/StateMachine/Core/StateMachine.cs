@@ -41,7 +41,6 @@ namespace Pudding.StateMachine
 
         private void Transition(State transitionState)
         {
-            Debug.Log(_currentState._originSO + "->" + transitionState._originSO);
             _currentState.OnStateExit();
             _currentState = transitionState;
             _currentState.OnStateEnter();
