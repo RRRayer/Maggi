@@ -48,8 +48,8 @@ public class PullHeavyAction : StateAction
         float playerHalfSize = _player.transform.localScale.x * 0.5f;
 
         // 각 축에 따른 거리 계산
-        float distanceX = halfBoxSize.x + playerHalfSize + 0.2f;
-        float distanceZ = halfBoxSize.z + playerHalfSize + 0.2f;
+        float distanceX = halfBoxSize.x + playerHalfSize;
+        float distanceZ = halfBoxSize.z + playerHalfSize;
 
         // 로컬 축 벡터
         Vector3 localRight = boxCollider.transform.right;

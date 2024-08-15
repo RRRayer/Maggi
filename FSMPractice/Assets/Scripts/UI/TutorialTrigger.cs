@@ -7,8 +7,8 @@ using UnityEngine.UI;
 public class TutorialTrigger : MonoBehaviour
 {
     [SerializeField] private TutorialSO _tutorial;
+    [SerializeField] private Sprite _sprite;
     [SerializeField] private string _text;
-    [SerializeField] private Color _color;
 
     [Header("Broadcasting on")]
     [SerializeField] private FloatEventChannelSO _floatTutorial = default;
@@ -24,7 +24,7 @@ public class TutorialTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            _tutorial.Image.color = _color;
+            _tutorial.Image.sprite = _sprite;
             _tutorial.Text.text = _text;
         } 
     }

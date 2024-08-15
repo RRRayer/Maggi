@@ -59,6 +59,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -96,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ee9ba1a61ff6c94ca1ab2acc5eecf6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotateSpeed: 3
+  _rotateSpeed: 1
 --- !u!1 &2433541674431707130
 GameObject:
   m_ObjectHideFlags: 0
