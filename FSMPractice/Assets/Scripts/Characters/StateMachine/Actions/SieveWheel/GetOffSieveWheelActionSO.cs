@@ -26,7 +26,7 @@ public class GetOffSieveWheelAction : StateAction
         _transform.rotation = _interactionManager.currentInteractiveObject.transform.rotation;
         _transform.position = _interactionManager.currentInteractiveObject.transform.position
 							+ _interactionManager.currentInteractiveObject.transform.up * -0.3f
-							+ _interactionManager.currentInteractiveObject.transform.forward * -1.0f;
+							+ _interactionManager.currentInteractiveObject.transform.forward * -1.5f;
     }
 
     public override void OnUpdate() { }
