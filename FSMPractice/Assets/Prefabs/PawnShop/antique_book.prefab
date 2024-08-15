@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 889064729745662854}
   - component: {fileID: 5895392883416933834}
   - component: {fileID: 2571632750104139208}
+  - component: {fileID: 8667206885323442619}
   m_Layer: 0
   m_Name: antique_book
   m_TagString: Untagged
@@ -26,13 +27,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9122647055212952965}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40810487, y: 0.5231773, z: 0.5774516, w: 0.4756948}
+  m_LocalRotation: {x: 0.4081083, y: 0.5231767, z: 0.57744926, w: 0.47569543}
   m_LocalPosition: {x: -67.43192, y: 1.3065052, z: -3.1818087}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -12.471, y: 82.972, z: 90}
 --- !u!33 &5895392883416933834
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -85,3 +86,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8667206885323442619
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9122647055212952965}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0853442, y: 1.0392457, z: 0.29232335}
+  m_Center: {x: 0.05902701, y: -0.053750217, z: -0.017094577}

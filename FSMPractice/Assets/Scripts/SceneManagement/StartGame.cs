@@ -41,7 +41,6 @@ public class StartGame : MonoBehaviour
         _saveLoadSystem.WriteEmptySaveFile();
         _saveLoadSystem.SetNewGameData();
 
-        // 프로토타입 단계에서는 로딩 화면은 구현하지 않음
         _loadLocation.RaiseEvent(_locationsToLoad, _showLoadScreen);
     }
 

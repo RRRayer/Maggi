@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5943523098623228046}
   - component: {fileID: 5412166806840811108}
   - component: {fileID: 3409935057991626489}
+  - component: {fileID: 950840742180415047}
   m_Layer: 0
   m_Name: can_var_2
   m_TagString: Light
@@ -61,6 +62,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -147,3 +150,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isMeshInChild: 0
+--- !u!114 &950840742180415047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069827132554078095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca6f01e1810496a468b32599c17dc4e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioCue: {fileID: 11400000, guid: b511d235b9fab43498797dd95b7c6820, type: 2}
+  audioCueEventChannel: {fileID: 11400000, guid: c936b54e54a15b7488e0ec39e41b21bb, type: 2}
+  audioConfiguration: {fileID: 11400000, guid: b1ac4db5f8d999f47a5e4eaca84c214a, type: 2}

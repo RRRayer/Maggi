@@ -18,11 +18,13 @@ public class MultiInputButton : Button
 
     public override void OnPointerEnter(PointerEventData eventData)
     {
-        _menuSelectionHandler.HandleMouseEnter(gameObject);
+        if (_menuSelectionHandler != null)
+            _menuSelectionHandler.HandleMouseEnter(gameObject);
     }
 
     public override void OnPointerExit(PointerEventData eventData)
     {
-        _menuSelectionHandler.HandleMouseExit(gameObject);
+        if (_menuSelectionHandler != null)
+            _menuSelectionHandler.HandleMouseExit(gameObject);
     }
 }

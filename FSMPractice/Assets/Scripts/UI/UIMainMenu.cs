@@ -11,6 +11,21 @@ public class UIMainMenu : MonoBehaviour
 
     public UnityAction NewGameButtonAction;
     public UnityAction ContinueButtonAction;
+    public UnityAction SettingsButtonAction;
+    public UnityAction ExitButtonAction;
+
+    public void SetMenuScreen(bool hasSaveData)
+    {
+        _continueButton.interactable = hasSaveData;
+        if (hasSaveData)
+        {
+            _continueButton.Select();
+        }
+        else
+        {
+            _newGameButton.Select();
+        }
+    }
 
     public void NewGameButton()
     {
@@ -20,5 +35,15 @@ public class UIMainMenu : MonoBehaviour
     public void ContinueButton()
     {
         ContinueButtonAction.Invoke();
+    }
+
+    public void SettingsButton()
+    {
+        SettingsButtonAction.Invoke();
+    }
+
+    public void ExitButton()
+    {
+        ExitButtonAction.Invoke();
     }
 }

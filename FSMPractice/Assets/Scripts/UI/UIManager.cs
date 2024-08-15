@@ -5,6 +5,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [Header("Scene UI")]
+    [SerializeField] private UIPopup _popupPanel = default;
     [SerializeField] private UIPause _pauseScreen = default;
     [SerializeField] private UISettingController _settingScreen = default;
     [SerializeField] private UIControl _controlScreen = default;
@@ -31,7 +32,7 @@ public class UIManager : MonoBehaviour
 
     private void OpenUIPause()
     {
-        _inputReader.MenuPauseEvent -= OpenUIPause;
+        _inputReader.MenuPauseEvent -= OpenUIPause; // you can open UI pause menu again, if it's closed
 
         Time.timeScale = 0.0f; // Pause Time
 
@@ -57,7 +58,7 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
 
-        _inputReader.MenuPauseEvent += OpenUIPause;
+        _inputReader.MenuPauseEvent += OpenUIPause; // you can open UI pause menu again, if it's closed
 
         _pauseScreen.Restarted -= RestartAtLastSavePoint;
         _pauseScreen.SettingScreenOpened -= OpenSettingScreen;
@@ -100,8 +101,33 @@ public class UIManager : MonoBehaviour
 
     private void ShowBackToMenuConfirmationPopup()
     {
-        // 여기에 확인 팝업창을 띄우는 작업을 추가해야 함
-        CloseUIPause();
-        _loadMenuEvent.RaiseEvent(_mainMenu, false);
+        _pauseScreen.gameObject.SetActive(false);
+
+        _popupPanel.ClosePopupAction += HideBackToMenuConfirmationPopup;
+        _popupPanel.ConfirmationResponseAction += BackToMainMenu;
+
+        _inputReader.EnableMenuInput();
+        _popupPanel.gameObject.SetActive(true);
+        _popupPanel.SetPopup(PopupType.BackToMenu);
+    }
+
+    private void BackToMainMenu(bool confirm)
+    {
+        HideBackToMenuConfirmationPopup();// hide confirmation screen, show close UI pause, 
+
+        if (confirm)
+        {
+            CloseUIPause();
+            _loadMenuEvent.RaiseEvent(_mainMenu, false);
+        }
+    }
+
+    private void HideBackToMenuConfirmationPopup()
+    {
+        _popupPanel.ClosePopupAction -= HideBackToMenuConfirmationPopup;
+        _popupPanel.ConfirmationResponseAction -= BackToMainMenu;
+
+        _popupPanel.gameObject.SetActive(false);
+        _pauseScreen.gameObject.SetActive(true);
     }
 }
