@@ -51,8 +51,10 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
 
     public void OnPull(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started) 
+        if (context.phase == InputActionPhase.Performed)
             PullEvent.Invoke();
+        else if (context.phase == InputActionPhase.Canceled)
+            PullCancelEvent.Invoke();
     }
 
     public void OnPush(InputAction.CallbackContext context)
