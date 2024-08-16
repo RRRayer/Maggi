@@ -13,8 +13,8 @@ public class UITutorial : MonoBehaviour
 
     private void OnEnable()
     {
-        _tutorial.Text = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        _tutorial.Image = transform.GetChild(1).GetComponent<Image>();
+        _tutorial.Image = transform.GetChild(0).GetComponent<Image>();
+        _tutorial.Text = transform.GetChild(1).GetComponent<TextMeshProUGUI>();        
 
         _floatTutorial.OnEventRaised += UpdateFloatingUI;
     }

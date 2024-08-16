@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8408358876897484502}
   - component: {fileID: 6578474250909425744}
   - component: {fileID: 3936853615881335549}
-  - component: {fileID: 7714955884767246871}
   - component: {fileID: 7145422755770384243}
   m_Layer: 0
   m_Name: shelf_001_broken
@@ -87,20 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7714955884767246871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2970542192832774219}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 243bbded8ad810148b5b991cfb33671e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _onStartTimeline: {fileID: 11400000, guid: f9e0a26d52c3e7e4aa6c085a41dea893, type: 2}
-  _timeline: {fileID: 0}
 --- !u!65 &7145422755770384243
 BoxCollider:
   m_ObjectHideFlags: 0

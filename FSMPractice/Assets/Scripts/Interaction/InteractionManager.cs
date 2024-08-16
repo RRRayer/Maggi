@@ -36,10 +36,8 @@ public class InteractionManager : MonoBehaviour
     {
         pullInput = true;
 
-        if (_potentialInteractions.Count == 0)
-        {
-            return;
-        }
+        if (_potentialInteractions.Count == 0 ) return;
+        if (currentInteractiveObject != null) return;
 
         currentInteractionType = _potentialInteractions.First.Value.type;
         currentInteractiveObject = _potentialInteractions.First.Value.interactiveObject;

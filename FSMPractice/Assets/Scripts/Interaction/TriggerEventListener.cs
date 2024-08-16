@@ -14,7 +14,10 @@ public class TriggerEventListener : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             if (_onStartTimeline != null && _timeline != null)
+            {
                 _onStartTimeline.RaiseEvent(_timeline);
+                gameObject.SetActive(false);
+            }
         }
     }
 }

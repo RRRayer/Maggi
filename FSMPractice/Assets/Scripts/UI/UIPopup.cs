@@ -37,15 +37,15 @@ public class UIPopup : MonoBehaviour
         {
         case PopupType.Quit:
             isConfirmation = true;
-            _titleText.text = "나가기?";
+            _titleText.text = "EXIT";
             _descriptionText.text = "정말 게임을 나가시겠습니까?";
-            _popupButton1.SetButton("나가기", true);
+            _popupButton1.SetButton("예", true);
             _popupButton2.SetButton("취소", false);
             hasExitButton = false;
             break;
         case PopupType.NewGame:
             isConfirmation = true;
-            _titleText.text = "새 게임";
+            _titleText.text = "New";
             _descriptionText.text = "새로운 게임을 시작하시겠습니까?";
             _popupButton1.SetButton("예", true);
             _popupButton2.SetButton("취소", false);
@@ -53,7 +53,7 @@ public class UIPopup : MonoBehaviour
             break;
         case PopupType.BackToMenu:
             isConfirmation = true;
-            _titleText.text = "메인 메뉴로 가기";
+            _titleText.text = "Main";
             _descriptionText.text = "메인 메뉴로 나가시겠습니까?";
             _popupButton1.SetButton("예", true);
             _popupButton2.SetButton("취소", false);
@@ -61,7 +61,7 @@ public class UIPopup : MonoBehaviour
             break;
         case PopupType.DonePrototype:
             isConfirmation = false;
-            _titleText.text = "데모 버전 플레이";
+            _titleText.text = "Demo";
             _descriptionText.text = "여기까지 데모 플레이였습니다.";
             _popupButton1.SetButton("감사합니다", true);
             hasExitButton = false;

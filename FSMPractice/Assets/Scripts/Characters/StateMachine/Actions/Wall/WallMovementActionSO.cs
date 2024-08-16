@@ -60,6 +60,7 @@ public class WallMovementAction : StateAction
             Transform _interactiveObjectTransform = _interactionManager.currentInteractiveObject.transform;
             Vector3 rightOnPlane = Vector3.Cross(-_interactiveObjectTransform.forward, wallNormal).normalized;
             Vector3 forwardOnPlane = Vector3.Cross(_interactiveObjectTransform.right, wallNormal).normalized;
+
             if (rightOnPlane == Vector3.zero) rightOnPlane = Vector3.right;
             if (forwardOnPlane == Vector3.zero) forwardOnPlane = Vector3.forward;
 

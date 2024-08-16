@@ -62,8 +62,8 @@ public class SaveLoadSystem : ScriptableObject
     public void SetNewGameData()
     {
         FileManager.WriteToFile(saveFilename, "");
-        //if (_pointStorage)
-        //    _pointStorage.lastPointTaken = null;
+        if (_pointStorage)
+            _pointStorage.lastPointTaken = null;
         SaveDataToDisk();
     }
 }

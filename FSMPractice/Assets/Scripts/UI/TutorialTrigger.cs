@@ -34,11 +34,13 @@ public class TutorialTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // collider와 player의 거리에 비례해 floating image의 alpha 값을 건든다
-            float distance = Vector3.Distance(transform.position, other.transform.position);
+            Vector3 center = transform.position;
+            center.y = other.transform.position.y;
+            float distance = Vector3.Distance(center, other.transform.position);
 
             float maxDistance = _collider.bounds.size.x / 2;
             float alpha = Mathf.Clamp01(1.0f - distance / maxDistance) * 2.0f;
-            _floatTutorial.RaiseEvent(alpha);   
+            _floatTutorial.RaiseEvent(alpha);
         }
     }
 
