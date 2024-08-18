@@ -74,7 +74,7 @@ public class PushKeyAction : StateAction
         // 키 삭제
         key.Destroy();
 
-        // 오브젝트 교체
+        // 오브젝트 교체, 타임라인도 수정해야함
         if (target.TryGetComponent(out ReplaceObject _replaceObject))
         {
             _replaceObject.ChangeObject();

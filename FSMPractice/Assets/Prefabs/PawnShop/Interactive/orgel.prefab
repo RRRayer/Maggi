@@ -11,9 +11,12 @@ GameObject:
   - component: {fileID: 8575619679258571481}
   - component: {fileID: 5258143972613416320}
   - component: {fileID: 5768669285011148261}
+  - component: {fileID: 2918013327078845174}
+  - component: {fileID: 622263847504840597}
+  - component: {fileID: 9031130996130215116}
   m_Layer: 0
   m_Name: orgel
-  m_TagString: Untagged
+  m_TagString: Normal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26,13 +29,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2327662754111465746}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.6225458, y: 0.3353159, z: 0.3353159, w: 0.6225458}
-  m_LocalPosition: {x: -53.2187, y: 1.2297319, z: 11.243404}
+  m_LocalRotation: {x: -0.6225447, y: 0.3353179, z: 0.3353179, w: 0.6225447}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.6665133, y: 1.6665133, z: 1.6665133}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 56.616}
 --- !u!33 &5258143972613416320
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -85,3 +88,52 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2918013327078845174
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2327662754111465746}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.81209964, y: 0.78227603, z: 0.517359}
+  m_Center: {x: -0.014911379, y: 0.00000053615383, z: 0.0061965985}
+--- !u!114 &622263847504840597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2327662754111465746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb1d09bf9fb5f7340989411714ab320e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timeline: {fileID: 11400000, guid: 99975352572e0494183a970150b48335, type: 2}
+  _onStartTimeline: {fileID: 11400000, guid: f9e0a26d52c3e7e4aa6c085a41dea893, type: 2}
+  _requiredKey: {fileID: 11400000, guid: 92edb4a21a7b1834b9a51b1f0e47f8dd, type: 2}
+--- !u!114 &9031130996130215116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2327662754111465746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8960c63e62841314f8742e6ae7704d8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetPrefab: {fileID: 2327662754111465746, guid: 76f26edcb377b5f40a75222dbc6886c8, type: 3}

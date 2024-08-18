@@ -18,8 +18,6 @@ public class InteractAction : StateAction
 	
 	public override void OnStateEnter()
 	{
-        Debug.Log("Interact");
-
         if (_interactionManager.currentInteractiveObject.TryGetComponent(out InteractionEventListener listener))
         {
 			listener.OnInteract();
