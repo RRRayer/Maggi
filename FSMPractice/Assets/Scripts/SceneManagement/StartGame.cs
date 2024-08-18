@@ -46,7 +46,8 @@ public class StartGame : MonoBehaviour
 
     private void ContinuePreviousGame()
     {
-        StartCoroutine(LoadSavedGame());
+        if (_hasSaveData)
+            StartCoroutine(LoadSavedGame());
     }
 
     private IEnumerator LoadSavedGame()

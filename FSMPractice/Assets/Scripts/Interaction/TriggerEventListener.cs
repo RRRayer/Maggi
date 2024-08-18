@@ -5,9 +5,10 @@ using UnityEngine.Timeline;
 
 public class TriggerEventListener : MonoBehaviour
 {
-    [Header("If it is Needed, Broadcasting on")]
-    [SerializeField] private TimelineAssetEventChannelSO _onStartTimeline = default;
     [SerializeField] private TimelineAsset _timeline = default;
+
+    [Header("Broadcasting on")]
+    [SerializeField] private TimelineAssetEventChannelSO _onStartTimeline = default;
 
     private void OnTriggerEnter(Collider other)
     {

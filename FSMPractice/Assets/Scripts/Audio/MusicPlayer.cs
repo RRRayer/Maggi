@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioPlayer : MonoBehaviour
+public class MusicPlayer : MonoBehaviour
 {
     [SerializeField] private VoidEventChannelSO _onSceneReady = default;
     [SerializeField] private AudioCueEventChannelSO _playMusicOn = default;
@@ -17,6 +17,12 @@ public class AudioPlayer : MonoBehaviour
     {
         _onPauseOpened.OnEventRaised += PlayPauseMusic;
         _onSceneReady.OnEventRaised += PlayMusic;
+    }
+
+    private void OnDisable()
+    {
+        _onPauseOpened.OnEventRaised -= PlayPauseMusic;
+        _onSceneReady.OnEventRaised -= PlayMusic;
     }
 
 
