@@ -253,6 +253,8 @@ Transform:
   - {fileID: 6129013032818199083}
   - {fileID: 5048071504005610706}
   - {fileID: 8691400977883906129}
+  - {fileID: 111848786394967031}
+  - {fileID: 5890578926822488223}
   - {fileID: 7879657870035978218}
   - {fileID: 4814919813653277223}
   - {fileID: 7536580576990400309}
@@ -267,8 +269,6 @@ Transform:
   - {fileID: 1736420706260414640}
   - {fileID: 4725469143158711818}
   - {fileID: 737380797422700477}
-  - {fileID: 5890578926822488223}
-  - {fileID: 111848786394967031}
   - {fileID: 2145630860954788841}
   - {fileID: 1463676856817240761}
   - {fileID: 9125627594969676577}
@@ -1106,6 +1106,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4914945871467766617}
     m_Modifications:
+    - target: {fileID: 870731643392032511, guid: 8d2eefbd7398d1a4295eac8dcf0d58a1, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 870731643392032511, guid: 8d2eefbd7398d1a4295eac8dcf0d58a1, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 870731643392032511, guid: 8d2eefbd7398d1a4295eac8dcf0d58a1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -61.091076
