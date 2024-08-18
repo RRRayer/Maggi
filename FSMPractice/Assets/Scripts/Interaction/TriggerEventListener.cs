@@ -17,7 +17,7 @@ public class TriggerEventListener : MonoBehaviour
             if (_onStartTimeline != null && _timeline != null)
             {
                 _onStartTimeline.RaiseEvent(_timeline);
-                gameObject.SetActive(false);
+                GetComponent<TriggerEventListener>().enabled = false;
             }
         }
     }

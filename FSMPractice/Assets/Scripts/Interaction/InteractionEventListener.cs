@@ -9,11 +9,16 @@ public class InteractionEventListener : MonoBehaviour
 
     [Header("Broadcasting on")]
     [SerializeField] private TimelineAssetEventChannelSO _onStartTimeline = default;
+    [SerializeField] private bool _isEnable;
+    public bool IsEnable
+    {
+        set { _isEnable = value; }
+        get { return _isEnable; }
+    }
+
+    [Header("If it is closed")]
     [SerializeField] private KeySO _requiredKey = default;
     public KeySO RequiredKey => _requiredKey;
-    [SerializeField] private bool _isEnable;
-    public bool IsEnable => _isEnable;
-    
 
     // 나중에 보스 트리거 이벤트도 발생 시켜야함.
     // 그걸 위해서 보스 이벤트 채널 하나 만들면 되고.
@@ -28,6 +33,8 @@ public class InteractionEventListener : MonoBehaviour
     public void OnInteract()
     {
         if (_isEnable)
+        {
             _onStartTimeline.RaiseEvent(_timeline);
+        }            
     }
 }

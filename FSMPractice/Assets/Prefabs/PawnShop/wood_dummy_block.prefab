@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6281228930638385180}
   - component: {fileID: 9020253346953330240}
   - component: {fileID: 5676037260706138842}
+  - component: {fileID: 3702458971377850360}
   m_Layer: 0
   m_Name: wood_dummy_block
   m_TagString: Untagged
@@ -85,3 +86,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3702458971377850360
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9143821571442820558}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.0000014, y: 0.84802866, z: 0.4778772}
+  m_Center: {x: 0.000000007847383, y: -0.00000018048583, z: 0.1402188}

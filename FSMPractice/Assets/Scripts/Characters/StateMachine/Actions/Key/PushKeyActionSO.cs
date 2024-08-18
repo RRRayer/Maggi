@@ -41,6 +41,7 @@ public class PushKeyAction : StateAction
                     {
                         if (listener.RequiredKey.ID == key.GetKeyID())
                         {
+                            listener.IsEnable = true;
                             InteractWithObject(hitCollider.gameObject, key);
                             return;
                         }
@@ -56,8 +57,6 @@ public class PushKeyAction : StateAction
                 }
             }
 
-            Debug.Log("그냥 던져");
-
             // 상호작용 못 하면 그냥 던지는 동작
             _interactiveObjectRigidbody = _interactionManager.currentInteractiveObject.GetComponent<Rigidbody>();
 
@@ -69,15 +68,13 @@ public class PushKeyAction : StateAction
 
     private void InteractWithObject(GameObject target, Key key)
     {
-        Debug.Log("키로 오브젝트와 상호작용 중: " + target.name);
-
         // 키 삭제
         key.Destroy();
 
         // 오브젝트 교체, 타임라인도 수정해야함
-        if (target.TryGetComponent(out ReplaceObject _replaceObject))
+        if (target.TryGetComponent(out ActivateObject activeObject))
         {
-            _replaceObject.ChangeObject();
+            activeObject.Activate();
         }
     }
 

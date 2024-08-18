@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2008199485907215039}
   - component: {fileID: 1228038157887334470}
   - component: {fileID: 6068751394287440863}
+  - component: {fileID: 3518463227695620960}
   m_Layer: 0
   m_Name: key_orgel
   m_TagString: Key
@@ -150,3 +151,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _key: {fileID: 11400000, guid: 92edb4a21a7b1834b9a51b1f0e47f8dd, type: 2}
+--- !u!114 &3518463227695620960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7619466660267656591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6b5423bab6a5de439d95520311e5ad8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 20
+  isRotate: 1

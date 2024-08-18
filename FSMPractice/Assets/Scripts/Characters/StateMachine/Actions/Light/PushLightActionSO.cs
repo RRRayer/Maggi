@@ -11,7 +11,7 @@ public class PushLightActionSO : StateActionSO<PushLightAction>
 
 public class PushLightAction : StateAction
 {
-	protected new PushLightActionSO _originSO => (PushLightActionSO)base.OriginSO;
+	private PushLightActionSO _originSO => (PushLightActionSO)base.OriginSO;
 	private InteractionManager _interactionManager;
 	private Rigidbody _interactiveObjectRigidbody;
 
@@ -27,12 +27,8 @@ public class PushLightAction : StateAction
 			_interactiveObjectRigidbody = _interactionManager.currentInteractiveObject.GetComponent<Rigidbody>();
 
 			// Init Position to Player position and Add
-			_interactiveObjectRigidbody.transform.position = _interactionManager.transform.position + _interactiveObjectRigidbody.transform.forward * 0.1f;
+			_interactiveObjectRigidbody.transform.position = _interactionManager.transform.position + _interactiveObjectRigidbody.transform.forward * 0.2f;
 			_interactiveObjectRigidbody.velocity = _interactiveObjectRigidbody.transform.forward * _originSO.pushForce;
-		}
-		else
-		{
-			Debug.Log("Push할 오브젝트가 없음");
 		}
 	}
 

@@ -43,7 +43,7 @@ public class PullLightAction : StateAction
             Vector3 direction = (mousePosition - _player.transform.position).normalized;
             _interactionManager.currentInteractiveObject.transform.position = _player.transform.position + direction * 0.4f + Vector3.up * 0.2f;
 
-            //_interactionManager.currentInteractiveObject.transform.LookAt(mousePosition);
+            _interactionManager.currentInteractiveObject.transform.LookAt(mousePosition);
         }
     }
     public override void OnStateExit()
