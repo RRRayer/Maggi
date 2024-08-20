@@ -875,6 +875,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1400644264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1400644266}
+  - component: {fileID: 1400644265}
+  m_Layer: 0
+  m_Name: CursorController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1400644265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400644264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 047e964cd1fb8af48805f68d631bfca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _customCursor: {fileID: 2800000, guid: ee16538c06bbd88468a61a2ddd3e5603, type: 3}
+--- !u!4 &1400644266
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400644264}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1920, y: 1080, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1478012331 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8056194545925505583, guid: a967561156802e14aabfe5b53a68cd91, type: 3}
@@ -1384,14 +1429,14 @@ PrefabInstance:
     - target: {fileID: 761531095865271687, guid: a967561156802e14aabfe5b53a68cd91, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -1959468687303967168, guid: 4c290a7aa56c3844f853ab5b7cb8c866, type: 2}
+      objectReference: {fileID: 5909011061062451915, guid: 9adf7516b2aad9941a94402922649cd0, type: 2}
     - target: {fileID: 761531095865271687, guid: a967561156802e14aabfe5b53a68cd91, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4281479730
       objectReference: {fileID: 0}
     - target: {fileID: 761531095865271687, guid: a967561156802e14aabfe5b53a68cd91, type: 3}
       propertyPath: m_hasFontAssetChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2411350801785517015, guid: a967561156802e14aabfe5b53a68cd91, type: 3}
       propertyPath: m_Name
@@ -2003,17 +2048,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 47146404}
     m_Modifications:
     - target: {fileID: 761531095865271687, guid: a967561156802e14aabfe5b53a68cd91, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 9adf7516b2aad9941a94402922649cd0, type: 2}
+      propertyPath: m_text
+      value: "\uC0C8 \uAC8C\uC784"
+      objectReference: {fileID: 0}
     - target: {fileID: 761531095865271687, guid: a967561156802e14aabfe5b53a68cd91, type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 5909011061062451915, guid: 9adf7516b2aad9941a94402922649cd0, type: 2}
-    - target: {fileID: 761531095865271687, guid: a967561156802e14aabfe5b53a68cd91, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2411350801785517015, guid: a967561156802e14aabfe5b53a68cd91, type: 3}
       propertyPath: m_Name
       value: Button New Game
@@ -2022,6 +2063,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 713909373}
+    - target: {fileID: 4734884091526880468, guid: a967561156802e14aabfe5b53a68cd91, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NewGameButton
+      objectReference: {fileID: 0}
     - target: {fileID: 8056194545925505583, guid: a967561156802e14aabfe5b53a68cd91, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2117,3 +2162,4 @@ SceneRoots:
   - {fileID: 218036086}
   - {fileID: 598246827}
   - {fileID: 1098995487}
+  - {fileID: 1400644266}

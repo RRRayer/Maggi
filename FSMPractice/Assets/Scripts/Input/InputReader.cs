@@ -69,13 +69,16 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
     {
         if (context.phase == InputActionPhase.Performed)
             MenuPauseEvent.Invoke();
-            
     }
 
     public void OnCancel(InputAction.CallbackContext context)
     {
+        Debug.Log("여긴 오나?");
         if (context.phase == InputActionPhase.Performed)
+        {
             MenuCloseEvent.Invoke();
+            Debug.Log("메뉴 크로즈");
+        }
     }
 
     public void OnMouseMove(InputAction.CallbackContext context)
@@ -112,6 +115,8 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
         _gameInput.Gameplay.Disable();
         _gameInput.Menus.Disable();
     }
+
+    public bool LeftMouseDown() => Mouse.current.leftButton.isPressed;
 
     public void OnPoint(InputAction.CallbackContext context)
     {

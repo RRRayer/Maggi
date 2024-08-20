@@ -11,14 +11,24 @@ public class UIGenericButton : MonoBehaviour
 
     public UnityAction Clicked = default;
 
+    private bool _isDefaultSelection = false;
+
     private void OnDisable()
     {
         _button.IsSelected = false;
+        _isDefaultSelection = false;
     }
 
     public void Click()
     {
         Clicked.Invoke();
+    }
+
+    public void SetButton(bool isSelect)
+    {
+        _isDefaultSelection = isSelect;
+        if (isSelect)
+            _button.UpdateSelected();
     }
 
     public void SetButton(string buttonText, bool isSelected)
@@ -29,7 +39,7 @@ public class UIGenericButton : MonoBehaviour
             SelectButton();
     }
 
-    private void SelectButton()
+    public void SelectButton()
     {
         _button.Select();
     }

@@ -25,6 +25,8 @@ public class FinishPrototype : MonoBehaviour
 
     private void ShowThanksPopup()
     {
+        Time.timeScale = 0.0f;
+
         _popupPanel.ConfirmationResponseAction += BackToMainMenu;
 
         _popupPanel.gameObject.SetActive(true);
@@ -35,6 +37,8 @@ public class FinishPrototype : MonoBehaviour
 
     private void BackToMainMenu(bool confirm)
     {
+        Time.timeScale = 1.0f;
+
         HideThanksPopup();// hide confirmation screen, show close UI pause, 
 
         if (confirm)

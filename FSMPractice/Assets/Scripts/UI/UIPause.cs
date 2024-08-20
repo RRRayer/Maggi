@@ -25,27 +25,35 @@ public class UIPause : MonoBehaviour
     {
         _onPauseOpened.RaiseEvent(true);
 
+        _resumeButton.SetButton(true);
+        _inputReader.MenuCloseEvent += Resume;
         _restartButton.Clicked += Restart;
         _settingsButton.Clicked += OpenSettingScreen;
         _controlButton.Clicked += OpenControlScreen;
         _backToMenuButton.Clicked += BackToMainMenuConfirmation;
-        _resumeButton.Clicked += CloseScreen;
+        _resumeButton.Clicked += Resume;
     }
 
     private void OnDisable()
     {
         _onPauseOpened.RaiseEvent(false);
 
+        _inputReader.MenuCloseEvent -= Resume;
         _restartButton.Clicked -= Restart;
         _settingsButton.Clicked -= OpenSettingScreen;
         _controlButton.Clicked -= OpenControlScreen;
         _backToMenuButton.Clicked -= BackToMainMenuConfirmation;
-        _resumeButton.Clicked -= CloseScreen;
+        _resumeButton.Clicked -= Resume;
     }
 
     private void Restart()
     {
         Restarted.Invoke();
+    }
+
+    private void Resume()
+    {
+        Resumed.Invoke();
     }
 
     private void OpenSettingScreen()
@@ -63,7 +71,7 @@ public class UIPause : MonoBehaviour
         BackToMainRequested.Invoke();
     }
 
-    private void CloseScreen()
+    public void CloseScreen()
     {
         Resumed.Invoke();
     }

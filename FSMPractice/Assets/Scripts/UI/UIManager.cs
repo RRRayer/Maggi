@@ -81,7 +81,7 @@ public class UIManager : MonoBehaviour
     private void OpenControlScreen()
     {
         _controlScreen.Closed += CloseControlScreen;
-        _pauseScreen.gameObject.SetActive(true);
+        _pauseScreen.gameObject.SetActive(false);
         _controlScreen.gameObject.SetActive(true);
     }
 

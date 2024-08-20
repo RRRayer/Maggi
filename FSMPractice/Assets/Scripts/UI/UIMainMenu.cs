@@ -16,7 +16,7 @@ public class UIMainMenu : MonoBehaviour
 
     public void SetMenuScreen(bool hasSaveData)
     {
-        _continueButton.interactable = hasSaveData;
+        _continueButton.gameObject.SetActive(hasSaveData);
         if (hasSaveData)
         {
             _continueButton.Select();

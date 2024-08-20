@@ -26,7 +26,7 @@ public class UIMenuManager : MonoBehaviour
     private void SetMenuScreen()
     {
         _hasSaveData = _saveLoadSystem.LoadSaveDataFromDisk();
-        _mainMenuPanel.SetMenuScreen(_hasSaveData);
+        _mainMenuPanel.SetMenuScreen(_saveLoadSystem.saveData._pointStorage != null);
         _mainMenuPanel.NewGameButtonAction += ButtonStartNewGameClicked;
         _mainMenuPanel.ContinueButtonAction += _continueGameEvent.RaiseEvent;
         _mainMenuPanel.SettingsButtonAction += OpenSettingsScreen;
