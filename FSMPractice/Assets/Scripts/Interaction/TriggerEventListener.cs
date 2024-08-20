@@ -17,7 +17,7 @@ public class TriggerEventListener : MonoBehaviour
             if (_onStartTimeline != null && _timeline != null)
             {
                 _onStartTimeline.RaiseEvent(_timeline);
-                GetComponent<TriggerEventListener>().enabled = false;
+                GetComponent<Collider>().enabled = false;
             }
         }
     }

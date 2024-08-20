@@ -77,8 +77,9 @@ public class CameraManager : MonoBehaviour
         {
             CinemachineComposer composer = virtualCams[_currentCamera.index].GetCinemachineComponent<CinemachineComposer>();
 
-            composer.m_ScreenX = normalDirection.x == 0 ? 0.5f : 0.5f - 0.45f * normalDirection.x; 
-            composer.m_ScreenY = normalDirection.y == 0 ? 0.5f : 0.5f + 0.45f * normalDirection.y;
+            // 스무스 하게 하자
+            composer.m_ScreenX = normalDirection.x == 0 ? 0.5f : 0.5f - 0.1f * normalDirection.x; 
+            composer.m_ScreenY = normalDirection.y == 0 ? 0.65f : 0.65f + 0.3f * normalDirection.y;
         }
     }
 
