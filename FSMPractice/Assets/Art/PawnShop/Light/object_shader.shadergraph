@@ -30,6 +30,12 @@
     "m_CategoryData": [
         {
             "m_Id": "e0c860184faa4f9ba058af1506dfd1a5"
+        },
+        {
+            "m_Id": "0cabe4c15b9c47fea5a37f9629da736d"
+        },
+        {
+            "m_Id": "0a949e0f2f65470f9794bac4386e0320"
         }
     ],
     "m_Nodes": [
@@ -607,6 +613,24 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.CategoryData",
+    "m_ObjectId": "0a949e0f2f65470f9794bac4386e0320",
+    "m_Name": "Color Adjustment",
+    "m_ChildObjectList": [
+        {
+            "m_Id": "5f26cf37872f4139a4267390dc147437"
+        },
+        {
+            "m_Id": "49d4b9173d544784b44e36ad5443384d"
+        },
+        {
+            "m_Id": "cc2ad87ab10b46bcb662acbee27fefbc"
+        }
+    ]
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.NormalMaterialSlot",
     "m_ObjectId": "0b21230790e245f1b34e8e408ba5119f",
     "m_Id": 0,
@@ -646,6 +670,8 @@
     "m_AlphaClip": false,
     "m_CastShadows": true,
     "m_ReceiveShadows": true,
+    "m_AdditionalMotionVectorMode": 0,
+    "m_AlembicMotionVectors": false,
     "m_SupportsLODCrossFade": false,
     "m_CustomEditorGUI": "",
     "m_SupportVFX": false
@@ -697,6 +723,27 @@
         "e32": 0.0,
         "e33": 1.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.CategoryData",
+    "m_ObjectId": "0cabe4c15b9c47fea5a37f9629da736d",
+    "m_Name": "Texture Map",
+    "m_ChildObjectList": [
+        {
+            "m_Id": "f22a4ec0ae2e4250917c5c0b914c10af"
+        },
+        {
+            "m_Id": "bba42e1083d3450fb8d33dfb4a8675ec"
+        },
+        {
+            "m_Id": "faa5bd38bbf446018f1d96632ae49043"
+        },
+        {
+            "m_Id": "69789c6ed6784f959b35e053ea92474e"
+        }
+    ]
 }
 
 {
@@ -3035,29 +3082,7 @@
     "m_Type": "UnityEditor.ShaderGraph.CategoryData",
     "m_ObjectId": "e0c860184faa4f9ba058af1506dfd1a5",
     "m_Name": "",
-    "m_ChildObjectList": [
-        {
-            "m_Id": "f22a4ec0ae2e4250917c5c0b914c10af"
-        },
-        {
-            "m_Id": "69789c6ed6784f959b35e053ea92474e"
-        },
-        {
-            "m_Id": "faa5bd38bbf446018f1d96632ae49043"
-        },
-        {
-            "m_Id": "bba42e1083d3450fb8d33dfb4a8675ec"
-        },
-        {
-            "m_Id": "5f26cf37872f4139a4267390dc147437"
-        },
-        {
-            "m_Id": "cc2ad87ab10b46bcb662acbee27fefbc"
-        },
-        {
-            "m_Id": "49d4b9173d544784b44e36ad5443384d"
-        }
-    ]
+    "m_ChildObjectList": []
 }
 
 {
