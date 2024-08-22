@@ -49,7 +49,7 @@ public class InteractionManager : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("There is no ToggleEffect _ InteractionManager.cs");
+            //Debug.LogWarning("There is no ToggleEffect _ InteractionManager.cs");
         }
     }
 
@@ -71,7 +71,7 @@ public class InteractionManager : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("There is no ToggleEffect _ InteractionManager.cs");
+                //Debug.LogWarning("There is no ToggleEffect _ InteractionManager.cs");
             }
         }
     }
