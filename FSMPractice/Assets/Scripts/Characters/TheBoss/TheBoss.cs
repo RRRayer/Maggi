@@ -5,7 +5,10 @@ using UnityEngine;
 public class TheBoss : MonoBehaviour
 {
     [SerializeField] private Transform _appearTransform;
-    [SerializeField] private Transform _shelfTransform;
+    [SerializeField] private Transform _shelf001Transform;
+    [SerializeField] private Transform _jollyChimpTransform;
+    [SerializeField] private Transform _shelf002Transform;
+
     [SerializeField] private Transform _bossTransform;
 
     private void Awake()
@@ -19,9 +22,20 @@ public class TheBoss : MonoBehaviour
         _bossTransform.rotation = _appearTransform.rotation;
     }
 
-    public void SpawnShelf()
+    public void SpawnShelf001()
     {
-        _bossTransform.position = _shelfTransform.position;
-        _bossTransform.rotation = _shelfTransform.rotation;
+        _bossTransform.position = _shelf001Transform.position;
+        _bossTransform.rotation = _shelf001Transform.rotation;
+    }
+
+    public void SpawnJollyChimp()
+    {
+        _bossTransform.position = _jollyChimpTransform.position;
+        _bossTransform.rotation = _jollyChimpTransform.rotation;
+    }
+    public void SpawnShelf002()
+    {
+        _bossTransform.position = _shelf002Transform.position;
+        _bossTransform.rotation = _shelf002Transform.rotation;
     }
 }

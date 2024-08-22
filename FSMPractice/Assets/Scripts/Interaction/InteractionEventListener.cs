@@ -6,9 +6,11 @@ using UnityEngine.Timeline;
 public class InteractionEventListener : MonoBehaviour
 {
     [SerializeField] private TimelineAsset _timeline = default;
+    [SerializeField] private TimelineAsset _boss_timeline = default;
 
     [Header("Broadcasting on")]
     [SerializeField] private TimelineAssetEventChannelSO _onStartTimeline = default;
+    [SerializeField] private TimelineAssetEventChannelSO _boss_onStartTimeline = default;
     [SerializeField] private bool _isEnable;
     public bool IsEnable
     {
@@ -20,13 +22,13 @@ public class InteractionEventListener : MonoBehaviour
     [SerializeField] private KeySO _requiredKey = default;
     public KeySO RequiredKey => _requiredKey;
 
-    // ³ªÁß¿¡ º¸½º Æ®¸®°Å ÀÌº¥Æ®µµ ¹ß»ý ½ÃÄÑ¾ßÇÔ.
-    // ±×°É À§ÇØ¼­ º¸½º ÀÌº¥Æ® Ã¤³Î ÇÏ³ª ¸¸µé¸é µÇ°í.
-    // »óÈ£ÀÛ¿ë ½Ã Å¸ÀÓ¶óÀÎ ½ÇÇà + º¸½º ÀÌº¥Æ® ¶Ç´Â Å¸ÀÓ¶óÀÎ ½ÇÇà. ÀÎµ¥
-    // º¸½º ÀÌº¥Æ® ±¸ÇöÀº ¿ÀºêÁ§Æ® ¾Õ±îÁö ÀÌµ¿ -> ¸Â´Â Å¸ÀÓ¶óÀÎ ½ÇÇà.
-    // ±×·¡¼­ ÇÊ¿äÇÑ SO °¡
-    // 1. º¸½º ÀÌº¥Æ® Ã¤³Î   2. º¸½º »óÈ£ÀÛ¿ë Å¸ÀÓ¶óÀÎ   3. ±×³É »óÈ£ÀÛ¿ë Å¸ÀÓ¶óÀÎ\
-    // ¾Æ´Ï¸é ±×³É Å¸ÀÓ¶óÀÎ ÇÏ³ª¿¡ ÀÚ±â ¾Ö´Ï¸ÞÀÌ¼Ç, º¸½º ¾Ö´Ï¸ÞÀÌ¼Ç µÑ´Ù ³ÖÀ½ µÉ ÀÏ ÀÌÀÝ¾î ÀÏ´Ü ÀÌ·¸°Ô °¡
+    // ï¿½ï¿½ï¿½ß¿ï¿½ ï¿½ï¿½ï¿½ï¿½ Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ®ï¿½ï¿½ ï¿½ß»ï¿½ ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½.
+    // ï¿½×°ï¿½ ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ® Ã¤ï¿½ï¿½ ï¿½Ï³ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç°ï¿½.
+    // ï¿½ï¿½È£ï¿½Û¿ï¿½ ï¿½ï¿½ Å¸ï¿½Ó¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ + ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ® ï¿½Ç´ï¿½ Å¸ï¿½Ó¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. ï¿½Îµï¿½
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Õ±ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ -> ï¿½Â´ï¿½ Å¸ï¿½Ó¶ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+    // ï¿½×·ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½ï¿½ SO ï¿½ï¿½
+    // 1. ï¿½ï¿½ï¿½ï¿½ ï¿½Ìºï¿½Æ® Ã¤ï¿½ï¿½   2. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£ï¿½Û¿ï¿½ Å¸ï¿½Ó¶ï¿½ï¿½ï¿½   3. ï¿½×³ï¿½ ï¿½ï¿½È£ï¿½Û¿ï¿½ Å¸ï¿½Ó¶ï¿½ï¿½ï¿½\
+    // ï¿½Æ´Ï¸ï¿½ ï¿½×³ï¿½ Å¸ï¿½Ó¶ï¿½ï¿½ï¿½ ï¿½Ï³ï¿½ï¿½ï¿½ ï¿½Ú±ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½Ñ´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½Ý¾ï¿½ ï¿½Ï´ï¿½ ï¿½Ì·ï¿½ï¿½ï¿½ ï¿½ï¿½
 
 
     // Interact Action executes this event
@@ -35,6 +37,9 @@ public class InteractionEventListener : MonoBehaviour
         if (_isEnable)
         {
             _onStartTimeline.RaiseEvent(_timeline);
+            if(_boss_timeline != null) {
+                _boss_onStartTimeline.RaiseEvent(_boss_timeline);
+            }
         }            
     }
 }
