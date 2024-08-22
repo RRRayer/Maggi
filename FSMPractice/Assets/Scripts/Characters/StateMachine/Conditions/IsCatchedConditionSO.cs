@@ -33,9 +33,6 @@ public class IsCatchedCondition : Condition
 
 	protected override bool Statement()
 	{
-		Debug.Log(_playableDirector != null &&  _playableDirector.playableAsset == OriginSO.timelineAsset &&
-			   _playableDirector.state == PlayState.Playing);
-
 		return _playableDirector != null &&  _playableDirector.playableAsset == OriginSO.timelineAsset &&
 			   _playableDirector.state == PlayState.Playing;
 		

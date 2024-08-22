@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 4637008616278995728}
   - component: {fileID: 8774488480049690146}
   - component: {fileID: 6882340772242993201}
-  - component: {fileID: 4720863663552131641}
+  - component: {fileID: 8948540479144461610}
+  - component: {fileID: 4368142194064485199}
   m_Layer: 0
   m_Name: chair
   m_TagString: Untagged
@@ -41,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4029175316945874163}
-  m_Mesh: {fileID: -1238218227891777710, guid: 04bac7a16bd32644fb0042f2c3c20b2f, type: 3}
+  m_Mesh: {fileID: 889619638980848624, guid: ba0e2adb374d9d148b8871cbb6228679, type: 3}
 --- !u!23 &6882340772242993201
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -86,8 +87,30 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4720863663552131641
-MeshCollider:
+--- !u!95 &8948540479144461610
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4029175316945874163}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &4368142194064485199
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -104,7 +127,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1238218227891777710, guid: 04bac7a16bd32644fb0042f2c3c20b2f, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 0.8361937, y: 1.5648688, z: 0.75803554}
+  m_Center: {x: 0.3021323, y: 0.7831295, z: 0.000000059604645}
