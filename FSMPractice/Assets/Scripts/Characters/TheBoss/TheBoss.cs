@@ -4,12 +4,24 @@ using UnityEngine;
 
 public class TheBoss : MonoBehaviour
 {
-    [SerializeField] private Transform _targetTransform;
+    [SerializeField] private Transform _appearTransform;
+    [SerializeField] private Transform _shelfTransform;
     [SerializeField] private Transform _bossTransform;
 
-    public void Spawn()
+    private void Awake()
     {
-        Debug.Log("시그널 발생 " + _targetTransform);
-        _bossTransform = _targetTransform;
+        _bossTransform = transform;
+    }
+
+    public void SpawnAppearence()
+    {
+        _bossTransform.position = _appearTransform.position;
+        _bossTransform.rotation = _appearTransform.rotation;
+    }
+
+    public void SpawnShelf()
+    {
+        _bossTransform.position = _shelfTransform.position;
+        _bossTransform.rotation = _shelfTransform.rotation;
     }
 }
