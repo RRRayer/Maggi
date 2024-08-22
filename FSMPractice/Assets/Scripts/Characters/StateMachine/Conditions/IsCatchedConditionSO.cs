@@ -35,6 +35,5 @@ public class IsCatchedCondition : Condition
 	{
 		return _playableDirector != null &&  _playableDirector.playableAsset == OriginSO.timelineAsset &&
 			   _playableDirector.state == PlayState.Playing;
-		
 	}
 }

@@ -8,6 +8,7 @@ public class TheBoss : MonoBehaviour
     [SerializeField] private Transform _shelf001Transform;
     [SerializeField] private Transform _jollyChimpTransform;
     [SerializeField] private Transform _shelf002Transform;
+    [SerializeField] private Transform _CanTransform;
 
     [SerializeField] private Transform _bossTransform;
 
@@ -37,5 +38,10 @@ public class TheBoss : MonoBehaviour
     {
         _bossTransform.position = _shelf002Transform.position;
         _bossTransform.rotation = _shelf002Transform.rotation;
+    }
+    public void SpawnCan()
+    {
+        _bossTransform.position = _CanTransform.position;
+        _bossTransform.rotation = _CanTransform.rotation;
     }
 }
