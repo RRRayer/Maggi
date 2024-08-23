@@ -23,6 +23,7 @@ public class ToggleEffect : MonoBehaviour
             _originalMaterial = _renderer.sharedMaterial;
             _copiedMaterial = new Material(_originalMaterial);
             _copiedMaterial.SetFloat("_on_off", 1.0f);
+            _copiedMaterial.SetFloat("_scale", 0.5f);
         }
     }
 
@@ -36,11 +37,54 @@ public class ToggleEffect : MonoBehaviour
 
         if (isSelected)
         {
+            _copiedMaterial.SetFloat("_scale", 0.5f);
             _renderer.material = _copiedMaterial;
         }
         else
         {
             _renderer.material = _originalMaterial;
         }
+    }
+    /*
+    public void HoverMaterial(bool isHover)
+    {
+        if (_renderer == null)
+        {
+            Debug.LogWarning("There is no render _ ToggleEffect.cs");
+            return;
+        }
+
+        if (isHover)
+        {
+            _copiedMaterial.SetFloat("_scale", 1.5f);
+            _renderer.material = _copiedMaterial;
+        }
+        else
+        {
+            _renderer.material = _originalMaterial;
+        }
+    }*/
+
+    void OnMouseEnter()
+    {
+        Debug.Log("OnMouseEnter");
+        if (_renderer == null)
+        {
+            Debug.LogWarning("There is no render _ ToggleEffect.cs");
+            return;
+        }
+        //_copiedMaterial.SetFloat("_scale", 1.5f);
+        //_renderer.material = _copiedMaterial;
+        _renderer.material.SetFloat("_scale", 0.0f);
+    }
+
+    void OnMouseExit()
+    {
+        if (_renderer == null)
+        {
+            Debug.LogWarning("There is no render _ ToggleEffect.cs");
+            return;
+        }
+        _renderer.material = _originalMaterial;
     }
 }
