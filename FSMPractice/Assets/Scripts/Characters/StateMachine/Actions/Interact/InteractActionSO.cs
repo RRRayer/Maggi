@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Pudding.StateMachine;
 using Pudding.StateMachine.ScriptableObjects;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "InteractAction", menuName = "State Machines/Actions/Interact Action")]
 public class InteractActionSO : StateActionSO<InteractAction> { }
@@ -15,12 +16,17 @@ public class InteractAction : StateAction
     }
 
     public override void OnUpdate() { }
-	
-	public override void OnStateEnter()
-	{
-        if (_interactionManager.currentInteractiveObject.TryGetComponent(out InteractionEventListener listener))
+
+    public override void OnStateEnter()
+    {
+        if (_interactionManager.currentInteractiveObject.TryGetComponent<InteractionEventListener>(out var e))
         {
-			listener.OnInteract();
+            List<InteractionEventListener> listeners = new List<InteractionEventListener>(_interactionManager.currentInteractiveObject.GetComponents<InteractionEventListener>());
+
+            foreach (var listener in listeners)
+            {
+                listener.OnInteract();
+            }
         }
     }
 }

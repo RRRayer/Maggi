@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class TheBoss : MonoBehaviour
 {
-    [SerializeField] private Transform _appearTransform;
-    [SerializeField] private Transform _shelf001Transform;
-    [SerializeField] private Transform _jollyChimpTransform;
-    [SerializeField] private Transform _shelf002Transform;
-    [SerializeField] private Transform _CanTransform;
+    [SerializeField] private InputReader _inputReader;
 
-    [SerializeField] private Transform _bossTransform;
+    [SerializeField] private Transform _appearTransform;
+    [SerializeField] private Transform _shelfTransform;
+
+    private Transform _bossTransform;
 
     private void Awake()
     {
@@ -25,23 +24,17 @@ public class TheBoss : MonoBehaviour
 
     public void SpawnShelf001()
     {
-        _bossTransform.position = _shelf001Transform.position;
-        _bossTransform.rotation = _shelf001Transform.rotation;
+        _bossTransform.position = _shelfTransform.position;
+        _bossTransform.rotation = _shelfTransform.rotation;
     }
 
-    public void SpawnJollyChimp()
+    public void StopPlayer()
     {
-        _bossTransform.position = _jollyChimpTransform.position;
-        _bossTransform.rotation = _jollyChimpTransform.rotation;
+        _inputReader.DisableAllInput();
     }
-    public void SpawnShelf002()
+
+    public void ResumePlayer()
     {
-        _bossTransform.position = _shelf002Transform.position;
-        _bossTransform.rotation = _shelf002Transform.rotation;
-    }
-    public void SpawnCan()
-    {
-        _bossTransform.position = _CanTransform.position;
-        _bossTransform.rotation = _CanTransform.rotation;
+        _inputReader.EnableGameplayInput();
     }
 }
