@@ -9,6 +9,9 @@ public class TheBoss : MonoBehaviour
     [SerializeField] private Transform _appearTransform;
     [SerializeField] private Transform _shelfTransform;
 
+    [SerializeField] private GameObject _catchCollider001;
+    [SerializeField] private GameObject _catchCollider002;
+
     private Transform _bossTransform;
 
     private void Awake()
@@ -28,6 +31,22 @@ public class TheBoss : MonoBehaviour
         _bossTransform.rotation = _shelfTransform.rotation;
     }
 
+    public void OnCatchCollider001()
+    {
+        _catchCollider001.SetActive(true);
+    }
+    public void OffCatchCollider001()
+    {
+        _catchCollider001.SetActive(false);
+    }
+    public void OnCatchCollider002()
+    {
+        _catchCollider002.SetActive(true);
+    }
+    public void OffCatchCollider002()
+    {
+        _catchCollider002.SetActive(false);
+    }
     public void StopPlayer()
     {
         _inputReader.DisableAllInput();
