@@ -11,6 +11,7 @@ public class TheBoss : MonoBehaviour
 
     [SerializeField] private GameObject _catchCollider001;
     [SerializeField] private GameObject _catchCollider002;
+    [SerializeField] private GameObject _catchCollider003;
 
     private Transform _bossTransform;
 
@@ -35,18 +36,32 @@ public class TheBoss : MonoBehaviour
     {
         _catchCollider001.SetActive(true);
     }
+
     public void OffCatchCollider001()
     {
         _catchCollider001.SetActive(false);
     }
+
     public void OnCatchCollider002()
     {
         _catchCollider002.SetActive(true);
     }
+
     public void OffCatchCollider002()
     {
         _catchCollider002.SetActive(false);
     }
+
+    public void OnCatchCollider003()
+    {
+        _catchCollider003.SetActive(true);
+    }
+
+    public void OffCatchCollider003()
+    {
+        _catchCollider003.SetActive(false);
+    }
+
     public void StopPlayer()
     {
         _inputReader.DisableAllInput();
