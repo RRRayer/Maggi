@@ -709,12 +709,6 @@ MonoBehaviour:
     - ExpectedResult: 1
       Condition: {fileID: 11400000, guid: eb7fa17b9a243524e82f7c1b1bc41b1c, type: 2}
       Operator: 0
-  - FromState: {fileID: 11400000, guid: ecb8994bfe265354faf2308f9a1686cc, type: 2}
-    ToState: {fileID: 11400000, guid: 749943303bbe9f5459a2de2c78690182, type: 2}
-    Conditions:
-    - ExpectedResult: 0
-      Condition: {fileID: 11400000, guid: eb7fa17b9a243524e82f7c1b1bc41b1c, type: 2}
-      Operator: 0
   - FromState: {fileID: 11400000, guid: 20398e48516d74c4cac759da9cae8a3c, type: 2}
     ToState: {fileID: 11400000, guid: ecd3cd69e4eed1a4f9158090e0db4f8c, type: 2}
     Conditions:
@@ -795,4 +789,28 @@ MonoBehaviour:
     Conditions:
     - ExpectedResult: 0
       Condition: {fileID: 11400000, guid: fab4caec75ed4fd40be40096086628b1, type: 2}
+      Operator: 0
+  - FromState: {fileID: 11400000, guid: 2472ec61bd93cef4aa1cc11cdd72a5d9, type: 2}
+    ToState: {fileID: 11400000, guid: 749943303bbe9f5459a2de2c78690182, type: 2}
+    Conditions:
+    - ExpectedResult: 0
+      Condition: {fileID: 11400000, guid: eb7fa17b9a243524e82f7c1b1bc41b1c, type: 2}
+      Operator: 0
+  - FromState: {fileID: 11400000, guid: f38e8a01987a01747a102d77d62df884, type: 2}
+    ToState: {fileID: 11400000, guid: 749943303bbe9f5459a2de2c78690182, type: 2}
+    Conditions:
+    - ExpectedResult: 0
+      Condition: {fileID: 11400000, guid: eb7fa17b9a243524e82f7c1b1bc41b1c, type: 2}
+      Operator: 0
+  - FromState: {fileID: 11400000, guid: b23fb0d6606d84d45b1fe7a21b09d49b, type: 2}
+    ToState: {fileID: 11400000, guid: 749943303bbe9f5459a2de2c78690182, type: 2}
+    Conditions:
+    - ExpectedResult: 0
+      Condition: {fileID: 11400000, guid: eb7fa17b9a243524e82f7c1b1bc41b1c, type: 2}
+      Operator: 0
+  - FromState: {fileID: 11400000, guid: d5a83e8092ad35043b8e60612fb0a150, type: 2}
+    ToState: {fileID: 11400000, guid: 749943303bbe9f5459a2de2c78690182, type: 2}
+    Conditions:
+    - ExpectedResult: 0
+      Condition: {fileID: 11400000, guid: eb7fa17b9a243524e82f7c1b1bc41b1c, type: 2}
       Operator: 0

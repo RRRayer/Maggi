@@ -11,7 +11,7 @@ public class IsCatchedConditionSO : StateConditionSO<IsCatchedCondition>
 	public string playableDirectorName; // PlayableDirector의 이름으로 찾을 수 있도록
 
 	[SerializeField]
-	public TimelineAsset timelineAsset;
+	public TimelineAsset[] timelineAsset;
 }
 
 public class IsCatchedCondition : Condition
@@ -33,8 +33,8 @@ public class IsCatchedCondition : Condition
 
 	protected override bool Statement()
 	{
-		return false;
-		//return _playableDirector != null &&  _playableDirector.playableAsset == OriginSO.timelineAsset &&
-		//	   _playableDirector.state == PlayState.Playing;
+		return _playableDirector != null &&
+			   (_playableDirector.playableAsset == OriginSO.timelineAsset[0] || _playableDirector.playableAsset == OriginSO.timelineAsset[1]) &&
+			   _playableDirector.state == PlayState.Playing;
 	}
 }
