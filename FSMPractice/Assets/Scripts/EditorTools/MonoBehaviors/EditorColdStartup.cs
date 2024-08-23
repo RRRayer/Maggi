@@ -24,7 +24,7 @@ public class EditorColdStartup : MonoBehaviour
         {
             isColdStart = true;
 
-            _pointStorage.lastPointTaken = null;
+            // _pointStorage.lastPointTaken = null;
         }
         CreateSaveFileIfNotPresent();
     }
