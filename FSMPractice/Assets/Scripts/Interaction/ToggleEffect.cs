@@ -10,6 +10,7 @@ public class ToggleEffect : MonoBehaviour
     private Material _originalMaterial;
     private Material _copiedMaterial;
     private Renderer _renderer;
+    private bool _isSelected;
 
     void Start()
     {
@@ -23,7 +24,7 @@ public class ToggleEffect : MonoBehaviour
             _originalMaterial = _renderer.sharedMaterial;
             _copiedMaterial = new Material(_originalMaterial);
             _copiedMaterial.SetFloat("_on_off", 1.0f);
-            _copiedMaterial.SetFloat("_scale", 0.5f);
+            _isSelected = false;
         }
     }
 
@@ -37,11 +38,14 @@ public class ToggleEffect : MonoBehaviour
 
         if (isSelected)
         {
+            //Debug.Log("_scale 0.5f");
+            _isSelected = true;
             _copiedMaterial.SetFloat("_scale", 0.5f);
             _renderer.material = _copiedMaterial;
         }
         else
         {
+            _isSelected = false;
             _renderer.material = _originalMaterial;
         }
     }
@@ -67,15 +71,17 @@ public class ToggleEffect : MonoBehaviour
 
     void OnMouseEnter()
     {
-        Debug.Log("OnMouseEnter");
+        //Debug.Log("OnMouseEnter");
         if (_renderer == null)
         {
             Debug.LogWarning("There is no render _ ToggleEffect.cs");
             return;
         }
-        //_copiedMaterial.SetFloat("_scale", 1.5f);
-        //_renderer.material = _copiedMaterial;
-        _renderer.material.SetFloat("_scale", 0.0f);
+        if (!_isSelected) {
+            _copiedMaterial.SetFloat("_scale", 1.5f);
+            _renderer.material = _copiedMaterial;
+        }
+        
     }
 
     void OnMouseExit()
@@ -85,6 +91,24 @@ public class ToggleEffect : MonoBehaviour
             Debug.LogWarning("There is no render _ ToggleEffect.cs");
             return;
         }
-        _renderer.material = _originalMaterial;
+        if (!_isSelected)
+        {
+            _renderer.material = _originalMaterial;
+        }
+    }
+
+    void Update()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        // Ray의 방향 확인을 위해 DrawRay를 사용
+        Debug.DrawRay(ray.origin, ray.direction * 100, Color.green);
+
+        // 실제 Raycast 실행
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            Debug.Log("Ray가 충돌한 오브젝트: " + hit.collider.name);
+        }
     }
 }
