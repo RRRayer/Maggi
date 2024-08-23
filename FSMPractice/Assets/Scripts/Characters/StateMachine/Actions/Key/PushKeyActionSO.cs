@@ -40,15 +40,16 @@ public class PushKeyAction : StateAction
                 {
                     if (hitCollider.TryGetComponent(out InteractionEventListener e) && currentObject.TryGetComponent(out Key key))
                     {
-                        List<InteractionEventListener> listeners = new List<InteractionEventListener>(_interactionManager.currentInteractiveObject.GetComponents<InteractionEventListener>());
-
+                        List<InteractionEventListener> listeners = new List<InteractionEventListener>(hitCollider.GetComponents<InteractionEventListener>());
+                        Debug.Log(listeners.Count);
                         foreach (var listener in listeners)
                         {
                             if (listener.RequiredKey.ID == key.GetKeyID())
                             {
+                                Debug.Log("키랑 동일");
                                 listener.IsEnable = true;
                                 InteractWithObject(hitCollider.gameObject, key);
-                                return;
+                                continue;
                             }
                             else
                             {

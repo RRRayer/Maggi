@@ -1602,6 +1602,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3234142915561293837}
+  - component: {fileID: 4513650598212165918}
   - component: {fileID: 5934839968218908998}
   - component: {fileID: 7739036469115799851}
   m_Layer: 0
@@ -1620,12 +1621,28 @@ Transform:
   m_GameObject: {fileID: 8557635183326471802}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -68.8, y: 4.38, z: -3.93}
+  m_LocalPosition: {x: -69.6, y: 4.38, z: -3.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4914945871467766617}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4513650598212165918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8557635183326471802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d156cd2424b5b2458a9fbce89c479cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _alwaysOnTop: 1
+  _activated: 1
+  _targetList:
+  - {fileID: 3234142915561293837}
 --- !u!114 &5934839968218908998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3232,18 +3249,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4914945871467766617}
     m_Modifications:
+    - target: {fileID: 622263847504840597, guid: b22d96fd415e0894ab3296b908ab6a41, type: 3}
+      propertyPath: _isEnable
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2327662754111465746, guid: b22d96fd415e0894ab3296b908ab6a41, type: 3}
       propertyPath: m_Name
       value: orgel
       objectReference: {fileID: 0}
     - target: {fileID: 2450052519601102559, guid: b22d96fd415e0894ab3296b908ab6a41, type: 3}
       propertyPath: _isEnable
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2450052519601102559, guid: b22d96fd415e0894ab3296b908ab6a41, type: 3}
       propertyPath: _timeline
       value: 
       objectReference: {fileID: 11400000, guid: 4cde6c3190a098d4eab3ffb24bb23b7d, type: 2}
+    - target: {fileID: 2450052519601102559, guid: b22d96fd415e0894ab3296b908ab6a41, type: 3}
+      propertyPath: _requiredKey
+      value: 
+      objectReference: {fileID: 11400000, guid: 92edb4a21a7b1834b9a51b1f0e47f8dd, type: 2}
     - target: {fileID: 2450052519601102559, guid: b22d96fd415e0894ab3296b908ab6a41, type: 3}
       propertyPath: _onStartTimeline
       value: 
