@@ -26,6 +26,7 @@ public class InteractionEventListener : MonoBehaviour
         if (_isEnable)
         {
             _onStartTimeline.RaiseEvent(_timeline);
+            //_isEnable = false;
         }
     }
 }

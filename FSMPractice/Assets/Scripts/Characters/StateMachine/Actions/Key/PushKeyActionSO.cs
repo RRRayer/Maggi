@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Pudding.StateMachine;
 using Pudding.StateMachine.ScriptableObjects;
+using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "PushKeyAction", menuName = "State Machines/Actions/Push Key Action")]
 public class PushKeyActionSO : StateActionSO<PushKeyAction>
@@ -37,17 +38,22 @@ public class PushKeyAction : StateAction
             {
                 if (hitCollider.CompareTag("Normal"))
                 {
-                    if (hitCollider.TryGetComponent(out InteractionEventListener listener) && currentObject.TryGetComponent(out Key key))
+                    if (hitCollider.TryGetComponent(out InteractionEventListener e) && currentObject.TryGetComponent(out Key key))
                     {
-                        if (listener.RequiredKey.ID == key.GetKeyID())
+                        List<InteractionEventListener> listeners = new List<InteractionEventListener>(_interactionManager.currentInteractiveObject.GetComponents<InteractionEventListener>());
+
+                        foreach (var listener in listeners)
                         {
-                            listener.IsEnable = true;
-                            InteractWithObject(hitCollider.gameObject, key);
-                            return;
-                        }
-                        else
-                        {
-                            Debug.Log("키 다름");
+                            if (listener.RequiredKey.ID == key.GetKeyID())
+                            {
+                                listener.IsEnable = true;
+                                InteractWithObject(hitCollider.gameObject, key);
+                                return;
+                            }
+                            else
+                            {
+                                Debug.Log("키 다름");
+                            }
                         }
                     }
                     else
