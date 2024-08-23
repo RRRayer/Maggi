@@ -11,6 +11,7 @@ public class TheBoss : MonoBehaviour
 
     [SerializeField] private GameObject _catchCollider001;
     [SerializeField] private GameObject _catchCollider002;
+    [SerializeField] private GameObject _catchCollider002_1;
     [SerializeField] private GameObject _catchCollider003;
 
     private Transform _bossTransform;
@@ -52,6 +53,16 @@ public class TheBoss : MonoBehaviour
         _catchCollider002.SetActive(false);
     }
 
+    public void OnCatchCollider002_1()
+    {
+        _catchCollider002_1.SetActive(true);
+    }
+
+    public void OffCatchCollider002_1()
+    {
+        _catchCollider002_1.SetActive(false);
+    }
+
     public void OnCatchCollider003()
     {
         _catchCollider003.SetActive(true);
@@ -59,6 +70,7 @@ public class TheBoss : MonoBehaviour
 
     public void OffCatchCollider003()
     {
+        Debug.Log("a");
         _catchCollider003.SetActive(false);
     }
 
