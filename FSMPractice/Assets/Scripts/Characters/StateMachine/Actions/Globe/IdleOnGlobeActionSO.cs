@@ -2,16 +2,16 @@
 using Pudding.StateMachine;
 using Pudding.StateMachine.ScriptableObjects;
 
-[CreateAssetMenu(fileName = "RotateOnGlobeAction", menuName = "State Machines/Actions/Rotate On Globe Action")]
-public class RotateOnGlobeActionSO : StateActionSO<RotateOnGlobeAction>
+[CreateAssetMenu(fileName = "IdleOnGlobeAction", menuName = "State Machines/Actions/Rotate On Globe Action")]
+public class IdleOnGlobeActionSO : StateActionSO<IdleOnGlobeAction>
 {
     [SerializeField]
     public float rotationSpeed;
 }
 
-public class RotateOnGlobeAction : StateAction
+public class IdleOnGlobeAction : StateAction
 {
-	protected new RotateOnGlobeActionSO _originSO => (RotateOnGlobeActionSO)base.OriginSO;
+	protected new IdleOnGlobeActionSO _originSO => (IdleOnGlobeActionSO)base.OriginSO;
 
     private Player _player;
     private Transform _transform;
@@ -28,7 +28,5 @@ public class RotateOnGlobeAction : StateAction
     public override void OnUpdate()
     {
 		_transform.LookAt(_interactionManager.currentInteractiveObject.transform.position);
-		_player.movementVector = -_transform.right * -_player.movementInput.x + _transform.up * _player.movementInput.z;
-        _transform.Rotate(0,-90,0);
     }
 }
