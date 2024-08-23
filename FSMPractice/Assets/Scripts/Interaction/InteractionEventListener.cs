@@ -25,7 +25,6 @@ public class InteractionEventListener : MonoBehaviour
     {
         if (_isEnable)
         {
-            Debug.Log("On Interactive Timeline");
             _onStartTimeline.RaiseEvent(_timeline);
         }
     }
