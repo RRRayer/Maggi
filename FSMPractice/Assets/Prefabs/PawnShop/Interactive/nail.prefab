@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7088943634233567131}
   - component: {fileID: 7088989797489992189}
   - component: {fileID: 8822594517765466570}
+  - component: {fileID: 3701552618149530915}
   m_Layer: 0
   m_Name: nail
   m_TagString: Point
@@ -135,3 +136,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3701552618149530915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8174577950409596084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ad4cda2b507ee42a77b539d74b358d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isMeshInChild: 0

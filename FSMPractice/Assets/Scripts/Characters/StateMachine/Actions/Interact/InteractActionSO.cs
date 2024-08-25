@@ -22,7 +22,7 @@ public class InteractAction : StateAction
         if (_interactionManager.currentInteractiveObject.TryGetComponent<InteractionEventListener>(out var e))
         {
             List<InteractionEventListener> listeners = new List<InteractionEventListener>(_interactionManager.currentInteractiveObject.GetComponents<InteractionEventListener>());
-
+            Debug.Log(listeners.Count);
             foreach (var listener in listeners)
             {
                 listener.OnInteract();

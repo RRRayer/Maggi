@@ -5,16 +5,11 @@ public class TimedDeactivator : MonoBehaviour
 {
     [SerializeField] private float _timeToDeactivate = 5.0f;
 
-    private Renderer[] _renderers;
     private Color _originalColor;
 
     private void OnEnable()
     {
-        _renderers = GetComponentsInChildren<Renderer>();
-        if (_renderers != null)
-        {
-            _originalColor = _renderers[0].material.color;
-        }
+        
 
         StartCoroutine(FadeOutAndDeactivate());
     }

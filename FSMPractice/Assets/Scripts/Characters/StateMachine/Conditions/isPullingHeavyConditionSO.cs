@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using Pudding.StateMachine;
 using Pudding.StateMachine.ScriptableObjects;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 [CreateAssetMenu(fileName = "isPullingHeavyCondition", menuName = "State Machines/Conditions/is Pulling Heavy Condition")]
 public class isPullingHeavyConditionSO : StateConditionSO<isPullingHeavyCondition> { }

@@ -5,8 +5,8 @@ using Pudding.StateMachine.ScriptableObjects;
 [CreateAssetMenu(fileName = "PushLightAction", menuName = "State Machines/Actions/Push Light Action")]
 public class PushLightActionSO : StateActionSO<PushLightAction> 
 {
-	public float pushForce = 5.0f;
-	public float pushHeight = 50.0f;
+	public float pushForce = 2.0f;
+	public float pushHeight = 2.0f;
 }
 
 public class PushLightAction : StateAction

@@ -29,6 +29,5 @@ public class RotateOnGlobeAction : StateAction
     {
 		_transform.LookAt(_interactionManager.currentInteractiveObject.transform.position);
 		_player.movementVector = -_transform.right * -_player.movementInput.x + _transform.up * _player.movementInput.z;
-        _transform.Rotate(0,-90,0);
     }
 }
