@@ -36,13 +36,36 @@ public class UISettingController : MonoBehaviour
         _inputReader.MenuCloseEvent += CloseScreen;
     }
 
-    private void SaveAudioSettings(float _masterVolume, float _musicVolume, float _sfxVolume)
+    private void OnDisable()
     {
-        _currentSettings.SaveAudioSettings(_masterVolume, _musicVolume, _sfxVolume);
+        _audioComponent._save -= SaveAudioSettings;
+
+        _inputReader.MenuCloseEvent -= CloseScreen;
     }
 
     public void CloseScreen()
     {
         Closed.Invoke();
     }
+
+    private void OpenSetting(SettingsType settingType)
+    {
+        switch (settingType)
+        {
+        case SettingsType.Audio:
+            _audioComponent.Setup(_currentSettings.MasterVolume, _currentSettings.MusicVolume, _currentSettings.SfxVolume);
+            break;
+        case SettingsType.Graphic:
+            break;
+        default:
+            break;
+        }
+    }
+
+    private void SaveAudioSettings(float _masterVolume, float _musicVolume, float _sfxVolume)
+    {
+        _currentSettings.SaveAudioSettings(_masterVolume, _musicVolume, _sfxVolume);
+    }
+
+    
 }

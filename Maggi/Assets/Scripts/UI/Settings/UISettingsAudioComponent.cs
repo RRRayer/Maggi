@@ -54,11 +54,14 @@ public class UISettingsAudioComponent : MonoBehaviour
 
         _saveButton.Clicked -= SaveVolumes;
         _resetButton.Clicked -= ResetVolumes;
-
     }
 
-    private void Setup(float masterVolume, float musicVolume, float sfxVolume)
+    public void Setup(float masterVolume, float musicVolume, float sfxVolume)
     {
+        _masterVolume = masterVolume;
+        _musicVolume = sfxVolume;
+        _sfxVolume = musicVolume;
+
         _savedMasterVolume = _masterVolume = masterVolume;
         _savedMusicVolume = _musicVolume = musicVolume;
         _savedSfxVolume = _sfxVolume = sfxVolume;
@@ -111,43 +114,49 @@ public class UISettingsAudioComponent : MonoBehaviour
 
     private void IncreaseMasterVolume()
     {
-        _masterVolume += 1 / _maxVolume;
+        _masterVolume += 1 / (float)_maxVolume;
         _masterVolume = Mathf.Clamp(_masterVolume, 0, 1);
+        Debug.Log("Current Master Volume " + _masterVolume);
         SetMasterVolumeField();
     }
 
     private void DecreaseMasterVolume()
     {
-        _masterVolume -= 1 / _maxVolume;
+        _masterVolume -= 1 / (float)_maxVolume;
         _masterVolume = Mathf.Clamp(_masterVolume, 0, 1);
+        Debug.Log("Current Master Volume " + _masterVolume);
         SetMasterVolumeField();
     }
 
     private void IncreaseMusicVolume()
     {
-        _musicVolume += 1 / _maxVolume;
+        _musicVolume += 1 / (float)_maxVolume;
         _musicVolume = Mathf.Clamp(_musicVolume, 0, 1);
+        Debug.Log("Current Music Volume " + _musicVolume);
         SetMusicVolumeField();
     }
 
     private void DecreaseMusicrVolume()
     {
-        _musicVolume -= 1 / _maxVolume;
+        _musicVolume -= 1 / (float)_maxVolume;
         _masterVolume = Mathf.Clamp(_masterVolume, 0, 1);
+        Debug.Log("Current Music Volume " + _musicVolume);
         SetMusicVolumeField();
     }
 
     private void IncreaseSfxVolume()
     {
-        _sfxVolume += 1 / _maxVolume;
+        _sfxVolume += 1 / (float)_maxVolume;
         _sfxVolume = Mathf.Clamp(_sfxVolume, 0, 1);
+        Debug.Log("Current Sfx Volume " + _sfxVolume);
         SetSfxVolumeField();
     }
 
     private void DecreaseSfxVolume()
     {
-        _sfxVolume -= 1 / _maxVolume;
+        _sfxVolume -= 1 / (float)_maxVolume;
         _sfxVolume = Mathf.Clamp(_sfxVolume, 0, 1);
+        Debug.Log("Current Sfx Volume " + _sfxVolume);
         SetSfxVolumeField();
     }
 
