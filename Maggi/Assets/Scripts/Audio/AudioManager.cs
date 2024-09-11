@@ -54,7 +54,6 @@ public class AudioManager : MonoBehaviour
         _masterVolumeEventChannel.OnEventRaised += ChangeMasterVolume;
         _musicVolumeEventChannel.OnEventRaised += ChangeMusicVolume;
         _SFXVolumeEventChannel.OnEventRaised += ChangeSFXVolume;
-
     }
 
     private void OnDestroy()

@@ -15,7 +15,7 @@ public class Save
     public int _resolutionsIndex = default;
     public bool _isFullscreen = default;
 
-    public void SaveSettings(SettingSO settings)
+    public void SaveSettings(SettingsSO settings)
     {
         _masterVolume = settings.MasterVolume; 
         _musicVolume = settings.MusicVolume;

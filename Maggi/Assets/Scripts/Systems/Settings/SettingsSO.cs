@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Settings", menuName = "Settings/Create New Setting SO")]
-public class SettingSO : ScriptableObject
+public class SettingsSO : ScriptableObject
 {
     [SerializeField] private float _masterVolume = default;
     [SerializeField] private float _musicVolume = default;

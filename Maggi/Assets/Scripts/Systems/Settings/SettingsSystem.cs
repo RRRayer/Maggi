@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SettingsSystem : MonoBehaviour
 {
-    [SerializeField] private SettingSO _currentSettings = default;
+    [SerializeField] private SettingsSO _currentSettings = default;
     [SerializeField] private SaveLoadSystem _saveLoadSystem = default;
 
     [Header("Listening to")]
@@ -19,7 +19,6 @@ public class SettingsSystem : MonoBehaviour
     {
         _saveLoadSystem.LoadSaveDataFromDisk();
         _currentSettings.LoadSavedSettings(_saveLoadSystem.saveData);
-        SetCurrentSettings();
     }
 
     private void OnEnable()
@@ -30,6 +29,12 @@ public class SettingsSystem : MonoBehaviour
     private void OnDisable()
     {
         _saveSettingEvent.OnEventRaised -= SaveSettings;
+    }
+
+    private void Start()
+    {
+        // Execute after init volume channels in AudioManager.cs
+        SetCurrentSettings();
     }
 
     private void SetCurrentSettings()

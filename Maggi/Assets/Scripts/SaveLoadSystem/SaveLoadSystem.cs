@@ -3,7 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Save Load System")]
 public class SaveLoadSystem : ScriptableObject
 {
+    [SerializeField] private VoidEventChannelSO _saveSettingsEvent = default;
     [SerializeField] private LoadEventChannelSO _loadLocation = default;
+    [SerializeField] private SettingsSO _currentSettings = default;
     [SerializeField] private PointStorageSO _pointStorage = default;
 
     public string saveFilename = "save.pudding";
@@ -12,11 +14,13 @@ public class SaveLoadSystem : ScriptableObject
 
     private void OnEnable()
     {
+        _saveSettingsEvent.OnEventRaised += SaveSettings;
         _loadLocation.OnLoadingRequested += CacheLoadLocation;
     }
 
     private void OnDisable()
     {
+        _saveSettingsEvent.OnEventRaised -= SaveSettings;
         _loadLocation.OnLoadingRequested -= CacheLoadLocation;
     }
 
@@ -65,5 +69,10 @@ public class SaveLoadSystem : ScriptableObject
         if (_pointStorage)
             _pointStorage.lastPointTaken = null;
         SaveDataToDisk();
+    }
+
+    void SaveSettings()
+    {
+        saveData.SaveSettings(_currentSettings);
     }
 }

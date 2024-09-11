@@ -23,8 +23,10 @@ public enum SettingsType
 public class UISettingController : MonoBehaviour
 {
     [SerializeField] private UISettingsAudioComponent _audioComponent;
-    [SerializeField] private SettingSO _currentSettings = default;
+    [SerializeField] private SettingsSO _currentSettings = default;
     [SerializeField] private InputReader _inputReader = default;
+
+    [Header("Broadcasting on")]
     [SerializeField] private VoidEventChannelSO _saveSettingEvent = default;
 
     public UnityAction Closed;
@@ -32,14 +34,14 @@ public class UISettingController : MonoBehaviour
     private void OnEnable()
     {
         _audioComponent._save += SaveAudioSettings;
-
         _inputReader.MenuCloseEvent += CloseScreen;
+
+        OpenSetting();
     }
 
     private void OnDisable()
     {
         _audioComponent._save -= SaveAudioSettings;
-
         _inputReader.MenuCloseEvent -= CloseScreen;
     }
 
@@ -48,24 +50,15 @@ public class UISettingController : MonoBehaviour
         Closed.Invoke();
     }
 
-    private void OpenSetting(SettingsType settingType)
+    private void OpenSetting()
     {
-        switch (settingType)
-        {
-        case SettingsType.Audio:
-            _audioComponent.Setup(_currentSettings.MasterVolume, _currentSettings.MusicVolume, _currentSettings.SfxVolume);
-            break;
-        case SettingsType.Graphic:
-            break;
-        default:
-            break;
-        }
+        _audioComponent.Setup(_currentSettings.MasterVolume, _currentSettings.MusicVolume, _currentSettings.SfxVolume);
     }
 
     private void SaveAudioSettings(float _masterVolume, float _musicVolume, float _sfxVolume)
     {
         _currentSettings.SaveAudioSettings(_masterVolume, _musicVolume, _sfxVolume);
-    }
 
-    
+        _saveSettingEvent.RaiseEvent();
+    }
 }
