@@ -163,6 +163,8 @@ public class UISettingsAudioComponent : MonoBehaviour
 
     private void SaveVolumes()
     {
+        Debug.Log("º¼·ý ÀúÀå");
+
         _savedMasterVolume = _masterVolume;
         _savedMusicVolume = _musicVolume;
         _savedSfxVolume = _sfxVolume;

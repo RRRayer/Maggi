@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class SettingsSystem : MonoBehaviour
 {
     [SerializeField] private SettingsSO _currentSettings = default;
     [SerializeField] private SaveLoadSystem _saveLoadSystem = default;
+    [SerializeField] private UniversalRenderPipelineAsset _urpAsset = default;
 
     [Header("Listening to")]
     [SerializeField] private VoidEventChannelSO _saveSettingEvent = default;
@@ -48,6 +50,8 @@ public class SettingsSystem : MonoBehaviour
             currentResolution = Screen.resolutions[_currentSettings.ResolutionIndex];
         }
         Screen.SetResolution(currentResolution.width, currentResolution.height, _currentSettings.IsFullScreen);
+        _urpAsset.shadowDistance = _currentSettings.ShadowDistance;
+        _urpAsset.msaaSampleCount = _currentSettings.AntiAliasingIndex;
     }
 
     private void SaveSettings()

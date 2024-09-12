@@ -29,9 +29,9 @@ public class UISettingsGraphicsComponent : MonoBehaviour
 	private List<Resolution> _resolutionsList = default;
 	[SerializeField] UISettingItemFiller _resolutionsField = default;
 
-	/*	private int _currentShadowQualityIndex = default;
-		private List<string> _shadowQualityList = default;
-		[SerializeField] private UISettingItemFiller _shadowQualityField = default;*/
+	private int _currentShadowQualityIndex = default;
+	private List<string> _shadowQualityList = default;
+	[SerializeField] private UISettingItemFiller _shadowQualityField = default;
 
 	private int _currentAntiAliasingIndex = default;
 	private List<string> _currentAntiAliasingList = default;
@@ -282,6 +282,7 @@ public class UISettingsGraphicsComponent : MonoBehaviour
 
 	public void SaveSettings()
 	{
+		Debug.Log("그래픽 저장");
 
 		_savedResolutionIndex = _currentResolutionIndex;
 		_savedAntiAliasingIndex = _currentAntiAliasingIndex;
@@ -302,7 +303,4 @@ public class UISettingsGraphicsComponent : MonoBehaviour
 		_isFullscreen = _savedFullscreenState;
 		OnFullscreenChange();
 	}
-
-
-
 }

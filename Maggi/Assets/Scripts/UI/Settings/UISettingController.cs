@@ -12,6 +12,9 @@ public enum SettingFieldType
     Volume_Sfx,
     Resolution,
     FullScreen,
+    AntiAliasing,
+    ShadowDistance,
+    ShadowQuality,
 }
 
 public enum SettingsType
@@ -23,6 +26,7 @@ public enum SettingsType
 public class UISettingController : MonoBehaviour
 {
     [SerializeField] private UISettingsAudioComponent _audioComponent;
+    [SerializeField] private UISettingsGraphicsComponent _graphicsComponent;
     [SerializeField] private SettingsSO _currentSettings = default;
     [SerializeField] private InputReader _inputReader = default;
 
@@ -34,6 +38,7 @@ public class UISettingController : MonoBehaviour
     private void OnEnable()
     {
         _audioComponent._save += SaveAudioSettings;
+        _graphicsComponent._save += SaveGraphicsSettings;
         _inputReader.MenuCloseEvent += CloseScreen;
 
         OpenSetting();
@@ -53,12 +58,18 @@ public class UISettingController : MonoBehaviour
     private void OpenSetting()
     {
         _audioComponent.Setup(_currentSettings.MasterVolume, _currentSettings.MusicVolume, _currentSettings.SfxVolume);
+        _graphicsComponent.Setup();
     }
 
     private void SaveAudioSettings(float _masterVolume, float _musicVolume, float _sfxVolume)
     {
         _currentSettings.SaveAudioSettings(_masterVolume, _musicVolume, _sfxVolume);
+        _saveSettingEvent.RaiseEvent();
+    }
 
+    public void SaveGraphicsSettings(int newResolutionsIndex, int newAntiAliasingIndex, float newShadowDistance, bool fullscreenState)
+    {
+        _currentSettings.SaveGraphicsSettings(newResolutionsIndex, newAntiAliasingIndex, newShadowDistance, fullscreenState);
         _saveSettingEvent.RaiseEvent();
     }
 }
