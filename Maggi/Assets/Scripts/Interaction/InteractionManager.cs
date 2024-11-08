@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum InteractionType { None = 0, Light, Heavy, Wall, Point, SieveWheel, Globe, Normal, Key};
+public enum InteractionType { General, NonPossession, Possession, 
+    None, Light, Heavy, Wall, Point, SieveWheel, Globe, Normal, Key};
 
 public class InteractionManager : MonoBehaviour
 {
@@ -92,6 +93,11 @@ public class InteractionManager : MonoBehaviour
     private void AddPotentialInteraction(GameObject obj)
     {
         Interaction newPotentialInteraction = new Interaction(InteractionType.None, obj);
+
+        if (obj.TryGetComponent(out InteractiveObject io))
+        {
+            newPotentialInteraction.type = io.Type;
+        }
 
         if (obj.CompareTag("Light")) newPotentialInteraction.type = InteractionType.Light;
         else if (obj.CompareTag("Heavy")) newPotentialInteraction.type = InteractionType.Heavy;

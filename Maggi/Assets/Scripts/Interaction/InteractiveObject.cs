@@ -1,14 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
-public class InteractiveObject : MonoBehaviour
+public abstract class InteractiveObject : MonoBehaviour
 {
-    private UnityAction _interactEvent = default;
+    public InteractionType Type = InteractionType.General;
 
-    private void Interact()
-    {
-        _interactEvent.Invoke();
-    }
+    public abstract void OnStateEnter();
+    public abstract void OnStateExit();
+    public abstract void OnUpdate();
 }
