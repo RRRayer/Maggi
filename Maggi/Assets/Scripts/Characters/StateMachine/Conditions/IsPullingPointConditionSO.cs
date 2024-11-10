@@ -16,7 +16,7 @@ public class IsPullingPointCondition : Condition
 	
 	protected override bool Statement()
 	{
-		if (_interactionManager.currentInteractionType == InteractionType.Point)
+		if (_interactionManager.currentInteractionType == InteractionType.None)
             return true;
         return false;
 	}

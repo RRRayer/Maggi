@@ -28,7 +28,7 @@ public class PushKeyAction : StateAction
         // 플레이어가 들고 있는 키와 상호작용할 수 있는 오브젝트 감지
 
 
-        if (_interactionManager.currentInteractionType == InteractionType.Key)
+        if (_interactionManager.currentInteractionType == InteractionType.None)
         {
             GameObject currentObject = _interactionManager.currentInteractiveObject;
 

@@ -1,6 +1,6 @@
 namespace Pudding.StateMachine
 {
-    interface IStateComponent
+    public interface IStateComponent
     {
         void OnStateEnter();
         void OnStateExit();

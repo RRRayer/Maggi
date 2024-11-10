@@ -18,7 +18,7 @@ public class isPullingHeavyCondition : Condition
 
     protected override bool Statement()
     {
-        if (_interactionManager.currentInteractionType == InteractionType.Heavy)
+        if (_interactionManager.currentInteractionType == InteractionType.None)
         {
             Vector3 currentInteractiveObjectPosition = _interactionManager.currentInteractiveObject.transform.position;
             Vector3 playerPosition = _player.transform.position;

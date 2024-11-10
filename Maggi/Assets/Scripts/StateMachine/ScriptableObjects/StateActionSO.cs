@@ -16,7 +16,13 @@ namespace Pudding.StateMachine.ScriptableObjects
 			action.Awake(stateMachine);
 			return action;
 		}
-		protected abstract StateAction CreateAction();
+        internal StateAction GetAction()
+        {
+            var action = CreateAction();
+            action._originSO = this;
+            return action;
+        }
+        protected abstract StateAction CreateAction();
 	}
 
 	public abstract class StateActionSO<T> : StateActionSO where T : StateAction, new()

@@ -1,9 +1,9 @@
-using System.Collections;
+using Pudding.StateMachine.ScriptableObjects;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum InteractionType { General, NonPossession, Possession, 
-    None, Light, Heavy, Wall, Point, SieveWheel, Globe, Normal, Key};
+//public enum InteractionType { General, NonPossession, Possession, 
+//    None, Light, Heavy, Wall, Point, SieveWheel, Globe, Normal, Key};
 
 public class InteractionManager : MonoBehaviour
 {
@@ -99,14 +99,14 @@ public class InteractionManager : MonoBehaviour
             newPotentialInteraction.type = io.Type;
         }
 
-        if (obj.CompareTag("Light")) newPotentialInteraction.type = InteractionType.Light;
-        else if (obj.CompareTag("Heavy")) newPotentialInteraction.type = InteractionType.Heavy;
-        else if (obj.CompareTag("Wall")) newPotentialInteraction.type = InteractionType.Wall;
-        else if (obj.CompareTag("Point")) newPotentialInteraction.type = InteractionType.Point;
-        else if (obj.CompareTag("SieveWheel")) newPotentialInteraction.type = InteractionType.SieveWheel;
-        else if (obj.CompareTag("Globe")) newPotentialInteraction.type = InteractionType.Globe;
-        else if (obj.CompareTag("Normal")) newPotentialInteraction.type = InteractionType.Normal;
-        else if (obj.CompareTag("Key")) newPotentialInteraction.type = InteractionType.Key;
+        //if (obj.CompareTag("Light")) newPotentialInteraction.type = InteractionType.Light;
+        //else if (obj.CompareTag("Heavy")) newPotentialInteraction.type = InteractionType.Heavy;
+        //else if (obj.CompareTag("Wall")) newPotentialInteraction.type = InteractionType.Wall;
+        //else if (obj.CompareTag("Point")) newPotentialInteraction.type = InteractionType.Point;
+        //else if (obj.CompareTag("SieveWheel")) newPotentialInteraction.type = InteractionType.SieveWheel;
+        //else if (obj.CompareTag("Globe")) newPotentialInteraction.type = InteractionType.Globe;
+        //else if (obj.CompareTag("Normal")) newPotentialInteraction.type = InteractionType.Normal;
+        //else if (obj.CompareTag("Key")) newPotentialInteraction.type = InteractionType.Key;
 
         if (newPotentialInteraction.type != InteractionType.None)
         {
