@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Pudding.StateMachine.ScriptableObjects
 {
+	[Serializable]
 	public abstract class StateActionSO : DescriptionSMActionBaseSO
 	{
 		internal StateAction GetAction(StateMachine stateMachine, Dictionary<ScriptableObject, object> createdInstances)

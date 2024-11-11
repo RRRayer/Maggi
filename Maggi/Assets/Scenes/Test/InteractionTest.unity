@@ -456,13 +456,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ab355c346f6986488453663361f18af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 3
-  _idleScriptableActions: []
-  _walkScriptableActions: []
-  _jumpAscendingScriptableActions: []
-  _jumpDescendingScriptableActions: []
-  _pullScriptableActions: []
-  _pushScriptableActions: []
+  m_Type: 1
+  m_IdleScriptableActions:
+  - {fileID: 11400000, guid: 367707edb19f69e4598efcaca59810a3, type: 2}
+  m_WalkScriptableActions:
+  - {fileID: 11400000, guid: 55e1e657bc0ab134ead4d5c12c849475, type: 2}
+  - {fileID: 11400000, guid: 367707edb19f69e4598efcaca59810a3, type: 2}
+  m_JumpAscendingScriptableActions: []
+  m_JumpDescendingScriptableActions: []
+  m_PullScriptableActions: []
+  m_PushScriptableActions: []
 --- !u!95 &340657219
 Animator:
   serializedVersion: 7

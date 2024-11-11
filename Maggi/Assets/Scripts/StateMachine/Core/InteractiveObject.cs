@@ -10,14 +10,14 @@ namespace Pudding.StateMachine.ScriptableObjects
 
     public abstract class InteractiveObject : MonoBehaviour
     {
-        public InteractionType Type = InteractionType.General;
+        public InteractionType m_Type = InteractionType.General;
 
-        [SerializeField] private StateActionSO[] _idleScriptableActions;
-        [SerializeField] private StateActionSO[] _walkScriptableActions;
-        [SerializeField] private StateActionSO[] _jumpAscendingScriptableActions;
-        [SerializeField] private StateActionSO[] _jumpDescendingScriptableActions;
-        [SerializeField] private StateActionSO[] _pullScriptableActions;
-        [SerializeField] private StateActionSO[] _pushScriptableActions;
+        public StateActionSO[] m_IdleScriptableActions;
+        public StateActionSO[] m_WalkScriptableActions;
+        public StateActionSO[] m_JumpAscendingScriptableActions;
+        public StateActionSO[] m_JumpDescendingScriptableActions;
+        public StateActionSO[] m_PullScriptableActions;
+        public StateActionSO[] m_PushScriptableActions;
 
         private StateAction[] _idleActions = null;
         private StateAction[] _walkActions = null;
@@ -28,12 +28,12 @@ namespace Pudding.StateMachine.ScriptableObjects
 
         private void Awake()
         {
-            SetStateActions(_idleScriptableActions, ref _idleActions);
-            SetStateActions(_walkScriptableActions, ref _walkActions);
-            SetStateActions(_jumpAscendingScriptableActions, ref _jumpAscendingActions);
-            SetStateActions(_jumpDescendingScriptableActions, ref _jumpDescendingActions);
-            SetStateActions(_pullScriptableActions, ref _pullActions);
-            SetStateActions(_pushScriptableActions, ref _pushActions);
+            SetStateActions(m_IdleScriptableActions, ref _idleActions);
+            SetStateActions(m_WalkScriptableActions, ref _walkActions);
+            SetStateActions(m_JumpAscendingScriptableActions, ref _jumpAscendingActions);
+            SetStateActions(m_JumpDescendingScriptableActions, ref _jumpDescendingActions);
+            SetStateActions(m_PullScriptableActions, ref _pullActions);
+            SetStateActions(m_PushScriptableActions, ref _pushActions);
         }
 
         private void SetStateActions(StateActionSO[] scriptableActions, ref StateAction[] actions)

@@ -96,7 +96,7 @@ public class InteractionManager : MonoBehaviour
 
         if (obj.TryGetComponent(out InteractiveObject io))
         {
-            newPotentialInteraction.type = io.Type;
+            newPotentialInteraction.type = io.m_Type;
         }
 
         //if (obj.CompareTag("Light")) newPotentialInteraction.type = InteractionType.Light;
