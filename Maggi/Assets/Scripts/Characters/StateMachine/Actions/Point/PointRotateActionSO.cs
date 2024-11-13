@@ -15,20 +15,19 @@ public class PointRotateAction : StateAction
 
     private Player _player;
     private Transform _transform;
-	private InteractionManager _interactionManager;
+	private InteractiveObject _interactiveObject;
 
-
-    public override void Awake(StateMachine stateMachine)
+    public override void Awake(InteractiveObject interactiveObject, GameObject owner)
     {
-        _player = stateMachine.GetComponent<Player>();
-        _transform = stateMachine.GetComponent<Transform>();
-        _interactionManager = stateMachine.GetComponent<InteractionManager>();
+        _player = owner.GetComponent<Player>();
+        _transform = owner.GetComponent<Transform>();
+        _interactiveObject = interactiveObject;
     }
 
     public override void OnUpdate()
     {
-        _transform.RotateAround(_interactionManager.currentInteractiveObject.transform.position,
-                                _interactionManager.currentInteractiveObject.transform.right,
+        _transform.RotateAround(_interactiveObject.transform.position,
+                                _interactiveObject.transform.right,
                                 _player.movementInput.x * _originSO.rotationSpeed);
     }
 }

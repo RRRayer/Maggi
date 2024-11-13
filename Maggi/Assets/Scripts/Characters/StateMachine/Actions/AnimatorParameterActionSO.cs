@@ -39,7 +39,12 @@ public class AnimatorParameterAction : StateAction
 		_animator = stateMachine.GetComponent<Animator>();
 	}
 
-	public override void OnUpdate() { }
+    public override void Awake(InteractiveObject interactiveObject, GameObject owner)
+    {
+        _animator = owner.GetComponent<Animator>();
+    }
+
+    public override void OnUpdate() { }
 	
 	public override void OnStateEnter()
 	{

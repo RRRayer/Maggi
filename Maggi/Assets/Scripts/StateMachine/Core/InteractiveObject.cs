@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 namespace Pudding.StateMachine.ScriptableObjects
 {
@@ -26,27 +25,24 @@ namespace Pudding.StateMachine.ScriptableObjects
         private StateAction[] _pullActions = null;
         private StateAction[] _pushActions = null;
 
-        private void Awake()
+        public void Init(GameObject owner)
         {
-            SetStateActions(m_IdleScriptableActions, ref _idleActions);
-            SetStateActions(m_WalkScriptableActions, ref _walkActions);
-            SetStateActions(m_JumpAscendingScriptableActions, ref _jumpAscendingActions);
-            SetStateActions(m_JumpDescendingScriptableActions, ref _jumpDescendingActions);
-            SetStateActions(m_PullScriptableActions, ref _pullActions);
-            SetStateActions(m_PushScriptableActions, ref _pushActions);
+            SetStateActions(m_IdleScriptableActions, ref _idleActions, owner);
+            SetStateActions(m_WalkScriptableActions, ref _walkActions, owner);
+            SetStateActions(m_JumpAscendingScriptableActions, ref _jumpAscendingActions, owner);
+            SetStateActions(m_JumpDescendingScriptableActions, ref _jumpDescendingActions, owner);
+            SetStateActions(m_PullScriptableActions, ref _pullActions, owner);
+            SetStateActions(m_PushScriptableActions, ref _pushActions, owner);
         }
 
-        private void SetStateActions(StateActionSO[] scriptableActions, ref StateAction[] actions)
+        private void SetStateActions(StateActionSO[] scriptableActions, ref StateAction[] actions, GameObject owner)
         {
             if (scriptableActions != null && scriptableActions.Length > 0)
             {
-                var stateMachine = new StateMachine();
-                var createdInstances = new Dictionary<ScriptableObject, object>();
-
                 actions = new StateAction[scriptableActions.Length];
                 for (int i = 0; i < scriptableActions.Length; i++)
                 {
-                    actions[i] = scriptableActions[i].GetAction();
+                    actions[i] = scriptableActions[i].GetAction(this, owner);
                 }
             }
         }
@@ -54,11 +50,11 @@ namespace Pudding.StateMachine.ScriptableObjects
         #region IDLE
         public virtual void OnIdleStateEnter()
         {
-            if (_idleActions == null) return;
+            if (_idleActions == null) 
+                return;
 
             for (int i = 0; i < _idleActions.Length; ++i)
             {
-                Debug.Log(_idleActions[i]);
                 _idleActions[i].OnStateEnter();
             }
         }

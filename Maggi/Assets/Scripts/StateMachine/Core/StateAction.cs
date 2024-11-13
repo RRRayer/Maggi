@@ -1,5 +1,6 @@
 ﻿using Pudding.StateMachine.ScriptableObjects;
 using System;
+using UnityEngine;
 
 namespace Pudding.StateMachine
 {
@@ -11,7 +12,8 @@ namespace Pudding.StateMachine
 		public abstract void OnUpdate();
 		public virtual void OnFixedUpdate() { }
 		public virtual void Awake(StateMachine stateMachine) { }
-		public virtual void OnStateEnter() { }
+        public virtual void Awake(InteractiveObject interactiveObject, GameObject owner) { }
+        public virtual void OnStateEnter() { }
 		public virtual void OnStateExit() { }
 
 		public enum SpecificMoment

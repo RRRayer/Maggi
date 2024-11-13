@@ -11,6 +11,19 @@ public class InteractiveObjectEditor : Editor
     {
         var root = new VisualElement();
 
+        // Add default script field (shows the script reference)
+        var scriptProperty = new PropertyField(serializedObject.FindProperty("m_Script"));
+        scriptProperty.SetEnabled(false); // Make the script field read-only
+        root.Add(scriptProperty);
+
+        // Add the InteractionType property field
+        var typeProperty = new PropertyField(serializedObject.FindProperty("m_Type"));
+        root.Add(typeProperty);
+
+        // ####### Temp for Debugging ##########
+        var ownerProperty = new PropertyField(serializedObject.FindProperty("Owner"));
+        root.Add(ownerProperty);
+
         root.Add(CreateNewProperty("Idle Action", "m_IdleScriptableActions", "Edit Idle Actions")); ;
         root.Add(CreateNewProperty("Walk Action", "m_WalkScriptableActions", "Edit Walking Actions"));
         root.Add(CreateNewProperty("JumpAscending Action", "m_JumpAscendingScriptableActions", "Edit JumpAscending Actions"));

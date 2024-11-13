@@ -18,9 +18,11 @@ namespace Pudding.StateMachine.ScriptableObjects
 			action.Awake(stateMachine);
 			return action;
 		}
-        internal StateAction GetAction()
+
+        internal StateAction GetAction(InteractiveObject interactiveObject, GameObject owner)
         {
             var action = CreateAction();
+			action.Awake(interactiveObject, owner);
             action._originSO = this;
             return action;
         }

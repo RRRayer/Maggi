@@ -12,26 +12,27 @@ public class PullActionSO : StateActionSO
 
     public enum Locomotion
     {
-        Idle, Walk, JumpAscending, JumpDescending
+        Idle, Walk, JumpAscending, JumpDescending, Pull, Push
     };
 }
 
 public class PullAction : StateAction
 {
-    protected new PullActionSO _originSO => (PullActionSO)base.OriginSO;
+    private PullActionSO _originSO => (PullActionSO)base.OriginSO;
     private InteractionManager _interactionManager;
 	private InteractiveObject _interactiveObjectScript;
+    private GameObject _owner;
 
 	public override void Awake(StateMachine stateMachine)
 	{
 		_interactionManager = stateMachine.GetComponent<InteractionManager>();
+        _owner = stateMachine.gameObject;
     }
 
     public override void OnStateEnter()
     {
         _interactiveObjectScript = _interactionManager.currentInteractiveObject.GetComponent<InteractiveObject>();
-
-        Debug.Log($"current state = {_originSO.state}");
+        _interactiveObjectScript.Init(_owner);
 
         if (_interactiveObjectScript != null)
         {
@@ -48,6 +49,12 @@ public class PullAction : StateAction
                 break;
             case Locomotion.JumpDescending:
                 _interactiveObjectScript.OnJumpDescendingStateEnter();
+                break;
+            case Locomotion.Pull:
+                _interactiveObjectScript.OnPullStateEnter();
+                break;
+            case Locomotion.Push:
+                _interactiveObjectScript.OnPushStateEnter();
                 break;
             default:
                 Debug.Log("State not handled");
@@ -78,6 +85,12 @@ public class PullAction : StateAction
             case Locomotion.JumpDescending:
                 _interactiveObjectScript.OnJumpDescendingUpdate();
                 break;
+            case Locomotion.Pull:
+                _interactiveObjectScript.OnPullUpdate();
+                break;
+            case Locomotion.Push:
+                _interactiveObjectScript.OnPushUpdate();
+                break;
             default:
                 Debug.Log("State not handled");
                 break;
@@ -106,6 +119,12 @@ public class PullAction : StateAction
                 break;
             case Locomotion.JumpDescending:
                 _interactiveObjectScript.OnJumpDescendingStateExit();
+                break;
+            case Locomotion.Pull:
+                _interactiveObjectScript.OnPullStateExit();
+                break;
+            case Locomotion.Push:
+                _interactiveObjectScript.OnPushStateExit();
                 break;
             default:
                 Debug.Log("State not handled");

@@ -21,8 +21,14 @@ public class RotateAction : StateAction
 		_player = stateMachine.GetComponent<Player>();
 		_transform = stateMachine.GetComponent<Transform>();
 	}
-	
-	public override void OnUpdate()
+
+    public override void Awake(InteractiveObject interactiveObject, GameObject owner)
+    {
+        _player = owner.GetComponent<Player>();
+        _transform = owner.GetComponent<Transform>();
+    }
+
+    public override void OnUpdate()
 	{
 		Vector3 horizontalMovement = _player.movementVector;
 		horizontalMovement.y = 0;

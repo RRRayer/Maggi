@@ -17,8 +17,14 @@ public class ApplyMovementVectorAction : StateAction
         _playerScript = stateMachine.GetComponent<Player>();
 		_characterController = stateMachine.GetComponent<CharacterController>();
 	}
-	
-	public override void OnUpdate()
+
+    public override void Awake(InteractiveObject interactiveObject, GameObject owner)
+    {
+        _playerScript = owner.GetComponent<Player>();
+        _characterController = owner.GetComponent<CharacterController>();
+    }
+
+    public override void OnUpdate()
 	{
 		_characterController.Move(_playerScript.movementVector * Time.deltaTime);
 		_playerScript.movementVector = _characterController.velocity;
