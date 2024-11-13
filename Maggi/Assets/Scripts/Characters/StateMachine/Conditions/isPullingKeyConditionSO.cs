@@ -19,6 +19,6 @@ public class isPullingKeyCondition : Condition
 
     protected override bool Statement()
     {
-        return _interactionManager.currentInteractionType == InteractionType.Key;
+        return _interactionManager.currentInteractionType == InteractionType.None;
     }
 }

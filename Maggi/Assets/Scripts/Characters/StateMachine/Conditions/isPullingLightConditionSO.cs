@@ -16,7 +16,7 @@ public class isPullingLightCondition : Condition
 	
 	protected override bool Statement()
 	{
-		if (_interactionManager.currentInteractionType == InteractionType.Light)
+		if (_interactionManager.currentInteractionType == InteractionType.None)
 			return true;
 		return false;
 	}

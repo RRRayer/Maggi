@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Pudding.StateMachine.ScriptableObjects
 {
+	[Serializable]
 	public abstract class StateActionSO : DescriptionSMActionBaseSO
 	{
 		internal StateAction GetAction(StateMachine stateMachine, Dictionary<ScriptableObject, object> createdInstances)
@@ -16,7 +18,15 @@ namespace Pudding.StateMachine.ScriptableObjects
 			action.Awake(stateMachine);
 			return action;
 		}
-		protected abstract StateAction CreateAction();
+
+        internal StateAction GetAction(InteractiveObject interactiveObject, GameObject owner)
+        {
+            var action = CreateAction();
+			action.Awake(interactiveObject, owner);
+            action._originSO = this;
+            return action;
+        }
+        protected abstract StateAction CreateAction();
 	}
 
 	public abstract class StateActionSO<T> : StateActionSO where T : StateAction, new()

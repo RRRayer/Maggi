@@ -13,14 +13,13 @@ public class PullPointAction : StateAction
 {
 	protected new PullPointActionSO _originSO => (PullPointActionSO)base.OriginSO;
 
-
     private Transform _transform;
 	private InteractionManager _interactionManager;
 
-	public override void Awake(StateMachine stateMachine)
+	public override void Awake(InteractiveObject interactiveObject, GameObject owner)
 	{
-        _transform = stateMachine.GetComponent<Transform>();
-        _interactionManager = stateMachine.GetComponent<InteractionManager>();
+        _interactionManager = owner.GetComponent<InteractionManager>();
+        _transform = owner.GetComponent<Transform>();
 	}
 
     public override void OnStateEnter()

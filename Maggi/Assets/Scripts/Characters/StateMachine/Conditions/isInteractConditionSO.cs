@@ -16,6 +16,6 @@ public class isInteractCondition : Condition
 
     protected override bool Statement()
 	{
-        return _interactionManager.currentInteractionType == InteractionType.Normal;
+        return _interactionManager.currentInteractionType == InteractionType.None;
     }
 }

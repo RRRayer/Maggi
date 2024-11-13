@@ -19,7 +19,7 @@ public class isPullingGlobeCondition : Condition
 	
 	protected override bool Statement()
 	{
-		if (_interactionManager.currentInteractionType == InteractionType.Globe)
+		if (_interactionManager.currentInteractionType == InteractionType.None)
 			return true;
 		return false;
 	}

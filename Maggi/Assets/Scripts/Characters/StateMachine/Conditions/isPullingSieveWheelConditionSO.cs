@@ -16,7 +16,7 @@ public class isPullingSieveWheelCondition : Condition
 	
 	protected override bool Statement()
 	{
-		if (_interactionManager.currentInteractionType == InteractionType.SieveWheel)
+		if (_interactionManager.currentInteractionType == InteractionType.None)
 			return true;
 		return false;
 	}

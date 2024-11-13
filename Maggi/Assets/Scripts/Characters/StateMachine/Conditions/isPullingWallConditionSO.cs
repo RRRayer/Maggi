@@ -16,7 +16,7 @@ public class isPullingWallCondition : Condition
 	
 	protected override bool Statement()
 	{
-		if (_interactionManager.currentInteractionType == InteractionType.Wall)
+		if (_interactionManager.currentInteractionType == InteractionType.None)
 			return true;
 		return false;
 	}

@@ -16,13 +16,12 @@ public class PushPointAction : StateAction
 	private Player _player;
 	private Transform _transform;
 
-	public override void Awake(StateMachine stateMachine)
-	{
-		_player = stateMachine.GetComponent<Player>();
-		_transform = stateMachine.GetComponent<Transform>();
-		_interactionManager = stateMachine.GetComponent<InteractionManager>();
-	}
-
+    public override void Awake(InteractiveObject interactiveObject, GameObject owner)
+    {
+        _player = owner.GetComponent<Player>();
+        _transform = owner.GetComponent<Transform>();
+        _interactionManager = owner.GetComponent<InteractionManager>();
+    }
 	
     public override void OnStateEnter()
 	{
@@ -34,6 +33,9 @@ public class PushPointAction : StateAction
     {
         _interactionManager.currentInteractionType = InteractionType.None;
         _interactionManager.currentInteractiveObject = null;
+
+        int count = 0;
+        while (_player.movementVector.y >= 0) { if (count++ > 10000) break; }
     }
 
     public override void OnUpdate() { }

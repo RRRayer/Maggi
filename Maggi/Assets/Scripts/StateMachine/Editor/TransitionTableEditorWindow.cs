@@ -15,7 +15,7 @@ namespace Pudding.StateMachine.Editor
 
 		private UnityEditor.Editor _transitionTableEditor;
 
-		[MenuItem("State Machine Editor", menuItem = "ChopChop/State Machine Editor")]
+		[MenuItem("State Machine Editor", menuItem = "Maggi/State Machine Editor")]
 		internal static void Display()
 		{
 			if (_window == null)

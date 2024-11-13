@@ -16,6 +16,11 @@ public class DescendAction : StateAction
 		_player = stateMachine.GetComponent<Player>();
 	}
 
+    public override void Awake(InteractiveObject interactiveObject, GameObject owner)
+    {
+        _player = owner.GetComponent<Player>();
+    }
+
     public override void OnStateEnter()
     {
         _verticalMovement = _player.movementVector.y;
