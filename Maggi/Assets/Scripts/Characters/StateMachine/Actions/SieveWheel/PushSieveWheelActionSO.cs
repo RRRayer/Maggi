@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "PushSieveWheelAction", menuName = "State Machines/Actions/Push Sieve Wheel Action")]
 public class PushSieveWheelActionSO : StateActionSO

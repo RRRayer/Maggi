@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine.ScriptableObjects;
 using UnityEditor.UIElements;
 
 public class StateActionsEditorWindow : EditorWindow
@@ -55,7 +55,7 @@ public class StateActionsEditorWindow : EditorWindow
         for (int i = 0; i < _arrayProperty.arraySize; i++)
         {
             var itemProp = _arrayProperty.GetArrayElementAtIndex(i);
-            var container = new VisualElement { style = { flexDirection = FlexDirection.Row } };
+            var container = new VisualElement { style = { flexDirection = FlexDirection.Row, marginTop = 5 } };
 
             // Index Capture
             int currentIndex = i;
@@ -65,8 +65,7 @@ public class StateActionsEditorWindow : EditorWindow
             {
                 objectType = typeof(StateActionSO),
                 value = itemProp.objectReferenceValue,
-                allowSceneObjects = false,
-                label = $"Action {currentIndex + 1}"
+                allowSceneObjects = false
             };
 
             objectField.style.width = 300; // Constrain Width of ObjectField
@@ -89,6 +88,26 @@ public class StateActionsEditorWindow : EditorWindow
 
             container.Add(objectField);
             container.Add(removeButton);
+
+
+            // Create Drag Handler
+            var dragHandle = new VisualElement();
+            dragHandle.AddToClassList("drag-handle");
+            dragHandle.style.width = 10;
+            dragHandle.style.marginRight = 5;
+            container.Add(dragHandle);
+
+            var dragManipulator = new DragManipulator(container, currentIndex, (newIndex) =>
+            {
+                MoveItem(currentIndex, newIndex);
+                UpdateList();
+            });
+
+            dragHandle.AddManipulator(dragManipulator);
+
+            container.Add(dragHandle);
+
+            
             _listContainer.Add(container);
         }
     }
@@ -112,6 +131,71 @@ public class StateActionsEditorWindow : EditorWindow
         {
             _arrayProperty.DeleteArrayElementAtIndex(index);
             _serializedObject.ApplyModifiedProperties();
+        }
+    }
+
+    private void MoveItem(int oldIndex, int newIndex)
+    {
+        if (newIndex < 0 || newIndex >= _arrayProperty.arraySize || oldIndex == newIndex)
+            return;
+
+        _arrayProperty.MoveArrayElement(oldIndex, newIndex);
+        _serializedObject.ApplyModifiedProperties();
+    }
+}
+
+public class DragManipulator : MouseManipulator
+{
+    private VisualElement _element;
+    private int _startIndex;
+    private System.Action<int> _onDragEnd;
+
+    public DragManipulator(VisualElement element, int startIndex, System.Action<int> onDragEnd)
+    {
+        _element = element;
+        _startIndex = startIndex;
+        _onDragEnd = onDragEnd;
+        activators.Add(new ManipulatorActivationFilter { button = MouseButton.LeftMouse });
+    }
+
+    protected override void RegisterCallbacksOnTarget()
+    {
+        target.RegisterCallback<MouseDownEvent>(OnMouseDown);
+        target.RegisterCallback<MouseMoveEvent>(OnMouseMove);
+        target.RegisterCallback<MouseUpEvent>(OnMouseUp);
+    }
+
+    protected override void UnregisterCallbacksFromTarget()
+    {
+        target.UnregisterCallback<MouseDownEvent>(OnMouseDown);
+        target.UnregisterCallback<MouseMoveEvent>(OnMouseMove);
+        target.UnregisterCallback<MouseUpEvent>(OnMouseUp);
+    }
+
+    private void OnMouseDown(MouseDownEvent evt)
+    {
+        if (CanStartManipulation(evt))
+        {
+            _element.CaptureMouse();
+            evt.StopPropagation();
+        }
+    }
+
+    private void OnMouseMove(MouseMoveEvent evt)
+    {
+        if (_element.HasMouseCapture())
+        {
+            // Logic to determine the new index based on mouse position goes here
+        }
+    }
+
+    private void OnMouseUp(MouseUpEvent evt)
+    {
+        if (CanStopManipulation(evt))
+        {
+            _element.ReleaseMouse();
+            _onDragEnd?.Invoke(_startIndex); // Call the callback with the new index
+            evt.StopPropagation();
         }
     }
 }

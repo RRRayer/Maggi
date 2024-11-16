@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Pudding.StateMachine.ScriptableObjects
+namespace Maggi.StateMachine.ScriptableObjects
 {
 	/// <summary>
 	/// Base class for StateMachine ScriptableObjects that need a public description field.

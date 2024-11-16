@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Pudding.StateMachine.Editor
+namespace Maggi.StateMachine.Editor
 {
 	internal static class ContentStyle
 	{

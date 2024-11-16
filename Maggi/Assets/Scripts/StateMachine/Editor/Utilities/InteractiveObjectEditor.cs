@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine.ScriptableObjects;
 using UnityEditor.UIElements;
 
 [CustomEditor(typeof(InteractiveObject), true)]
@@ -20,16 +20,12 @@ public class InteractiveObjectEditor : Editor
         var typeProperty = new PropertyField(serializedObject.FindProperty("m_Type"));
         root.Add(typeProperty);
 
-        // ####### Temp for Debugging ##########
-        var ownerProperty = new PropertyField(serializedObject.FindProperty("Owner"));
-        root.Add(ownerProperty);
-
-        root.Add(CreateNewProperty("Idle Action", "m_IdleScriptableActions", "Edit Idle Actions")); ;
-        root.Add(CreateNewProperty("Walk Action", "m_WalkScriptableActions", "Edit Walking Actions"));
-        root.Add(CreateNewProperty("JumpAscending Action", "m_JumpAscendingScriptableActions", "Edit JumpAscending Actions"));
-        root.Add(CreateNewProperty("JumpDescending Action", "m_JumpDescendingScriptableActions", "Edit JumpDescending Actions"));
-        root.Add(CreateNewProperty("Pull Action", "m_PullScriptableActions", "Edit Pull Actions"));
-        root.Add(CreateNewProperty("Push Action", "m_PushScriptableActions", "Edit Push Actions"));
+        root.Add(CreateNewProperty("Idle Action", "m_IdleScriptableActions", $"{target.GetType().Name} Edit Idle Actions")); ;
+        root.Add(CreateNewProperty("Walk Action", "m_WalkScriptableActions", $"{target.GetType().Name} Edit Walking Actions"));
+        root.Add(CreateNewProperty("JumpAscending Action", "m_JumpAscendingScriptableActions", $"{target.GetType().Name} Edit JumpAscending Actions"));
+        root.Add(CreateNewProperty("JumpDescending Action", "m_JumpDescendingScriptableActions", $"{target.GetType().Name} Edit JumpDescending Actions"));
+        root.Add(CreateNewProperty("Pull Action", "m_PullScriptableActions", $"{target.GetType().Name} Edit Pull Actions"));
+        root.Add(CreateNewProperty("Push Action", "m_PushScriptableActions", $"{target.GetType().Name} Edit Push Actions"));
 
         return root;
     }
@@ -37,18 +33,7 @@ public class InteractiveObjectEditor : Editor
     private VisualElement CreateNewProperty(string labelName, string propertyName, string windowName)
     {
         // Create Edit Idle Action Button
-        var buttonContainer = new VisualElement { style = { flexDirection = FlexDirection.Row } };
-
-        // Add Container Label
-        var label = new Label(labelName) 
-        { 
-            style = 
-            { 
-                marginRight = 5,
-                alignSelf = Align.Center,
-            } 
-        };
-        buttonContainer.Add(label);
+        var buttonContainer = new VisualElement { style = { flexDirection = FlexDirection.Row, marginTop = 5 } };
 
         // Add Edit Button
         var button = new Button(() =>
@@ -77,6 +62,17 @@ public class InteractiveObjectEditor : Editor
         };
         button.Add(iconImage);
         buttonContainer.Add(button);
+
+        // Add Container Label
+        var label = new Label(labelName)
+        {
+            style =
+            {
+                marginRight = 5,
+                alignSelf = Align.Center,
+            }
+        };
+        buttonContainer.Add(label);
 
         return buttonContainer;
     }

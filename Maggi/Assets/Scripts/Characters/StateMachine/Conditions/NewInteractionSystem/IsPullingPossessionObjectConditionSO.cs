@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "IsPullingPossessionObjectCondition", menuName = "State Machines/Conditions/Is Pulling Possession Object Condition")]
 public class IsPullingPossessionObjectConditionSO : StateConditionSO<IsPullingPossessionObjectCondition> { }

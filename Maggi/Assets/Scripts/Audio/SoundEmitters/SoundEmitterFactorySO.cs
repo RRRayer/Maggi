@@ -1,5 +1,5 @@
 using UnityEngine;
-using Pudding.Factory;
+using Maggi.Factory;
 
 [CreateAssetMenu(fileName = "NewSoundEmitterFactory", menuName = "Factory/SoundEmitter Factory")]
 public class SoundEmitterFactorySO : FactorySO<SoundEmitter>

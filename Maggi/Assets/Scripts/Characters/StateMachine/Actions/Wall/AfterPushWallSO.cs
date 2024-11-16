@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "AfterPushWall", menuName = "State Machines/Actions/After Push Wall")]
 public class AfterPushWallSO : StateActionSO<AfterPushWall>

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Pudding.StateMachine.ScriptableObjects
+namespace Maggi.StateMachine.ScriptableObjects
 {
     public enum InteractionType
     {

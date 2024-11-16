@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "DescendAction", menuName = "State Machines/Actions/Descend Action")]
 public class DescendActionSO : StateActionSO<DescendAction> { }

@@ -1,6 +1,6 @@
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine.ScriptableObjects;
 
-namespace Pudding.StateMachine
+namespace Maggi.StateMachine
 {
     public abstract class Condition : IStateComponent
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "PullGlobeAction", menuName = "State Machines/Actions/Pull Globe Action")]
 public class PullGlobeActionSO : StateActionSO

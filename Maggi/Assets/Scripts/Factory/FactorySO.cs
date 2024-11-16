@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Pudding.Factory
+namespace Maggi.Factory
 {
     /// <summary>
     /// Implements the IFactory interface for non-abstract types.

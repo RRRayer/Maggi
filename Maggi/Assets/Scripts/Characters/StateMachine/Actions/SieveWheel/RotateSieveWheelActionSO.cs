@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "RotateSieveWheelAction", menuName = "State Machines/Actions/Rotate Sieve Wheel Action")]
 public class RotateSieveWheelActionSO : StateActionSO<RotateSieveWheelAction>

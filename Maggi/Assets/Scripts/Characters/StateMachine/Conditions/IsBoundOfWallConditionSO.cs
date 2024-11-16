@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 using UnityEngine.UIElements;
 
 [CreateAssetMenu(fileName = "IsBoundOfWallCondition", menuName = "State Machines/Conditions/Is Bound Of Wall Condition")]

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Pudding.StateMachine
+namespace Maggi.StateMachine
 {
     public class StateMachine : MonoBehaviour
     {

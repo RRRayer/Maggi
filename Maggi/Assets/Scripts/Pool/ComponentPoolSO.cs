@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Pudding.Pool
+namespace Maggi.Pool
 {
     /// <summary>
 	/// Implements a Pool for Component types.

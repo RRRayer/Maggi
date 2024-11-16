@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "ShakeCameraAction", menuName = "State Machines/Actions/Shake Camera Action")]
 public class ShakeCameraActionSO : StateActionSO

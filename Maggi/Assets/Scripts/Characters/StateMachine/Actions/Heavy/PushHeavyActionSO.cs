@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "PushHeavyAction", menuName = "State Machines/Actions/Push Heavy Action")]
 public class PushHeavyActionSO : StateActionSO
