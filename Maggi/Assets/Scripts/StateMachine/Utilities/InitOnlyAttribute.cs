@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Pudding.StateMachine
+namespace Maggi.StateMachine
 {
 	[AttributeUsage(AttributeTargets.Field)]
 	public class InitOnlyAttribute : PropertyAttribute { }

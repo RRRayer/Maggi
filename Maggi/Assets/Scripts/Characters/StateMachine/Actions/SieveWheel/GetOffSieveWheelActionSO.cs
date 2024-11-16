@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "GetOffSieveWheelAction", menuName = "State Machines/Actions/Get Off Sieve Wheel Action")]
 public class GetOffSieveWheelActionSO : StateActionSO

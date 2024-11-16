@@ -1,4 +1,4 @@
-namespace Pudding.Factory
+namespace Maggi.Factory
 {
     /// <summary>
     /// Represents a factory.

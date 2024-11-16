@@ -1,8 +1,8 @@
-using Pudding.Factory;
+using Maggi.Factory;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Pudding.Pool
+namespace Maggi.Pool
 {
     /// <summary>
 	/// A generic pool that generates members of type T on-demand via a factory.

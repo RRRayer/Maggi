@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "PushKeyAction", menuName = "State Machines/Actions/Push Key Action")]

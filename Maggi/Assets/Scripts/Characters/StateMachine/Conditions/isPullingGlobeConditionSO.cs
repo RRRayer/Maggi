@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "isPullingGlobeCondition", menuName = "State Machines/Conditions/is Pulling Globe Condition")]
 public class isPullingGlobeConditionSO : StateConditionSO

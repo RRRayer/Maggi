@@ -1,4 +1,4 @@
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine.ScriptableObjects;
 using System.Collections.Generic;
 using UnityEngine;
 

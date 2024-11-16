@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "IdleOnGlobeAction", menuName = "State Machines/Actions/Rotate On Globe Action")]
 public class IdleOnGlobeActionSO : StateActionSO<IdleOnGlobeAction>

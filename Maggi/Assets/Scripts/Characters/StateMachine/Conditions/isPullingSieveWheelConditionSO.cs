@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "isPullingSieveWheelCondition", menuName = "State Machines/Conditions/is Pulling Sieve Wheel Condition")]
 public class isPullingSieveWheelConditionSO : StateConditionSO<isPullingSieveWheelCondition> { }

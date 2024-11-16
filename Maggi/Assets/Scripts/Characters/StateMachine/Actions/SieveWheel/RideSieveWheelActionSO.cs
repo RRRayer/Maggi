@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "RideSieveWheelAction", menuName = "State Machines/Actions/Ride Sieve Wheel Action")]
 public class RideSieveWheelActionSO : StateActionSO

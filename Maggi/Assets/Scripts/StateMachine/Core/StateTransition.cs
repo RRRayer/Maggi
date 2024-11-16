@@ -1,4 +1,4 @@
-namespace Pudding.StateMachine
+namespace Maggi.StateMachine
 {
     public class StateTransition : IStateComponent
     {

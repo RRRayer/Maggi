@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Pudding.StateMachine.ScriptableObjects
+namespace Maggi.StateMachine.ScriptableObjects
 {
 	[Serializable]
 	public abstract class StateActionSO : DescriptionSMActionBaseSO

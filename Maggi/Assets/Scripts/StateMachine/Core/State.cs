@@ -1,7 +1,7 @@
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine.ScriptableObjects;
 using UnityEngine;
 
-namespace Pudding.StateMachine
+namespace Maggi.StateMachine
 {
     public class State
     {

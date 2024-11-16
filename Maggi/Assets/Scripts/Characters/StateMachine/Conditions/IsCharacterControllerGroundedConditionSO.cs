@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "IsCharacterControllerGroundCondition", menuName = "State Machines/Conditions/Is Character Controller Ground Condition")]
 public class IsCharacterControllerGroundConditionSO : StateConditionSO<IsCharacterControllerGroundedCondition> { }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "isPushingCondition", menuName = "State Machines/Conditions/is Pushing Condition")]
 public class isPushingConditionSO : StateConditionSO<isPushingCondition> { }

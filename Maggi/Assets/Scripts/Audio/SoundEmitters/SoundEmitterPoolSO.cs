@@ -1,5 +1,5 @@
-using Pudding.Factory;
-using Pudding.Pool;
+using Maggi.Factory;
+using Maggi.Pool;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewSoundEmitterPool", menuName = "Pool/SoundEmitter Pool")]

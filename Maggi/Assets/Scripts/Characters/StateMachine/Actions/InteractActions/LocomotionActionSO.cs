@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 using static PullActionSO;
 
 [CreateAssetMenu(fileName = "PullAction", menuName = "State Machines/Actions/Pull Action")]

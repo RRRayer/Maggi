@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "IsPullingPointCondition", menuName = "State Machines/Conditions/Is Pulling Point Condition")]
 public class IsPullingPointConditionSO : StateConditionSO<IsPullingPointCondition> {}
