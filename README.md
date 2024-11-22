@@ -23,6 +23,7 @@ Rayer팀으로 두 번째 **Unity 게임 개발 프로젝트**이다.
 - 상호작용 : 마우스 좌/우클릭
 
 ## Support Platform
+- Any PC
 
 ## Tech Info
 **Unity Version**
