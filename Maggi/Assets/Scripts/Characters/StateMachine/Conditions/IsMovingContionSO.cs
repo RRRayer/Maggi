@@ -1,6 +1,6 @@
 using UnityEngine;
-using Pudding.StateMachine.ScriptableObjects;
-using Pudding.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
 
 [CreateAssetMenu(menuName = "State Machines/Conditions/Started Moving")]
 public class IsMovingConditionSO : StateConditionSO<IsMovingCondition>
@@ -24,6 +24,7 @@ public class IsMovingCondition : Condition
     {
         Vector3 movementVector = _player.movementInput;
         movementVector.y = 0;
+
         return movementVector.sqrMagnitude > _originSO.treshold;        
     }
 }

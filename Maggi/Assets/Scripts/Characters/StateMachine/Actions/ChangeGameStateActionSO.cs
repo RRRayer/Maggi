@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
-using Moment = Pudding.StateMachine.StateAction.SpecificMoment;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
+using Moment = Maggi.StateMachine.StateAction.SpecificMoment;
 
 [CreateAssetMenu(fileName = "ChangeGameStateAction", menuName = "State Machines/Actions/Change Game State Action")]
 public class ChangeGameStateActionSO : StateActionSO

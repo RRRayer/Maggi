@@ -1,117 +1,111 @@
 using UnityEditor;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Pudding.StateMachine.ScriptableObjects;
-using UnityEditor.UIElements;
+using Maggi.StateMachine.ScriptableObjects;
+using Maggi.StateMachine.Editor;
 
+[CustomEditor(typeof(StateActionSO))]
 public class StateActionsEditorWindow : EditorWindow
 {
     private SerializedObject _serializedObject;
     private SerializedProperty _arrayProperty;
-    private VisualElement _rootElement;
-    private VisualElement _listContainer;
+    private ReorderableList _reorderableList;
 
     public static void OpenWindow(SerializedObject serializedObject, SerializedProperty property, string title)
     {
-        var window = GetWindow<StateActionsEditorWindow>(title); // Get Window
-        window.titleContent = new GUIContent(title); // Update Window Title
+        var window = GetWindow<StateActionsEditorWindow>(title);
+        window.titleContent = new GUIContent(title);
         window._serializedObject = serializedObject;
         window._arrayProperty = property;
-        window.Initialize(); // Init Window Elements
+        window.Initialize();
         window.Show();
     }
 
     private void Initialize()
     {
-        _rootElement = new VisualElement();
-        rootVisualElement.Clear(); // Clear Existed Elements 
-        rootVisualElement.Add(_rootElement);
+        rootVisualElement.Clear();
 
-        // Create Label
-        var label = new Label("Actions") { style = { unityFontStyleAndWeight = FontStyle.Bold } };
-        _rootElement.Add(label);
-
-        // Init State Action List Container
-        _listContainer = new VisualElement();
-        UpdateList();
-        _rootElement.Add(_listContainer);
-
-        // Create State Action SO Add Button
-        var addButton = new Button(() =>
+        // Null check for _serializedObject and _arrayProperty
+        if (_serializedObject == null)
         {
-            AddNewItem();
-            UpdateList();
-        })
+            Debug.LogError("Serialized Object is NULL. Initialization aborted.");
+            return;
+        }
+
+        if (_arrayProperty == null)
         {
-            text = "Add Action"
+            Debug.LogError("Array Property is NULL. Initialization aborted.");
+            return;
+        }
+
+        // Create ReorderableList
+        _reorderableList = new ReorderableList(_serializedObject, _arrayProperty, true, true, true, true);
+        SetupActionsList(_reorderableList);
+
+        // Create IMGUIContainer to host ReorderableList
+        IMGUIContainer listContainer = new IMGUIContainer(() =>
+        {
+            _serializedObject.Update();
+            _reorderableList.DoLayoutList();
+            _serializedObject.ApplyModifiedProperties();
+        });
+
+        rootVisualElement.Add(listContainer);
+    }
+
+    private static void SetupActionsList(ReorderableList reorderableList)
+    {
+        reorderableList.elementHeight *= 1.5f;
+        reorderableList.drawHeaderCallback += rect => GUI.Label(rect, "Actions");
+        reorderableList.onAddCallback += list =>
+        {
+            int count = list.count;
+            list.serializedProperty.InsertArrayElementAtIndex(count);
+            var prop = list.serializedProperty.GetArrayElementAtIndex(count);
+            prop.objectReferenceValue = null;
         };
-        _rootElement.Add(addButton);
-    }
 
-    private void UpdateList()
-    {
-        _listContainer.Clear();
-
-        for (int i = 0; i < _arrayProperty.arraySize; i++)
+        reorderableList.drawElementCallback += (Rect rect, int index, bool isActive, bool isFocused) =>
         {
-            var itemProp = _arrayProperty.GetArrayElementAtIndex(i);
-            var container = new VisualElement { style = { flexDirection = FlexDirection.Row } };
+            var r = rect;
+            r.height = EditorGUIUtility.singleLineHeight;
+            r.y += 5;
+            r.x += 5;
 
-            // Index Capture
-            int currentIndex = i;
-
-            // Create ObjectField that can be set to only StateActionSO Script
-            var objectField = new ObjectField
+            var prop = reorderableList.serializedProperty.GetArrayElementAtIndex(index);
+            if (prop.objectReferenceValue != null)
             {
-                objectType = typeof(StateActionSO),
-                value = itemProp.objectReferenceValue,
-                allowSceneObjects = false,
-                label = $"Action {currentIndex + 1}"
-            };
+                //The icon of the asset SO (basically an object field, cut to show just the icon)
+                r.width = 35;
+                EditorGUI.PropertyField(r, prop, GUIContent.none);
+                r.width = rect.width - 50;
+                r.x += 42;
 
-            objectField.style.width = 300; // Constrain Width of ObjectField
+                //The name of the StateAction
+                string label = prop.objectReferenceValue.name;
+                GUI.Label(r, label, EditorStyles.boldLabel);
 
-            objectField.RegisterValueChangedCallback(evt =>
-            {
-                itemProp.objectReferenceValue = evt.newValue as StateActionSO;
-                _serializedObject.ApplyModifiedProperties();
-            });
+                //The description
+                r.x += 180;
+                r.width = rect.width - 50 - 180;
+                string description = (prop.objectReferenceValue as DescriptionSMActionBaseSO).description;
+                GUI.Label(r, description);
+            }
+            else
+                EditorGUI.PropertyField(r, prop, GUIContent.none);
+        };
 
-            // Create State Action SO Remove Button
-            var removeButton = new Button(() =>
-            {
-                RemoveItemAtIndex(currentIndex);
-                UpdateList();
-            })
-            {
-                text = "-"
-            };
-
-            container.Add(objectField);
-            container.Add(removeButton);
-            _listContainer.Add(container);
-        }
-    }
-
-    private void AddNewItem()
-    {
-        _arrayProperty.InsertArrayElementAtIndex(_arrayProperty.arraySize);
-        _arrayProperty.GetArrayElementAtIndex(_arrayProperty.arraySize - 1).objectReferenceValue = null;
-        _serializedObject.ApplyModifiedProperties();
-    }
-
-    private void RemoveItemAtIndex(int index)
-    {
-        if (index >= 0 && index < _arrayProperty.arraySize)
+        reorderableList.onChangedCallback += list => list.serializedProperty.serializedObject.ApplyModifiedProperties();
+        reorderableList.drawElementBackgroundCallback += (Rect rect, int index, bool isActive, bool isFocused) =>
         {
-            _arrayProperty.DeleteArrayElementAtIndex(index);
-            _serializedObject.ApplyModifiedProperties();
-        }
+            if (isFocused)
+                EditorGUI.DrawRect(rect, ContentStyle.Focused);
 
-        if (index >= 0 && index < _arrayProperty.arraySize && _arrayProperty.GetArrayElementAtIndex(index).objectReferenceValue == null)
-        {
-            _arrayProperty.DeleteArrayElementAtIndex(index);
-            _serializedObject.ApplyModifiedProperties();
-        }
+            if (index % 2 != 0)
+                EditorGUI.DrawRect(rect, ContentStyle.ZebraDark);
+            else
+                EditorGUI.DrawRect(rect, ContentStyle.ZebraLight);
+        };
     }
 }

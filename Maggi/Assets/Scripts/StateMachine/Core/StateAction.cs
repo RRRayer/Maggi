@@ -1,8 +1,8 @@
-﻿using Pudding.StateMachine.ScriptableObjects;
+﻿using Maggi.StateMachine.ScriptableObjects;
 using System;
 using UnityEngine;
 
-namespace Pudding.StateMachine
+namespace Maggi.StateMachine
 {
 	public abstract class StateAction : IStateComponent
 	{

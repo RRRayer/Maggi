@@ -1,41 +1,37 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "MoveWithSieveWheelAction", menuName = "State Machines/Actions/Move With Sieve Wheel Action")]
 public class MoveWithSieveWheelActionSO : StateActionSO<MoveWithSieveWheelAction>
 {
-    [SerializeField]
     public float WheelSpeed;
 }
 
 public class MoveWithSieveWheelAction : StateAction
 {
-
-
-	protected new MoveWithSieveWheelActionSO _originSO => (MoveWithSieveWheelActionSO)base.OriginSO;
+	private MoveWithSieveWheelActionSO _originSO => (MoveWithSieveWheelActionSO)base.OriginSO;
 
     private Player _player;
     private Transform _transform;
-	private InteractionManager _interactionManager;
+    private InteractiveObject _interactiveObject;
     private Rigidbody _interactionRigid;
 
-
-    public override void Awake(StateMachine stateMachine)
+    public override void Awake(InteractiveObject interactiveObject, GameObject owner)
     {
-        _player = stateMachine.GetComponent<Player>();
-        _transform = stateMachine.GetComponent<Transform>();
-        _interactionManager = stateMachine.GetComponent<InteractionManager>();
+        _player = owner.GetComponent<Player>();
+        _transform = owner.GetComponent<Transform>();
+        _interactiveObject = interactiveObject;
     }
 
     public override void OnStateEnter()
     {
-        _interactionRigid = _interactionManager.currentInteractiveObject.GetComponent<Rigidbody>();
+        _interactionRigid = _interactiveObject.GetComponent<Rigidbody>();
     }
 
     public override void OnUpdate()
     {
-        _interactionRigid.velocity = _interactionManager.currentInteractiveObject.transform.right * _player.movementInput.x * _originSO.WheelSpeed;
-        _transform.position = _interactionManager.currentInteractiveObject.transform.position - _interactionManager.currentInteractiveObject.transform.up * 0.3f;
+        _interactionRigid.velocity = _interactiveObject.transform.right * _player.movementInput.x * _originSO.WheelSpeed;
+        _transform.position = _interactiveObject.transform.position - _interactiveObject.transform.up * 0.3f;
     }
 }

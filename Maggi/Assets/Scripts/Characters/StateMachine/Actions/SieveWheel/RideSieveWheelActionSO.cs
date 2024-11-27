@@ -1,31 +1,27 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "RideSieveWheelAction", menuName = "State Machines/Actions/Ride Sieve Wheel Action")]
-public class RideSieveWheelActionSO : StateActionSO
-{
-	protected override StateAction CreateAction() => new RideSieveWheelAction();
-}
+public class RideSieveWheelActionSO : StateActionSO<RideSieveWheelAction> { }
 
 public class RideSieveWheelAction : StateAction
 {
-	protected new RideSieveWheelActionSO _originSO => (RideSieveWheelActionSO)base.OriginSO;
+	private RideSieveWheelActionSO _originSO => (RideSieveWheelActionSO)base.OriginSO;
 
     private Transform _transform;
-	private InteractionManager _interactionManager;
+	private InteractiveObject _interactiveObject;
 
-	public override void Awake(StateMachine stateMachine)
-	{
-        _transform = stateMachine.GetComponent<Transform>();
-        _interactionManager = stateMachine.GetComponent<InteractionManager>();
-	}
+    public override void Awake(InteractiveObject interactiveObject, GameObject owner)
+    {
+        _transform = owner.GetComponent<Transform>();
+        _interactiveObject = interactiveObject;
+    }
 
     public override void OnStateEnter()
     {
-        _transform.rotation = _interactionManager.currentInteractiveObject.transform.rotation;
-        _transform.position = _interactionManager.currentInteractiveObject.transform.position
-							+ _interactionManager.currentInteractiveObject.transform.up * -0.3f;
+        _transform.rotation = _interactiveObject.transform.rotation;
+        _transform.position = _interactiveObject.transform.position + _interactiveObject.transform.up * -0.3f;
     }
 
     public override void OnUpdate() { }

@@ -3,6 +3,7 @@ using System.Text;
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.ProjectWindowCallback;
+using System;
 
 internal class ScriptTemplates
 {
@@ -24,39 +25,50 @@ internal class ScriptTemplates
 			(Texture2D)EditorGUIUtility.IconContent("cs Script Icon").image,
 			$"{_path}/StateCondition.txt");
 
-	private class DoCreateStateMachineScriptAsset : EndNameEditAction
-	{
-		public override void Action(int instanceId, string pathName, string resourceFile)
-		{
-			string text = File.ReadAllText(resourceFile);
+    [MenuItem("Assets/Create/State Machines/Interactive Object Script", false, 0)]
+    public static void CreateInteractiveObjectScript() =>
+    ProjectWindowUtil.StartNameEditingIfProjectWindowExists(0,
+        ScriptableObject.CreateInstance<DoCreateStateMachineScriptAsset>(),
+        "NewObject.cs",
+        (Texture2D)EditorGUIUtility.IconContent("cs Script Icon").image,
+        $"{_path}/InteractiveObject.txt");
 
-			string fileName = Path.GetFileName(pathName);
-			{
-				string newName = fileName.Replace(" ", "");
-				if (!newName.Contains("SO"))
-					newName = newName.Insert(fileName.Length - 3, "SO");
+    private class DoCreateStateMachineScriptAsset : EndNameEditAction
+    {
+        public override void Action(int instanceId, string pathName, string resourceFile)
+        {
+            string text = File.ReadAllText(resourceFile);
 
-				pathName = pathName.Replace(fileName, newName);
-				fileName = newName;
-			}
+            string fileName = Path.GetFileNameWithoutExtension(pathName);
+            {
+                string newName = fileName.Replace(" ", "");
 
-			string fileNameWithoutExtension = fileName.Substring(0, fileName.Length - 3);
-			text = text.Replace("#SCRIPTNAME#", fileNameWithoutExtension);
+                // Ensure that names ending with "Object" do not get "SO" appended
+                if (!newName.EndsWith("Object", StringComparison.OrdinalIgnoreCase) && !newName.Contains("SO"))
+                    newName = newName.Insert(fileName.Length, "SO");
 
-			string runtimeName = fileNameWithoutExtension.Replace("SO", "");
-			text = text.Replace("#RUNTIMENAME#", runtimeName);
+                pathName = pathName.Replace(fileName, newName);
+                fileName = newName;
+            }
 
-			for (int i = runtimeName.Length - 1; i > 0; i--)
-				if (char.IsUpper(runtimeName[i]) && char.IsLower(runtimeName[i - 1]))
-					runtimeName = runtimeName.Insert(i, " ");
+            string fileNameWithoutExtension = fileName.Substring(0, fileName.Length);
+            text = text.Replace("#SCRIPTNAME#", fileNameWithoutExtension);
 
-			text = text.Replace("#RUNTIMENAME_WITH_SPACES#", runtimeName);
+            string runtimeName = fileNameWithoutExtension.Replace("SO", "");
+            text = text.Replace("#RUNTIMENAME#", runtimeName);
 
-			string fullPath = Path.GetFullPath(pathName);
-			var encoding = new UTF8Encoding(true);
-			File.WriteAllText(fullPath, text, encoding);
-			AssetDatabase.ImportAsset(pathName);
-			ProjectWindowUtil.ShowCreatedAsset(AssetDatabase.LoadAssetAtPath(pathName, typeof(UnityEngine.Object)));
-		}
-	}
+            for (int i = runtimeName.Length - 1; i > 0; i--)
+                if (char.IsUpper(runtimeName[i]) && char.IsLower(runtimeName[i - 1]))
+                    runtimeName = runtimeName.Insert(i, " ");
+
+            text = text.Replace("#RUNTIMENAME_WITH_SPACES#", runtimeName);
+
+            string fullPath = Path.GetFullPath(pathName);
+            var encoding = new UTF8Encoding(true);
+            File.WriteAllText(fullPath, text, encoding);
+            AssetDatabase.ImportAsset(pathName);
+            ProjectWindowUtil.ShowCreatedAsset(AssetDatabase.LoadAssetAtPath(pathName, typeof(UnityEngine.Object)));
+        }
+    }
+
 }

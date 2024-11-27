@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "WallRotationAction", menuName = "State Machines/Actions/Wall Rotation Action")]
 public class WallRotationActionSO : StateActionSO<WallRotationAction>
@@ -17,11 +17,11 @@ public class WallRotationAction : StateAction
     private float _turnSmoothSpeed;
     private const float ROTATION_TRESHOLD = 0.02f;
 
-    public override void Awake(StateMachine stateMachine)
+    public override void Awake(InteractiveObject interactiveObject, GameObject owner)
     {
-        _player = stateMachine.GetComponent<Player>();
-        _transform = stateMachine.GetComponent<Transform>();
-        _interactionManager = stateMachine.GetComponent<InteractionManager>();
+        _player = owner.GetComponent<Player>();
+        _transform = owner.GetComponent<Transform>();
+        _interactionManager = owner.GetComponent<InteractionManager>();
     }
 
     public override void OnUpdate()

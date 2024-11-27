@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "isPullingKeyCondition", menuName = "State Machines/Conditions/is Pulling Key Condition")]
 public class isPullingKeyConditionSO : StateConditionSO

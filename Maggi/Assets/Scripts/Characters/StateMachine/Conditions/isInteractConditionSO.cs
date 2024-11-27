@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "isInteractCondition", menuName = "State Machines/Conditions/is Interact Condition")]
 public class isInteractConditionSO : StateConditionSO<isInteractCondition> { }

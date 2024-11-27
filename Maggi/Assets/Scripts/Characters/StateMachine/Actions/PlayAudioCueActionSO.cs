@@ -1,5 +1,5 @@
-using Pudding.StateMachine.ScriptableObjects;
-using Pudding.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "State Machines/Actions/Play AudioCue")]

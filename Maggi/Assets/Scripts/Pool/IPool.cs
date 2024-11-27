@@ -1,4 +1,4 @@
-namespace Pudding.Pool
+namespace Maggi.Pool
 {
     /// <summary>
 	/// Represents a collection that pools objects of T.

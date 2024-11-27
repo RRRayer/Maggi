@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "GroundGravityAction", menuName = "State Machines/Actions/Ground Gravity Action")]
 public class GroundGravityActionSO : StateActionSO<GroundGravityAction>
@@ -17,6 +17,12 @@ public class GroundGravityAction : StateAction
     {
         _player = stateMachine.GetComponent<Player>();
     }
+
+    public override void Awake(InteractiveObject interactiveObject, GameObject owner)
+    {
+        _player = owner.GetComponent<Player>();
+    }
+
 
     public override void OnUpdate()
 	{

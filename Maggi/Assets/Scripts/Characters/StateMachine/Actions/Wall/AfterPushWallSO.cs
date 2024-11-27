@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "AfterPushWall", menuName = "State Machines/Actions/After Push Wall")]
 public class AfterPushWallSO : StateActionSO<AfterPushWall>
@@ -15,13 +15,13 @@ public class AfterPushWall : StateAction
     private Player _player;
     private Transform _transform;
 
-    public override void Awake(StateMachine stateMachine)
+    public override void Awake(InteractiveObject interactiveObject, GameObject owner)
     {
-        _player = stateMachine.GetComponent<Player>();
-        _transform = stateMachine.GetComponent<Transform>();
+        _player = owner.GetComponent<Player>();
+        _transform = owner.GetComponent<Transform>();
     }
 
-	private Vector3 OriginVec; 
+    private Vector3 OriginVec; 
 
 	public override void OnUpdate()
 	{

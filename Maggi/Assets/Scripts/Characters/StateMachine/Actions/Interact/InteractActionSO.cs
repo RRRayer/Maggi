@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using Pudding.StateMachine;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine;
+using Maggi.StateMachine.ScriptableObjects;
 using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "InteractAction", menuName = "State Machines/Actions/Interact Action")]

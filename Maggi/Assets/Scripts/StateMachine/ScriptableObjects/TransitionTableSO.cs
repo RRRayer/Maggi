@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Pudding.StateMachine.ScriptableObjects
+namespace Maggi.StateMachine.ScriptableObjects
 {
     [CreateAssetMenu(fileName = "NewTransitionTable", menuName = "State Machines/Transition Table")]
     public class TransitionTableSO : ScriptableObject

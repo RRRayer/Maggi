@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Pudding.StateMachine.ScriptableObjects
+namespace Maggi.StateMachine.ScriptableObjects
 {
     public enum InteractionType
     {
@@ -50,7 +50,7 @@ namespace Pudding.StateMachine.ScriptableObjects
         #region IDLE
         public virtual void OnIdleStateEnter()
         {
-            if (_idleActions == null) 
+            if (_idleActions == null)
                 return;
 
             for (int i = 0; i < _idleActions.Length; ++i)

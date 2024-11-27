@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Pudding.StateMachine.ScriptableObjects
+namespace Maggi.StateMachine.ScriptableObjects
 {
     [CreateAssetMenu(fileName = "New State", menuName = "State Machines/State")]
     public class StateSO : ScriptableObject

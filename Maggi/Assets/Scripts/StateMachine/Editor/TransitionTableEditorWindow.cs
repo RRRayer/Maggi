@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using Pudding.StateMachine.ScriptableObjects;
+using Maggi.StateMachine.ScriptableObjects;
 
-namespace Pudding.StateMachine.Editor
+namespace Maggi.StateMachine.Editor
 {
 	internal class TransitionTableEditorWindow : EditorWindow
 	{
@@ -65,21 +65,25 @@ namespace Pudding.StateMachine.Editor
 
 		private void OnLostFocus()
 		{
+			// uxml의 table-list는 ListView로 선언되어 있음.
 			ListView listView = rootVisualElement.Q<ListView>(className: "table-list");
 			listView.onSelectionChange -= OnListSelectionChanged;
 		}
 
 		private void Update()
 		{
+			// 창에 Focus가 된 상태에만 Refresh를 진행
 			if (!_doRefresh)
 				return;
 
+			// Refresh는 한 번만 진행한다. 이를 위한 doRefresh flag
 			CreateListView();
 			_doRefresh = false;
 		}
 
 		private void CreateListView()
 		{
+			// assets에 TransitionTableEditor Asset들을 모두 불러옴
 			var assets = FindAssets();
 			ListView listView = rootVisualElement.Q<ListView>(className: "table-list");
 
