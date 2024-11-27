@@ -18,6 +18,11 @@ public class HorizontalMoveAction : StateAction
         _player = stateMachine.GetComponent<Player>();
     }
 
+    public override void Awake(InteractiveObject interactiveObject, GameObject owner)
+    {
+        _player = owner.GetComponent<Player>();
+    }
+
     public override void OnUpdate()
     {
         _player.movementVector.x = _player.movementInput.x * _originSO.speed;

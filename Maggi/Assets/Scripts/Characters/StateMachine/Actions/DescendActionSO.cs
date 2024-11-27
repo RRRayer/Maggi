@@ -34,6 +34,4 @@ public class DescendAction : StateAction
 
         _player.movementVector.y = _verticalMovement;
 	}
-	
-	
 }

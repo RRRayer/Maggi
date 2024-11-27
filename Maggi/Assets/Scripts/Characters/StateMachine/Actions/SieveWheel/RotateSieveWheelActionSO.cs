@@ -5,25 +5,25 @@ using Maggi.StateMachine.ScriptableObjects;
 [CreateAssetMenu(fileName = "RotateSieveWheelAction", menuName = "State Machines/Actions/Rotate Sieve Wheel Action")]
 public class RotateSieveWheelActionSO : StateActionSO<RotateSieveWheelAction>
 {
-    [SerializeField]
     public float RotationAngle;
 }
 
 public class RotateSieveWheelAction : StateAction
 {
-	protected new RotateSieveWheelActionSO _originSO => (RotateSieveWheelActionSO)base.OriginSO;
+	private RotateSieveWheelActionSO _originSO => (RotateSieveWheelActionSO)base.OriginSO;
 
     private Player _player;
-	private InteractionManager _interactionManager;
+	private InteractiveObject _interactiveObject;
 
-    public override void Awake(StateMachine stateMachine)
+    public override void Awake(InteractiveObject interactiveObject, GameObject owner)
     {
-        _player = stateMachine.GetComponent<Player>();
-        _interactionManager = stateMachine.GetComponent<InteractionManager>();
+        _player = owner.GetComponent<Player>();
+        _interactiveObject = interactiveObject;
     }
 
     public override void OnUpdate()
     {
-        _interactionManager.currentInteractiveObject.transform.GetChild(0).Rotate(Vector3.forward * _player.movementInput.x * _originSO.RotationAngle * Time.deltaTime);
+        _interactiveObject.transform.GetChild(0)
+            .Rotate(Vector3.forward * _player.movementInput.x * _originSO.RotationAngle * Time.deltaTime);
     }
 }

@@ -24,6 +24,7 @@ public class IsMovingCondition : Condition
     {
         Vector3 movementVector = _player.movementInput;
         movementVector.y = 0;
+
         return movementVector.sqrMagnitude > _originSO.treshold;        
     }
 }

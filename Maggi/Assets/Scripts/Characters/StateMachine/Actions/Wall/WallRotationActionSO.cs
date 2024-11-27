@@ -17,11 +17,11 @@ public class WallRotationAction : StateAction
     private float _turnSmoothSpeed;
     private const float ROTATION_TRESHOLD = 0.02f;
 
-    public override void Awake(StateMachine stateMachine)
+    public override void Awake(InteractiveObject interactiveObject, GameObject owner)
     {
-        _player = stateMachine.GetComponent<Player>();
-        _transform = stateMachine.GetComponent<Transform>();
-        _interactionManager = stateMachine.GetComponent<InteractionManager>();
+        _player = owner.GetComponent<Player>();
+        _transform = owner.GetComponent<Transform>();
+        _interactionManager = owner.GetComponent<InteractionManager>();
     }
 
     public override void OnUpdate()
