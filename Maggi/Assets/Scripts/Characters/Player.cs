@@ -7,8 +7,8 @@ public class Player : MonoBehaviour
     [SerializeField] private TransformAnchor _gameplayCameraTransform = default;
 
     //These fields are read and manipulated by the StateMachine actions
-    [HideInInspector] public Vector3 movementInput;
-    [HideInInspector] public Vector3 movementVector;
+    /*[HideInInspector]*/ public Vector3 movementInput;
+    /*[HideInInspector]*/ public Vector3 movementVector;
     [HideInInspector] public bool jumpInput;
 
     private Vector2 _inputVector; // _inputVector.x : x movement, _inputVector.y : z movement

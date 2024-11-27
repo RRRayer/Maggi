@@ -18,6 +18,12 @@ public class GroundGravityAction : StateAction
         _player = stateMachine.GetComponent<Player>();
     }
 
+    public override void Awake(InteractiveObject interactiveObject, GameObject owner)
+    {
+        _player = owner.GetComponent<Player>();
+    }
+
+
     public override void OnUpdate()
 	{
         _player.movementVector.y = _originSO.verticalPull;

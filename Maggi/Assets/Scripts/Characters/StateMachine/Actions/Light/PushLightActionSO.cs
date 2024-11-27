@@ -13,6 +13,7 @@ public class PushLightAction : StateAction
 {
 	private PushLightActionSO _originSO => (PushLightActionSO)base.OriginSO;
 	private InteractionManager _interactionManager;
+	private InteractiveObject _interactiveObject;
 	private Rigidbody _interactiveObjectRigidbody;
 
 	public override void Awake(StateMachine stateMachine)
@@ -20,11 +21,18 @@ public class PushLightAction : StateAction
 		_interactionManager = stateMachine.GetComponent<InteractionManager>();
 	}
 
-	public override void OnStateEnter()
+    public override void Awake(InteractiveObject interactiveObject, GameObject owner)
+    {
+        _interactionManager = owner.GetComponent<InteractionManager>();
+        _interactiveObject = interactiveObject;
+    }
+
+
+    public override void OnStateEnter()
 	{
-		if (_interactionManager.currentInteractiveObject != null)
+		if (_interactiveObject != null)
 		{
-			_interactiveObjectRigidbody = _interactionManager.currentInteractiveObject.GetComponent<Rigidbody>();
+			_interactiveObjectRigidbody = _interactiveObject.GetComponent<Rigidbody>();
 
 			// Init Position to Player position and Add
 			_interactiveObjectRigidbody.transform.position = _interactionManager.transform.position + _interactiveObjectRigidbody.transform.forward * 0.2f;

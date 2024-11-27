@@ -13,18 +13,20 @@ public class WallMovementActionSO : StateActionSO<WallMovementAction>
 
 public class WallMovementAction : StateAction
 {
-	protected new WallMovementActionSO _originSO => (WallMovementActionSO)base.OriginSO;
+	private WallMovementActionSO _originSO => (WallMovementActionSO)base.OriginSO;
 	private Player _player;
     private Transform _transform;
 	private InteractionManager _interactionManager;
+    private InteractiveObject _interactiveObject;
     private const float ROTATION_TRESHOLD = 0.02f;
 
-    public override void Awake(StateMachine stateMachine)
+    public override void Awake(InteractiveObject interactiveObject, GameObject owner)
 	{
-		_player = stateMachine.GetComponent<Player>();
-        _transform = stateMachine.GetComponent<Transform>();
-        _interactionManager = stateMachine.GetComponent<InteractionManager>();
-	}
+		_player = owner.GetComponent<Player>();
+        _transform = owner.GetComponent<Transform>();
+        _interactionManager = owner.GetComponent<InteractionManager>();
+        _interactiveObject = interactiveObject;
+    }
 
     public override void OnStateEnter()
     {
@@ -32,7 +34,7 @@ public class WallMovementAction : StateAction
         RaycastHit hit;
         if (Physics.Raycast(
             _transform.position,
-            _interactionManager.currentInteractiveObject.transform.position - _transform.position,
+            _interactiveObject.transform.position - _transform.position,
             out hit,
             2.0f,
             _originSO.wallLayerMask))
@@ -45,7 +47,7 @@ public class WallMovementAction : StateAction
         else
         {
             // Raycast에 실패한 경우 기본 회전 설정
-            _transform.rotation = _interactionManager.currentInteractiveObject.transform.rotation;
+            _transform.rotation = _interactiveObject.transform.rotation;
         }
     }
 

@@ -15,8 +15,9 @@ GameObject:
   - component: {fileID: 6250079239829449404}
   - component: {fileID: 4777130779868430967}
   - component: {fileID: 8666269192515851860}
+  - component: {fileID: 1722145286804099023}
   m_Layer: 0
-  m_Name: can
+  m_Name: Interactable_SieveWheel
   m_TagString: SieveWheel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,6 +171,35 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0.6}
+--- !u!114 &1722145286804099023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8024615725421662301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d37e775c4a9a5934bbce9d642ede66d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Type: 3
+  m_IdleScriptableActions:
+  - {fileID: 11400000, guid: 367707edb19f69e4598efcaca59810a3, type: 2}
+  m_WalkScriptableActions:
+  - {fileID: 11400000, guid: 92c86197094f2584698bc18c51f1a9a9, type: 2}
+  - {fileID: 11400000, guid: d2679154a973c064aa07a7a5a13955c2, type: 2}
+  - {fileID: 11400000, guid: 7fea5e8f270ca5f4181b0e39c43054b5, type: 2}
+  - {fileID: 11400000, guid: 776b9f4dc9d78254aa1110d9b6836934, type: 2}
+  - {fileID: 11400000, guid: cef4332e9529d984f98ed7a8f3f8a954, type: 2}
+  - {fileID: 11400000, guid: aaa80a6bcb8d44f49a6c38c1684fdde2, type: 2}
+  m_JumpAscendingScriptableActions: []
+  m_JumpDescendingScriptableActions: []
+  m_PullScriptableActions:
+  - {fileID: 11400000, guid: 9988ee137dcf32c4593725cbabe735fa, type: 2}
+  m_PushScriptableActions:
+  - {fileID: 11400000, guid: be6867f1af2ff8c409bf52a85d638619, type: 2}
+  - {fileID: 11400000, guid: ab727bed7a34cab4090468a75db53bbe, type: 2}
 --- !u!1001 &8038933508777849948
 PrefabInstance:
   m_ObjectHideFlags: 0

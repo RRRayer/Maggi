@@ -13,7 +13,9 @@ public class PullHeavyAction : StateAction
 {
     protected new PullHeavyActionSO _originSO => (PullHeavyActionSO)base.OriginSO;
     private Player _player;
+    private CharacterController _characterController;
     private InteractionManager _interactionManager;
+    private InteractiveObject _interactionObject;
 
     private Rigidbody _interactiveObjectRigidbody;
     private Vector3 _offset = Vector3.zero;
@@ -21,31 +23,43 @@ public class PullHeavyAction : StateAction
     public override void Awake(StateMachine stateMachine)
     {
         _player = stateMachine.GetComponent<Player>();
+        _characterController = stateMachine.GetComponent<CharacterController>();
         _interactionManager = stateMachine.GetComponent<InteractionManager>();
+        _interactionObject = _interactionManager.currentInteractiveObject.GetComponent<InteractiveObject>();
+    }
+
+    public override void Awake(InteractiveObject interactiveObject, GameObject owner)
+    {
+        _player = owner.GetComponent<Player>();
+        _characterController = owner.GetComponent<CharacterController>();
+        _interactionManager = owner.GetComponent<InteractionManager>();
+        _interactionObject = interactiveObject;
     }
 
     public override void OnStateEnter()
     {
-        _interactiveObjectRigidbody = _interactionManager.currentInteractiveObject.GetComponent<Rigidbody>();
+        _interactiveObjectRigidbody = _interactionObject.GetComponent<Rigidbody>();
         // Freeze rotation to prevent the box from rolling
         _interactiveObjectRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+        // Prevent box shaking when object is carried
+        _interactiveObjectRigidbody.useGravity = false;
 
-        Vector3 currentInteractiveObjectPosition = _interactionManager.currentInteractiveObject.transform.position;
+        Vector3 interactiveObjectPosition = _interactionObject.transform.position;
         Vector3 playerPosition = _player.transform.position;
 
         // 박스 콜라이더의 크기와 위치 정보를 가져옴
-        BoxCollider boxCollider = _interactionManager.currentInteractiveObject.GetComponent<BoxCollider>();
+        BoxCollider boxCollider = _interactionObject.GetComponent<BoxCollider>();
         Vector3 boxSize = boxCollider.size;
-        Vector3 boxCenter = boxCollider.center;
+        // Vector3 boxCenter = boxCollider.center;
 
         // 플레이어->박스 사이의 벡터
-        Vector3 distanceVector = currentInteractiveObjectPosition - playerPosition;
+        Vector3 distanceVector = interactiveObjectPosition - playerPosition;
 
-        // 박스의 로컬 반지름 (half extents)
+        // Box Collider Half Length
         Vector3 halfBoxSize = boxSize * 0.5f;
 
-        // 플레이어의 크기 (반지름)
-        float playerHalfSize = _player.transform.localScale.x * 0.5f;
+        // Player Collider Half Length
+        float playerHalfSize = _characterController.radius;
 
         // 각 축에 따른 거리 계산
         float distanceX = halfBoxSize.x + playerHalfSize;
@@ -94,14 +108,11 @@ public class PullHeavyAction : StateAction
         }
         #endregion
 
-        // 높이 보정
-        _offset.y = currentInteractiveObjectPosition.y - playerPosition.y;
+        // Adjustment Offset for calculating targetPosition
+        _offset.y = halfBoxSize.y - _player.transform.localScale.x * _characterController.radius;        
     }
 
-
-    public override void OnUpdate() { }
-
-    public override void OnFixedUpdate()
+    public override void OnUpdate()
     {
         // 오프셋을 이용하여 상호작용 오브젝트의 목표 위치 계산
         Vector3 objectTargetPosition = _player.transform.position + _offset;
@@ -147,7 +158,7 @@ public class PullHeavyAction : StateAction
 
     public override void OnStateExit()
     {
-        // Unfreeze rotation if needed when exiting the state
         _interactiveObjectRigidbody.constraints = RigidbodyConstraints.None;
+        _interactiveObjectRigidbody.useGravity = true;
     }
 }
