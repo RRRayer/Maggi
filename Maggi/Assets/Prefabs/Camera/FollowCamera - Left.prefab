@@ -27,14 +27,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1562689558884056967}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.027761709, y: 0.99831957, z: -0.02613503, w: -0.04363831}
-  m_LocalPosition: {x: 81.349, y: 8.744, z: 16.248}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5282383564180279694}
   m_Father: {fileID: 8463571609520177216}
-  m_LocalEulerAnglesHint: {x: 3.13, y: 184.922, z: -3.051}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &628246567447539386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +113,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8463571609520177216}
   m_Layer: 0
-  m_Name: FollowCamera
+  m_Name: FollowCamera - Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,15 +127,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2574424124224331997}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.26693562, y: 0, z: 0, w: 0.96371436}
-  m_LocalPosition: {x: -4.71, y: 3.93, z: -5.95}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4309180519120975461}
   - {fileID: 1143034398064072712}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 30.964, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3949281061337500279
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,13 +161,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3949281061337500279}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.008412407, y: -0, z: -0, w: 0.99996465}
-  m_LocalPosition: {x: 81.42, y: 7.51, z: 15.81}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8463571609520177216}
-  m_LocalEulerAnglesHint: {x: -30, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &6770571450584022951
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 3, z: -5}
+  m_FollowOffset: {x: 5, y: 3, z: 0}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
