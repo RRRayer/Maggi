@@ -46,6 +46,12 @@ public class StateActionsEditorWindow : EditorWindow
         // Create IMGUIContainer to host ReorderableList
         IMGUIContainer listContainer = new IMGUIContainer(() =>
         {
+            if (_serializedObject == null || _serializedObject.targetObject == null)
+            {
+                Debug.LogWarning("Serialized Object is lost or destroyed during IMGUIContainer callback.");
+                return;
+            }
+
             _serializedObject.Update();
             _reorderableList.DoLayoutList();
             _serializedObject.ApplyModifiedProperties();
