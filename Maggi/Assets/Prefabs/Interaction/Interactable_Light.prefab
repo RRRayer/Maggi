@@ -13,9 +13,11 @@ GameObject:
   - component: {fileID: 8276704094149914099}
   - component: {fileID: 8845399736921498153}
   - component: {fileID: 852873266168437515}
+  - component: {fileID: 4768312489903895604}
+  - component: {fileID: 7694412552133549857}
   m_Layer: 0
   m_Name: Interactable_Light
-  m_TagString: Light
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,8 +32,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -65,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 40906e3d30eb76e44a8b3094de53d070, type: 3}
+  - {fileID: 2100000, guid: 0f8a36cd563352a43bd2ff4cf453d7ff, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -135,3 +137,41 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4768312489903895604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5931431540102342318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47a4e51ed18b3c148abc3ced5ccb5352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Type: 2
+  m_IdleScriptableActions:
+  - {fileID: 11400000, guid: d3f6b7246fe8ba3438c3ce379f91a30c, type: 2}
+  m_WalkScriptableActions:
+  - {fileID: 11400000, guid: d3f6b7246fe8ba3438c3ce379f91a30c, type: 2}
+  m_JumpAscendingScriptableActions:
+  - {fileID: 11400000, guid: d3f6b7246fe8ba3438c3ce379f91a30c, type: 2}
+  m_JumpDescendingScriptableActions:
+  - {fileID: 11400000, guid: d3f6b7246fe8ba3438c3ce379f91a30c, type: 2}
+  m_PullScriptableActions:
+  - {fileID: 11400000, guid: d3f6b7246fe8ba3438c3ce379f91a30c, type: 2}
+  m_PushScriptableActions:
+  - {fileID: 11400000, guid: 51f070b02548242469252586dc48c9df, type: 2}
+--- !u!114 &7694412552133549857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5931431540102342318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59ad4cda2b507ee42a77b539d74b358d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isMeshInChild: 0

@@ -12,14 +12,41 @@ public class StateActionsEditorWindow : EditorWindow
     private SerializedProperty _arrayProperty;
     private ReorderableList _reorderableList;
 
+    private StateActionSO _targetAsset;
+
     public static void OpenWindow(SerializedObject serializedObject, SerializedProperty property, string title)
     {
         var window = GetWindow<StateActionsEditorWindow>(title);
         window.titleContent = new GUIContent(title);
         window._serializedObject = serializedObject;
         window._arrayProperty = property;
+
+        if (serializedObject?.targetObject is StateActionSO so)
+        {
+            window._targetAsset = so;
+        }
+
         window.Initialize();
         window.Show();
+    }
+
+    private void OnEnable()
+    {
+        // 만약 도중에 SerializedObject가 해제되었거나, 도메인 리로드 등으로 null이 되었다면 다시 생성
+        if (_serializedObject == null && _targetAsset != null)
+        {
+            _serializedObject = new SerializedObject(_targetAsset);
+
+            // 본인 상황에 맞게 필드명을 교체해주세요.
+            // 예) "actions", "conditions" 등
+            _arrayProperty = _serializedObject.FindProperty("actions");
+        }
+
+        // SerializedObject와 Property가 유효하다면 ReorderableList를 다시 세팅
+        if (_serializedObject != null && _arrayProperty != null)
+        {
+            Initialize();
+        }
     }
 
     private void Initialize()
@@ -46,6 +73,12 @@ public class StateActionsEditorWindow : EditorWindow
         // Create IMGUIContainer to host ReorderableList
         IMGUIContainer listContainer = new IMGUIContainer(() =>
         {
+            if (_serializedObject == null || _serializedObject.targetObject == null)
+            {
+                Debug.LogWarning("Serialized Object is lost or destroyed during IMGUIContainer callback.");
+                return;
+            }
+
             _serializedObject.Update();
             _reorderableList.DoLayoutList();
             _serializedObject.ApplyModifiedProperties();

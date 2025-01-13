@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5412166806840811108}
   - component: {fileID: 3409935057991626489}
   - component: {fileID: 950840742180415047}
+  - component: {fileID: 268822915508997360}
   m_Layer: 0
   m_Name: can_var_2
   m_TagString: Light
@@ -108,8 +109,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.0022514928, y: 0.0022514928, z: 0.0032132452}
-  m_Center: {x: 0, y: 0.0000000019208524, z: -1.364848e-23}
+  m_Size: {x: 0.22514932, y: 0.32132465, z: 0.2251494}
+  m_Center: {x: 0, y: 0, z: -0.00000018998985}
 --- !u!54 &5412166806840811108
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -165,3 +166,28 @@ MonoBehaviour:
   audioCue: {fileID: 11400000, guid: b511d235b9fab43498797dd95b7c6820, type: 2}
   audioCueEventChannel: {fileID: 11400000, guid: c936b54e54a15b7488e0ec39e41b21bb, type: 2}
   audioConfiguration: {fileID: 11400000, guid: b1ac4db5f8d999f47a5e4eaca84c214a, type: 2}
+--- !u!114 &268822915508997360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069827132554078095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47a4e51ed18b3c148abc3ced5ccb5352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Type: 2
+  m_IdleScriptableActions:
+  - {fileID: 11400000, guid: d3f6b7246fe8ba3438c3ce379f91a30c, type: 2}
+  m_WalkScriptableActions:
+  - {fileID: 11400000, guid: d3f6b7246fe8ba3438c3ce379f91a30c, type: 2}
+  m_JumpAscendingScriptableActions:
+  - {fileID: 11400000, guid: d3f6b7246fe8ba3438c3ce379f91a30c, type: 2}
+  m_JumpDescendingScriptableActions:
+  - {fileID: 11400000, guid: d3f6b7246fe8ba3438c3ce379f91a30c, type: 2}
+  m_PullScriptableActions:
+  - {fileID: 11400000, guid: d3f6b7246fe8ba3438c3ce379f91a30c, type: 2}
+  m_PushScriptableActions:
+  - {fileID: 11400000, guid: 51f070b02548242469252586dc48c9df, type: 2}
