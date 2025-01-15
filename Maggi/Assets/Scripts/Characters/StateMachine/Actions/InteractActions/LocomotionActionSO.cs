@@ -31,10 +31,11 @@ public class PullAction : StateAction
 
     public override void OnStateEnter()
     {
-        _interactiveObjectScript = _interactionManager.currentInteractiveObject.GetComponent<InteractiveObject>();
+        if (!_interactionManager.currentInteractiveObject.TryGetComponent(out _interactiveObjectScript))
+            return;
+        
+        //_interactiveObjectScript = _interactionManager.currentInteractiveObject.GetComponent<InteractiveObject>();
         _interactiveObjectScript.Init(_owner);
-
-        //Debug.Log($"Enter {_originSO.state}");
 
         if (_interactiveObjectScript != null)
         {
@@ -71,7 +72,6 @@ public class PullAction : StateAction
 
     public override void OnUpdate()
     {
-        //Debug.Log($"Udpate {_originSO.state}");
         if (_interactiveObjectScript != null)
         {
             switch (_originSO.state)
@@ -107,8 +107,6 @@ public class PullAction : StateAction
 
     public override void OnStateExit()
     {
-        //Debug.Log($"Exit {_originSO.state}");
-
         if (_interactiveObjectScript != null)
         {
             switch (_originSO.state)
