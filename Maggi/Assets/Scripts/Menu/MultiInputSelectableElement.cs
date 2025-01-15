@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-[AddComponentMenu("Pudding/UI/MultiInputSelectableElement")]
+[AddComponentMenu("Maggi/UI/MultiInputSelectableElement")]
 public class MultiInputSelectableElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler
 {
     private MenuSelectionHandler _menuSelectionHandler;

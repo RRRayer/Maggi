@@ -8,8 +8,8 @@ public class SaveLoadSystem : ScriptableObject
     [SerializeField] private SettingsSO _currentSettings = default;
     [SerializeField] private PointStorageSO _pointStorage = default;
 
-    public string saveFilename = "save.pudding";
-    public string backupSaveFilename = "save.pudding.bak";
+    public string saveFilename = "save.maggi";
+    public string backupSaveFilename = "save.maggi.bak";
     public Save saveData = new Save();
 
     private void OnEnable()
