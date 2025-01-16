@@ -5,9 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Settings", menuName = "Settings/Create New Setting SO")]
 public class SettingsSO : ScriptableObject
 {
-    [SerializeField] private float _masterVolume = default;
-    [SerializeField] private float _musicVolume = default;
-    [SerializeField] private float _sfxVolume = default;
+    [SerializeField] private float _masterVolume = 1.0f;
+    [SerializeField] private float _musicVolume = 0.8f;
+    [SerializeField] private float _sfxVolume = 1.0f;
     [SerializeField] private int _resolutionsIndex = default;
     [SerializeField] private bool _isFullscreen = default;
     [SerializeField] int _antiAliasingIndex = default;
