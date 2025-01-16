@@ -100,7 +100,9 @@ public class AudioManager : MonoBehaviour
     {
         // We're assuming the range [0 to 1] becomes [-80dB to 0dB]
         // This doesn't allow values over 0dB
-        return (normalizedValue - 1f) * 80f;
+        float ret = (normalizedValue - 1f) * 80f;
+        Debug.Log($"normalized value = {normalizedValue}, return = {ret}");
+        return ret;
     }
 
     #endregion

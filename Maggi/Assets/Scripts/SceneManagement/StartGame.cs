@@ -48,6 +48,8 @@ public class StartGame : MonoBehaviour
     {
         if (_hasSaveData)
             StartCoroutine(LoadSavedGame());
+        else
+            StartNewGame();
     }
 
     private IEnumerator LoadSavedGame()
