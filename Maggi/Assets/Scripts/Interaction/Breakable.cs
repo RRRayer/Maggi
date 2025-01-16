@@ -17,7 +17,7 @@ public class Breakable : MonoBehaviour
     {
         if (isBroken) return;
 
-        if (collision.gameObject.CompareTag("Light"))
+        if (collision.gameObject.TryGetComponent(out LightObject e))
         {
             count -= 1;
             if (count <= 0)

@@ -22,63 +22,56 @@ public class MoveOnGlobeAction : StateAction
         _interactiveObject = interactiveObject;
     }
 
-    //public override void OnUpdate()
-    //{
-    //    _player.movementVector.x = _player.movementInput.x * _originSO.speed;
-    //    _player.movementVector.y = _player.movementInput.y * _originSO.speed;
-
-    //    float globeRadius = _interactiveObject.transform.localScale.x * 0.5f;
-    //    float playerRadius = _transform.localScale.x * 0.5f;
-    //    float offset = playerRadius + globeRadius;
-
-    //    // Calculation object's normal vector
-    //    Vector3 globeNormal = (_transform.position - _interactiveObject.transform.position).normalized;
-
-    //    // Adjusts player up vector to align with the object's normal vector
-    //    Vector3 forwardVector = Vector3.Cross(-_transform.forward, globeNormal);
-    //    _transform.rotation = Quaternion.LookRotation(forwardVector, globeNormal);
-
-    //    // Adjusts player position to stick on object's surface
-    //    _transform.position = _interactiveObject.transform.position + _transform.up * offset;
-    //}
-
-    Vector3 ProjectMovementOntoSphere(Vector3 movementVector, Vector3 sphereCenter, float sphereRadius)
-    {
-        // 현재 위치에서 구의 중심으로 향하는 방향 벡터 계산
-        Vector3 surfaceNormal = (_transform.position - sphereCenter).normalized;
-
-        // 월드 공간의 이동 벡터를 로컬 공간으로 변환
-        Vector3 localMovement = _transform.InverseTransformDirection(movementVector);
-
-        // 로컬 공간에서 구면 표면에 투영된 이동 벡터 계산
-        Vector3 projectedLocalMovement = Vector3.ProjectOnPlane(localMovement, surfaceNormal);
-
-        // 다시 월드 공간으로 변환
-        Vector3 projectedMovement = _transform.TransformDirection(projectedLocalMovement);
-
-        // 구면 표면 위의 새 위치 계산
-        Vector3 newPosition = sphereCenter + surfaceNormal * sphereRadius + projectedMovement;
-
-        return newPosition - _transform.position;
-    }
-    
     public override void OnUpdate()
     {
+        // 구(InteractiveObject)의 중심과 반지름
         Vector3 sphereCenter = _interactiveObject.transform.position;
         float sphereRadius = _interactiveObject.transform.localScale.x * 0.5f;
-        Vector3 surfaceNormal = (_transform.position - sphereCenter).normalized;
 
+        // 플레이어의 반지름
         float playerRadius = _transform.localScale.x * 0.5f;
-        float offset = playerRadius + sphereRadius;
 
-        Vector3 sphereSurfaceMovement = ProjectMovementOntoSphere(_player.movementInput, sphereCenter, sphereRadius);
-        _player.movementVector = sphereSurfaceMovement;
+        // 현재 플레이어 위치 기준 노멀 벡터(구 표면의 Up 방향)
+        Vector3 normal = (_transform.position - sphereCenter).normalized;
 
-        // Adjusts player up vector to align with the object's normal vector
-        Vector3 forwardVector = Vector3.Cross(-_transform.forward, surfaceNormal);
-        _transform.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(_player.movementInput, Vector3.right).normalized, surfaceNormal);
+        // 구 표면 상에서 '전진(상하) 축'과 '우측(좌우) 축'을 정의
+        // - sphereForward: 노멀과 플레이어의 오른쪽 축(_transform.right)의 외적
+        // - sphereRight: 노멀과 sphereForward의 외적
+        Vector3 sphereForward = Vector3.Cross(_transform.forward, normal).normalized;
+        Vector3 sphereRight = Vector3.Cross(normal, sphereForward).normalized;
 
-        // Adjusts player position to stick on object's surface
-        _transform.position = _interactiveObject.transform.position + _transform.up * offset;
+        // 입력 벡터( x: 좌우, y: 상하 )
+        Vector2 input = _player.movementInput;
+
+        // sphereMovement = (수평이동 * sphereRight) + (수직이동 * sphereForward)
+        Vector3 sphereMovement = (sphereRight * input.x + sphereForward * input.y) * _originSO.speed * Time.deltaTime;
+
+        // 새 위치 = 현재 위치 + 이동 벡터
+        Vector3 newPosition = _transform.position + sphereMovement;
+
+        // 새 위치가 구의 표면에 붙도록 보정
+        Vector3 newNormal = (newPosition - sphereCenter).normalized;
+
+        // 구 표면에 플레이어가 붙도록 거리(구 반지름 + 플레이어 반지름) 유지
+        newPosition = sphereCenter + newNormal * (sphereRadius + playerRadius);
+
+        // 실제 위치 적용
+        _transform.position = newPosition;
+
+        // 캐릭터 Up 방향을 구 표면 노멀에 맞추고,
+        // Forward 방향을 이번 프레임 이동 방향으로 맞춤
+        // (단, 이동량이 거의 없는 경우에는 회전이 급격히 튀지 않도록 보정할 수도 있음)
+        if (sphereMovement.sqrMagnitude > 0.0001f)
+        {
+            _transform.rotation = Quaternion.LookRotation(
+                Vector3.ProjectOnPlane(sphereMovement, newNormal).normalized,
+                newNormal
+            );
+        }
+        else
+        {
+            // 이동이 거의 없는 경우, 그냥 노멀만 맞춰줌 (필요 시 로직 조정)
+            _transform.up = newNormal;
+        }
     }
 }
