@@ -42,12 +42,9 @@ public class EditorColdStartup : MonoBehaviour
     {
         if (_saveLoadSystem != null && !_saveLoadSystem.LoadSaveDataFromDisk())
         {
-            Debug.Log("여기 들어와야 해..");
             Debug.LogWarning("There is no save Fiels");
             _saveLoadSystem.SetNewGameData();
         }
-        else
-            Debug.Log("왜 여기지?");
     }
 
     private void LoadEventChannel(AsyncOperationHandle<SceneInstance> obj)
