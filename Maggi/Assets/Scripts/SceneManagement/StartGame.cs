@@ -47,9 +47,15 @@ public class StartGame : MonoBehaviour
     private void ContinuePreviousGame()
     {
         if (_hasSaveData)
+        {
             StartCoroutine(LoadSavedGame());
+            Debug.Log("Load Saved Game");
+        }
         else
+        {
             StartNewGame();
+            Debug.Log("Load New Game");
+        }
     }
 
     private IEnumerator LoadSavedGame()

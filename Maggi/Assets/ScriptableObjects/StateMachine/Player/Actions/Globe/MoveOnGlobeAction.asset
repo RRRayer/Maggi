@@ -13,4 +13,15 @@ MonoBehaviour:
   m_Name: MoveOnGlobeAction
   m_EditorClassIdentifier: 
   description: 
-  speed: 3
+  moveSpeedTheta: 1
+  moveSpeedPhi: 1
+  clampTheta: 1
+  minTheta: 1
+  maxTheta: 2
+  clampPhi: 1
+  minPhi: 3.5
+  maxPhi: 6
+  ignoreHorizontalNearPoles: 1
+  poleThreshold: 0.01
+  useRightAsForward: 1
+  rotationSpeed: 7
