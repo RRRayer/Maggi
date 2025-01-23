@@ -1,6 +1,6 @@
-using Maggi.StateMachine.ScriptableObjects;
+﻿using Maggi.StateMachine.ScriptableObjects;
 
-public class #SCRIPTNAME# : InteractiveObject
+public class CubeObject : InteractiveObject
 {
     public override void OnIdleStateEnter()
     {

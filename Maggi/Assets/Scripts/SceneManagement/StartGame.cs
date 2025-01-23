@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -20,7 +19,7 @@ public class StartGame : MonoBehaviour
 
     private bool _hasSaveData;
 
-    private void Start()
+    private void OnEnable()
     {
         _hasSaveData = _saveLoadSystem.LoadSaveDataFromDisk();
 
@@ -49,12 +48,10 @@ public class StartGame : MonoBehaviour
         if (_hasSaveData)
         {
             StartCoroutine(LoadSavedGame());
-            Debug.Log("Load Saved Game");
         }
         else
         {
             StartNewGame();
-            Debug.Log("Load New Game");
         }
     }
 
@@ -64,6 +61,8 @@ public class StartGame : MonoBehaviour
 
         var locationGuid = _saveLoadSystem.saveData._locationId;
         var asyncOperationHandle = Addressables.LoadAssetAsync<LocationSO>(locationGuid);
+
+        Debug.Log($"pawn shop의 GUID = {_locationsToLoad.Guid}, 저장된 GUID = {locationGuid}");
 
         yield return asyncOperationHandle;
 
