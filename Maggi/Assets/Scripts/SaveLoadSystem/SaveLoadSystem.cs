@@ -30,6 +30,7 @@ public class SaveLoadSystem : ScriptableObject
         if (locationSO != null)
         {
             saveData._locationId = locationSO.Guid;
+            Debug.Log($"CachedLoadLocation에서 GUID 저장 = {locationSO.Guid}");
         }
 
         SaveDataToDisk();

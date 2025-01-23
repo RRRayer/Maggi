@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1924643375965660524}
   - component: {fileID: 7091962146604753357}
   m_Layer: 0
-  m_Name: SavePoint00
+  m_Name: SavePoint - PawnShop
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5712b69ada5d40546836ed8e581f610a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _location: {fileID: 11400000, guid: 49e8f7cf3a20943409a07124be123def, type: 2}
   _savePoint: {fileID: 11400000, guid: 51491609cde22c74fa7006cdec35f28d, type: 2}
   _pointStorage: {fileID: 11400000, guid: aff70ca1889daf04f96230e35d028773, type: 2}
   _saveLoadSystem: {fileID: 11400000, guid: 014c2ad714d63294c975973c4b3147ca, type: 2}
