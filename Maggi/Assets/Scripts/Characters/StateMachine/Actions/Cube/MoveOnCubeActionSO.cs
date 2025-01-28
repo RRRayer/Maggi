@@ -44,14 +44,14 @@ public class MoveOnCubeAction : StateAction
         if (!_cubeTransform)
             Debug.LogWarning("Cube Transform not assigned!");
 
-        // 초기 면 노멀 설정 (단순히 cubeTransform.up, 없으면 Vector3.up)
+        // 초기 면 노멀
         _currentFaceNormal = (_cubeTransform) ? _cubeTransform.up : Vector3.up;
         _isEdgeTransition = false;
     }
 
     public override void OnUpdate()
     {
-        // 1) 모서리 전환 중이면, 회전 보간만 처리
+        // 1) 모서리 전환 중이면 회전 보간만 처리
         if (_isEdgeTransition)
         {
             UpdateEdgeTransition();
@@ -62,39 +62,37 @@ public class MoveOnCubeAction : StateAction
         if (!_cubeTransform)
             return;
 
-        // 3) 현재 면 판별
+        // 3) 현재 면 판별 (ex. X/Y/Z 면 중 어디에 붙었는지)
         _currentFaceNormal = GetClosestFaceNormal(_transform.position, _cubeTransform);
 
         // 4) 이동 입력
-        Vector3 input = _player.movementInput;
+        Vector3 input = _player.movementInput; // (x: 좌우, z: 전후)
         MoveOnFace(input);
 
-        // 5) 모서리(Edge) 근처인지 확인 → 인접 면으로 부드럽게 전환 시도
+        // 5) 모서리(Edge) 근처인지 확인 → 인접 면으로 부드럽게 전환
         CheckAndStartEdgeTransition();
     }
 
     /// <summary>
-    /// 모서리 전환 중일 때, OnUpdate()에서 매 프레임 회전 보간 진행
+    /// 모서리 전환 중이면, OnUpdate()에서 매 프레임 회전 보간
     /// </summary>
     private void UpdateEdgeTransition()
     {
-        // 1) 시간 경과
         _edgeTransitionElapsed += Time.deltaTime;
         float t = _edgeTransitionElapsed / _originSO.edgeTransitionTime;
         if (t >= 1f)
         {
-            // 전환 완료
             t = 1f;
             _isEdgeTransition = false;
 
-            // 최종 회전 설정
+            // 전환 완료 → 최종 회전
             _transform.rotation = Quaternion.Slerp(_startRotation, _endRotation, t);
 
             // 새 노멀 적용
             _currentFaceNormal = _newNormal;
             _transform.up = _newNormal;
 
-            // 위치 재보정
+            // 위치 보정
             StickToFace(_transform, _cubeTransform, _currentFaceNormal);
         }
         else
@@ -105,15 +103,20 @@ public class MoveOnCubeAction : StateAction
     }
 
     /// <summary>
-    /// 면 위에서 이동 처리 (이동 후 StickToFace로 클램프, Up 정렬)
+    /// 면 위에서 이동 처리
     /// </summary>
     private void MoveOnFace(Vector3 input)
     {
-        // 면 위에서 이동할 축 계산
+        // "Forward = 면∩YZ 교선, Right = 면∩XY 교선"
+        // 교선 = cross(면노멀, 평면노멀)
         ComputeFaceAxes(_currentFaceNormal, out Vector3 faceRight, out Vector3 faceForward);
 
+        // 이동 벡터
+        // forward => input.z, right => input.x
+        Vector3 moveDir = (faceForward * input.z + faceRight * input.x)
+                          * _originSO.moveSpeed * Time.deltaTime;
+
         // 이동
-        Vector3 moveDir = (faceRight * input.x + faceForward * input.z) * _originSO.moveSpeed * Time.deltaTime;
         _transform.position += moveDir;
 
         // 면 표면에 붙이기
@@ -124,19 +127,17 @@ public class MoveOnCubeAction : StateAction
     }
 
     /// <summary>
-    /// 모서리 부근이면 인접 면 판별 → 전환 준비
+    /// 모서리 근처면 인접 면 판별 → 전환 준비
     /// </summary>
     private void CheckAndStartEdgeTransition()
     {
         Vector3 localPos = _cubeTransform.InverseTransformPoint(_transform.position);
         Vector3 half = _cubeTransform.localScale * 0.5f;
 
-        float eps = 0.01f;  // 모서리에 근접한 threshold
-
-        // 단순히 x, y, z 축 각각 체크
+        float eps = 0.01f;
         if (Mathf.Abs(Mathf.Abs(localPos.x) - half.x) < eps
-            || Mathf.Abs(Mathf.Abs(localPos.y) - half.y) < eps
-            || Mathf.Abs(Mathf.Abs(localPos.z) - half.z) < eps)
+         || Mathf.Abs(Mathf.Abs(localPos.y) - half.y) < eps
+         || Mathf.Abs(Mathf.Abs(localPos.z) - half.z) < eps)
         {
             Vector3 newNormal = GetClosestFaceNormal(_transform.position, _cubeTransform);
             if (newNormal != _currentFaceNormal)
@@ -147,25 +148,21 @@ public class MoveOnCubeAction : StateAction
     }
 
     /// <summary>
-    /// "현재 면 노멀 → 새 면 노멀" 로 모서리 전환을 시작하기
+    /// 실제 면 전환 시작
     /// </summary>
     private void BeginEdgeTransition(Vector3 oldNormal, Vector3 newNormal)
     {
-        // 1) 각도 계산
         float angle = Vector3.Angle(oldNormal, newNormal);
         if (angle < 0.01f)
         {
-            // 거의 차이 없으면, 그냥 갱신만
             _currentFaceNormal = newNormal;
             _transform.up = newNormal;
             StickToFace(_transform, _cubeTransform, _currentFaceNormal);
             return;
         }
 
-        // 2) 회전 축
         Vector3 axis = Vector3.Cross(oldNormal, newNormal).normalized;
 
-        // 3) 전환 상태 세팅
         _isEdgeTransition = true;
         _edgeTransitionElapsed = 0f;
 
@@ -174,48 +171,41 @@ public class MoveOnCubeAction : StateAction
         _edgeAxis = axis;
         _edgeAngle = angle;
 
-        // 4) 시작 회전, 끝 회전
         _startRotation = _transform.rotation;
         _endRotation = Quaternion.AngleAxis(_edgeAngle, _edgeAxis) * _startRotation;
     }
 
     /// <summary>
-    /// _cubeTransform 기준으로, "가장 가까운 면(Face)" 노멀 반환
+    /// 현재 위치에서 가장 가까운 면(±X/±Y/±Z) 노멀을 구함
     /// </summary>
     private Vector3 GetClosestFaceNormal(Vector3 playerPos, Transform cube)
     {
         Vector3 localPos = cube.InverseTransformPoint(playerPos);
         Vector3 half = cube.localScale * 0.5f;
 
-        // 정규화해서 0~1 스케일로 환산
         float ratioX = Mathf.Abs(localPos.x) / half.x;
         float ratioY = Mathf.Abs(localPos.y) / half.y;
         float ratioZ = Mathf.Abs(localPos.z) / half.z;
 
-        // 가장 큰 ratio를 갖는 축이 "현재 붙어 있는 면" 
         if (ratioX > ratioY && ratioX > ratioZ)
         {
-            // X 면
             if (localPos.x >= 0) return cube.TransformDirection(Vector3.right);
             else return cube.TransformDirection(Vector3.left);
         }
         else if (ratioY > ratioX && ratioY > ratioZ)
         {
-            // Y 면
             if (localPos.y >= 0) return cube.TransformDirection(Vector3.up);
             else return cube.TransformDirection(Vector3.down);
         }
         else
         {
-            // Z 면
             if (localPos.z >= 0) return cube.TransformDirection(Vector3.forward);
             else return cube.TransformDirection(Vector3.back);
         }
-
     }
 
     /// <summary>
-    /// "면 평면" 위에 클램프 (±halfExtent)에 붙이기
+    /// 면 평면에 위치 고정 (±halfExtent)
     /// </summary>
     private void StickToFace(Transform player, Transform cube, Vector3 faceNormal)
     {
@@ -229,38 +219,44 @@ public class MoveOnCubeAction : StateAction
 
         if (Mathf.Abs(dotX) > 0.99f)
         {
-            // ±X 면
             localPos.x = (dotX > 0f) ? +half.x : -half.x;
         }
         else if (Mathf.Abs(dotY) > 0.99f)
         {
-            // ±Y 면
             localPos.y = (dotY > 0f) ? +half.y : -half.y;
         }
         else
         {
-            // ±Z 면
             localPos.z = (dotZ > 0f) ? +half.z : -half.z;
         }
-
-        Debug.Log(localPos);
 
         Vector3 newWorldPos = cube.TransformPoint(localPos);
         player.position = newWorldPos;
     }
 
     /// <summary>
-    /// 면 노멀(faceNormal)에 대해 '수평 이동'할 수 있는 두 축(faceRight, faceForward) 계산
+    /// 면 노멀 faceNormal이 있을 때,
+    /// 1) faceForward = (면∩YZ 교선) 을 '양의 방향'으로 보정
+    /// 2) faceRight   = (면∩XY 교선) 을 '양의 방향'으로 보정
     /// </summary>
     private void ComputeFaceAxes(Vector3 faceNormal, out Vector3 faceRight, out Vector3 faceForward)
     {
-        faceForward = Vector3.Cross(faceNormal, Vector3.up);
-        if (faceForward.sqrMagnitude < 0.001f)
-        {
-            faceForward = Vector3.Cross(faceNormal, Vector3.forward);
-        }
-        faceForward.Normalize();
+        // YZ 평면 normal => (1,0,0)
+        Vector3 yzNormal = _cubeTransform.right;
+        // XY 평면 normal => (0,0,1)
+        Vector3 xyNormal = _cubeTransform.forward;
 
-        faceRight = Vector3.Cross(faceNormal, faceForward).normalized;
+        // 1) 교선 계산
+        //    - forward: 교선( faceNormal ∩ YZ ), = cross(faceNormal, yzNormal)
+        //    - right:   교선( faceNormal ∩ XY ), = cross(faceNormal, xyNormal)
+        faceForward = -Vector3.Cross(faceNormal, yzNormal);
+        faceRight = Vector3.Cross(faceNormal, xyNormal);
+
+        // 혹시 교선이 0벡터?
+        if (faceForward.sqrMagnitude < 1e-6f) faceForward = Vector3.forward;
+        else faceForward.Normalize();
+
+        if (faceRight.sqrMagnitude < 1e-6f) faceRight = Vector3.right;
+        else faceRight.Normalize();
     }
 }

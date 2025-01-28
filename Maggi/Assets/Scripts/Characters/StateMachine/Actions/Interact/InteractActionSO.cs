@@ -10,9 +10,9 @@ public class InteractAction : StateAction
 {
     private InteractionManager _interactionManager;
 
-    public override void Awake(StateMachine stateMachine)
+    public override void Awake(InteractiveObject interactiveObject, GameObject owner)
     {
-        _interactionManager = stateMachine.GetComponent<InteractionManager>();
+        _interactionManager = owner.GetComponent<InteractionManager>();
     }
 
     public override void OnUpdate() { }

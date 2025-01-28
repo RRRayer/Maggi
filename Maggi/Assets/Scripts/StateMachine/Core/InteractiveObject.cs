@@ -4,12 +4,12 @@ namespace Maggi.StateMachine.ScriptableObjects
 {
     public enum InteractionType
     {
-        None, General, NonPossession, Possession,
+        None, Normal, NonPossession, Possession,
     }
 
     public abstract class InteractiveObject : MonoBehaviour
     {
-        public InteractionType m_Type = InteractionType.General;
+        public InteractionType m_Type = InteractionType.Normal;
 
         public StateActionSO[] m_IdleScriptableActions;
         public StateActionSO[] m_WalkScriptableActions;
