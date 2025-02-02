@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5931431540102342318
+--- !u!1 &4024718771961965822
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4131094516211553955}
-  - component: {fileID: 7183656413033488380}
-  - component: {fileID: 8276704094149914099}
-  - component: {fileID: 8845399736921498153}
-  - component: {fileID: 852873266168437515}
-  - component: {fileID: 5639426860044329396}
+  - component: {fileID: 5511720661013773488}
+  - component: {fileID: 5058419617481461171}
+  - component: {fileID: 5224457513795692657}
+  - component: {fileID: 8352705882369976933}
+  - component: {fileID: 1709286070437417529}
+  - component: {fileID: 5913505916711145257}
   m_Layer: 7
-  m_Name: Interactable_Wall
+  m_Name: Interactable_Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4131094516211553955
+--- !u!4 &5511720661013773488
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5931431540102342318}
+  m_GameObject: {fileID: 4024718771961965822}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.40744862, y: 2.785696, z: 2.1307385}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -0.88, y: 0, z: -3.42}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7183656413033488380
+--- !u!33 &5058419617481461171
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5931431540102342318}
+  m_GameObject: {fileID: 4024718771961965822}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &8276704094149914099
+--- !u!23 &5224457513795692657
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5931431540102342318}
+  m_GameObject: {fileID: 4024718771961965822}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -66,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 40906e3d30eb76e44a8b3094de53d070, type: 3}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -88,13 +88,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8845399736921498153
+--- !u!65 &8352705882369976933
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5931431540102342318}
+  m_GameObject: {fileID: 4024718771961965822}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -109,13 +109,13 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &852873266168437515
+--- !u!54 &1709286070437417529
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5931431540102342318}
+  m_GameObject: {fileID: 4024718771961965822}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
@@ -131,44 +131,32 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5639426860044329396
+--- !u!114 &5913505916711145257
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5931431540102342318}
+  m_GameObject: {fileID: 4024718771961965822}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e5c21302ba89f84ea6d24215494ba62, type: 3}
+  m_Script: {fileID: 11500000, guid: e7a2f92fac2b4f944a0fb4a652e13991, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Type: 3
   m_IdleScriptableActions:
   - {fileID: 11400000, guid: 367707edb19f69e4598efcaca59810a3, type: 2}
-  - {fileID: 11400000, guid: e437fddb2710d0546a1bd4bd8698924d, type: 2}
   m_WalkScriptableActions:
-  - {fileID: 11400000, guid: 02bd392840918574abcac519f1e18269, type: 2}
-  - {fileID: 11400000, guid: 5bde09847cdb4fa49bbc30ed70326dc1, type: 2}
-  - {fileID: 11400000, guid: e437fddb2710d0546a1bd4bd8698924d, type: 2}
+  - {fileID: 11400000, guid: 8f43ae2e5206c704a959b6fc47c9dc8a, type: 2}
   - {fileID: 11400000, guid: 7fea5e8f270ca5f4181b0e39c43054b5, type: 2}
-  - {fileID: 11400000, guid: 3905cd1c9bc1ce344b4bb1c5c598cc67, type: 2}
+  - {fileID: 11400000, guid: 5bde09847cdb4fa49bbc30ed70326dc1, type: 2}
   m_JumpAscendingScriptableActions: []
   m_JumpDescendingScriptableActions: []
-  m_PullScriptableActions:
-  - {fileID: 11400000, guid: 02bd392840918574abcac519f1e18269, type: 2}
-  - {fileID: 11400000, guid: 5bde09847cdb4fa49bbc30ed70326dc1, type: 2}
-  - {fileID: 11400000, guid: 465aba97b25281d4bbe65e3a8d451451, type: 2}
-  - {fileID: 11400000, guid: 1ed06a678caf7d148ac667f23da3cf05, type: 2}
+  m_PullScriptableActions: []
   m_PushScriptableActions:
   - {fileID: 11400000, guid: 1254a36a4f8a0704a88b4702ccccedc4, type: 2}
-  - {fileID: 11400000, guid: 952a388b52af2044dad8c6ad21288d69, type: 2}
-  - {fileID: 11400000, guid: 8aa6a2dd48f78bf47979d320033651d2, type: 2}
-  - {fileID: 11400000, guid: 5bde09847cdb4fa49bbc30ed70326dc1, type: 2}
-  - {fileID: 11400000, guid: ce28c71c3ec136c4ab3fc8bb642a1f4a, type: 2}
-  - {fileID: 11400000, guid: aaa80a6bcb8d44f49a6c38c1684fdde2, type: 2}

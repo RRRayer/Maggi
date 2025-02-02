@@ -7,6 +7,7 @@ public class MoveOnCubeActionSO : StateActionSO
 {
     public float moveSpeed = 3f;             // 면 위에서의 이동 속도
     public float edgeTransitionTime = 0.25f; // 모서리 넘어갈 때 부드럽게 회전하는 데 걸리는 시간
+    public float turnSmoothTime = 5.0f;
 
     protected override StateAction CreateAction() => new MoveOnCubeAction();
 }
@@ -18,6 +19,7 @@ public class MoveOnCubeAction : StateAction
     private Player _player;
     private Transform _transform;
     private Transform _cubeTransform;   // 정육면체(또는 직사육면체)
+    private const float ROTATION_TRESHOLD = 0.02f;
 
     // 현재 서 있는 면의 노멀
     private Vector3 _currentFaceNormal;
@@ -51,12 +53,13 @@ public class MoveOnCubeAction : StateAction
 
     public override void OnUpdate()
     {
-        // 1) 모서리 전환 중이면 회전 보간만 처리
-        if (_isEdgeTransition)
-        {
-            UpdateEdgeTransition();
-            return;
-        }
+        //// 1) 모서리 전환 중이면 회전 보간만 처리
+        //if (_isEdgeTransition)
+        //{
+        //    Debug.Log("#########edge transition...###########");
+        //    UpdateEdgeTransition();
+        //    return;
+        //}
 
         // 2) (정상 이동) Cube가 없다면 중단
         if (!_cubeTransform)
@@ -70,37 +73,37 @@ public class MoveOnCubeAction : StateAction
         MoveOnFace(input);
 
         // 5) 모서리(Edge) 근처인지 확인 → 인접 면으로 부드럽게 전환
-        CheckAndStartEdgeTransition();
+        //CheckAndStartEdgeTransition();
     }
 
-    /// <summary>
-    /// 모서리 전환 중이면, OnUpdate()에서 매 프레임 회전 보간
-    /// </summary>
-    private void UpdateEdgeTransition()
-    {
-        _edgeTransitionElapsed += Time.deltaTime;
-        float t = _edgeTransitionElapsed / _originSO.edgeTransitionTime;
-        if (t >= 1f)
-        {
-            t = 1f;
-            _isEdgeTransition = false;
+    ///// <summary>
+    ///// 모서리 전환 중이면, OnUpdate()에서 매 프레임 회전 보간
+    ///// </summary>
+    //private void UpdateEdgeTransition()
+    //{
+    //    _edgeTransitionElapsed += Time.deltaTime;
+    //    float t = _edgeTransitionElapsed / _originSO.edgeTransitionTime;
+    //    if (t >= 1f)
+    //    {
+    //        t = 1f;
+    //        _isEdgeTransition = false;
 
-            // 전환 완료 → 최종 회전
-            _transform.rotation = Quaternion.Slerp(_startRotation, _endRotation, t);
+    //        // 전환 완료 → 최종 회전
+    //        _transform.rotation = Quaternion.Slerp(_startRotation, _endRotation, t);
 
-            // 새 노멀 적용
-            _currentFaceNormal = _newNormal;
-            _transform.up = _newNormal;
+    //        // 새 노멀 적용
+    //        _currentFaceNormal = _newNormal;
+    //        _transform.up = _newNormal;
 
-            // 위치 보정
-            StickToFace(_transform, _cubeTransform, _currentFaceNormal);
-        }
-        else
-        {
-            // 전환 진행 중
-            _transform.rotation = Quaternion.Slerp(_startRotation, _endRotation, t);
-        }
-    }
+    //        // 위치 보정
+    //        StickToFace(_transform, _cubeTransform, _currentFaceNormal);
+    //    }
+    //    else
+    //    {
+    //        // 전환 진행 중
+    //        _transform.rotation = Quaternion.Slerp(_startRotation, _endRotation, t);
+    //    }
+    //}
 
     /// <summary>
     /// 면 위에서 이동 처리
@@ -113,67 +116,77 @@ public class MoveOnCubeAction : StateAction
 
         // 이동 벡터
         // forward => input.z, right => input.x
-        Vector3 moveDir = (faceForward * input.z + faceRight * input.x)
-                          * _originSO.moveSpeed * Time.deltaTime;
-
-        // 이동
-        _transform.position += moveDir;
+        Vector3 newMovementVector = (faceForward * input.z + faceRight * input.x).normalized * _originSO.moveSpeed;
+        _player.movementVector = newMovementVector;
 
         // 면 표면에 붙이기
         StickToFace(_transform, _cubeTransform, _currentFaceNormal);
 
-        // Up = faceNormal
-        _transform.up = _currentFaceNormal;
-    }
+        _transform.rotation = Quaternion.FromToRotation(_transform.up, _currentFaceNormal) * _transform.rotation;
 
-    /// <summary>
-    /// 모서리 근처면 인접 면 판별 → 전환 준비
-    /// </summary>
-    private void CheckAndStartEdgeTransition()
-    {
-        Vector3 localPos = _cubeTransform.InverseTransformPoint(_transform.position);
-        Vector3 half = _cubeTransform.localScale * 0.5f;
-
-        float eps = 0.01f;
-        if (Mathf.Abs(Mathf.Abs(localPos.x) - half.x) < eps
-         || Mathf.Abs(Mathf.Abs(localPos.y) - half.y) < eps
-         || Mathf.Abs(Mathf.Abs(localPos.z) - half.z) < eps)
+        // player를 이동 벡터 방향으로 회전
+        if (_player.movementVector.sqrMagnitude >= ROTATION_TRESHOLD)
         {
-            Vector3 newNormal = GetClosestFaceNormal(_transform.position, _cubeTransform);
-            if (newNormal != _currentFaceNormal)
-            {
-                BeginEdgeTransition(_currentFaceNormal, newNormal);
-            }
+            Quaternion targetRotation = Quaternion.LookRotation(newMovementVector, _currentFaceNormal);
+            // _transform.up을 기준으로 90도 회전
+            Quaternion additionalRotation = Quaternion.AngleAxis(-90.0f, _transform.up);
+
+            // 현재 회전에 추가 회전을 곱함
+            targetRotation = additionalRotation * targetRotation;
+
+            // 3) slerp
+            _transform.rotation = Quaternion.Slerp(_transform.rotation, targetRotation, _originSO.turnSmoothTime * Time.deltaTime);
         }
     }
 
-    /// <summary>
-    /// 실제 면 전환 시작
-    /// </summary>
-    private void BeginEdgeTransition(Vector3 oldNormal, Vector3 newNormal)
-    {
-        float angle = Vector3.Angle(oldNormal, newNormal);
-        if (angle < 0.01f)
-        {
-            _currentFaceNormal = newNormal;
-            _transform.up = newNormal;
-            StickToFace(_transform, _cubeTransform, _currentFaceNormal);
-            return;
-        }
+    ///// <summary>
+    ///// 모서리 근처면 인접 면 판별 → 전환 준비
+    ///// </summary>
+    //private void CheckAndStartEdgeTransition()
+    //{
+    //    Vector3 localPos = _cubeTransform.InverseTransformPoint(_transform.position);
+    //    Vector3 half = _cubeTransform.localScale * 0.5f;
 
-        Vector3 axis = Vector3.Cross(oldNormal, newNormal).normalized;
+    //    float eps = 0.01f;
+    //    if (Mathf.Abs(Mathf.Abs(localPos.x) - half.x) < eps
+    //     || Mathf.Abs(Mathf.Abs(localPos.y) - half.y) < eps
+    //     || Mathf.Abs(Mathf.Abs(localPos.z) - half.z) < eps)
+    //    {
+    //        Vector3 newNormal = GetClosestFaceNormal(_transform.position, _cubeTransform);
+    //        if (newNormal != _currentFaceNormal)
+    //        {
+    //            BeginEdgeTransition(_currentFaceNormal, newNormal);
+    //        }
+    //    }
+    //}
 
-        _isEdgeTransition = true;
-        _edgeTransitionElapsed = 0f;
+    ///// <summary>
+    ///// 실제 면 전환 시작
+    ///// </summary>
+    //private void BeginEdgeTransition(Vector3 oldNormal, Vector3 newNormal)
+    //{
+    //    float angle = Vector3.Angle(oldNormal, newNormal);
+    //    if (angle < 0.01f)
+    //    {
+    //        _currentFaceNormal = newNormal;
+    //        _transform.up = newNormal;
+    //        StickToFace(_transform, _cubeTransform, _currentFaceNormal);
+    //        return;
+    //    }
 
-        _oldNormal = oldNormal;
-        _newNormal = newNormal;
-        _edgeAxis = axis;
-        _edgeAngle = angle;
+    //    Vector3 axis = Vector3.Cross(oldNormal, newNormal).normalized;
 
-        _startRotation = _transform.rotation;
-        _endRotation = Quaternion.AngleAxis(_edgeAngle, _edgeAxis) * _startRotation;
-    }
+    //    _isEdgeTransition = true;
+    //    _edgeTransitionElapsed = 0f;
+
+    //    _oldNormal = oldNormal;
+    //    _newNormal = newNormal;
+    //    _edgeAxis = axis;
+    //    _edgeAngle = angle;
+
+    //    _startRotation = _transform.rotation;
+    //    _endRotation = Quaternion.AngleAxis(_edgeAngle, _edgeAxis) * _startRotation;
+    //}
 
     /// <summary>
     /// 현재 위치에서 가장 가까운 면(±X/±Y/±Z) 노멀을 구함
@@ -209,9 +222,9 @@ public class MoveOnCubeAction : StateAction
     /// </summary>
     private void StickToFace(Transform player, Transform cube, Vector3 faceNormal)
     {
-        Vector3 localPos = cube.InverseTransformPoint(player.position);
         Vector3 localNormal = cube.InverseTransformDirection(faceNormal);
-        Vector3 half = cube.localScale * 0.5f;
+        Vector3 offset = (cube.localScale + player.localScale) * 0.5f;
+        Vector3 newPosition = player.position;
 
         float dotX = Vector3.Dot(localNormal, Vector3.right);
         float dotY = Vector3.Dot(localNormal, Vector3.up);
@@ -219,19 +232,18 @@ public class MoveOnCubeAction : StateAction
 
         if (Mathf.Abs(dotX) > 0.99f)
         {
-            localPos.x = (dotX > 0f) ? +half.x : -half.x;
+            newPosition.x = (dotX > 0f) ? cube.position.x + offset.x : cube.position.x - offset.x;
         }
         else if (Mathf.Abs(dotY) > 0.99f)
         {
-            localPos.y = (dotY > 0f) ? +half.y : -half.y;
+            newPosition.y = (dotY > 0f) ? cube.position.y + offset.y : cube.position.y - offset.y;
         }
         else
         {
-            localPos.z = (dotZ > 0f) ? +half.z : -half.z;
+            newPosition.z = (dotZ > 0f) ? cube.position.z + offset.z : cube.position.z - offset.z;
         }
 
-        Vector3 newWorldPos = cube.TransformPoint(localPos);
-        player.position = newWorldPos;
+        player.position = newPosition;
     }
 
     /// <summary>
