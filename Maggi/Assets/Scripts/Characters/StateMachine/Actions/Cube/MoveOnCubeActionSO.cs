@@ -44,11 +44,19 @@ public class MoveOnCubeAction : StateAction
     public override void OnStateEnter()
     {
         if (!_cubeTransform)
+        {
             Debug.LogWarning("Cube Transform not assigned!");
+            return;
+        }
 
         // 초기 면 노멀
-        _currentFaceNormal = (_cubeTransform) ? _cubeTransform.up : Vector3.up;
-        _isEdgeTransition = false;
+        _currentFaceNormal = GetClosestFaceNormal(_transform.position, _cubeTransform);
+
+        // 면 표면에 붙이기
+        StickToFace(_transform, _cubeTransform, _currentFaceNormal);
+
+        //// 모서리 전환 Flag
+        //_isEdgeTransition = false;
     }
 
     public override void OnUpdate()
@@ -230,18 +238,12 @@ public class MoveOnCubeAction : StateAction
         float dotY = Vector3.Dot(localNormal, Vector3.up);
         float dotZ = Vector3.Dot(localNormal, Vector3.forward);
 
-        if (Mathf.Abs(dotX) > 0.99f)
-        {
+        if (Mathf.Abs(dotX) > 0.99f) 
             newPosition.x = (dotX > 0f) ? cube.position.x + offset.x : cube.position.x - offset.x;
-        }
-        else if (Mathf.Abs(dotY) > 0.99f)
-        {
+        else if (Mathf.Abs(dotY) > 0.99f) 
             newPosition.y = (dotY > 0f) ? cube.position.y + offset.y : cube.position.y - offset.y;
-        }
-        else
-        {
+        else 
             newPosition.z = (dotZ > 0f) ? cube.position.z + offset.z : cube.position.z - offset.z;
-        }
 
         player.position = newPosition;
     }

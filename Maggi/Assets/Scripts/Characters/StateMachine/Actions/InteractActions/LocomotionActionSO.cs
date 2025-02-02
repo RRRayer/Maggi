@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using Maggi.StateMachine;
 using Maggi.StateMachine.ScriptableObjects;
-using static PullActionSO;
+using static LocomotionActionSO;
 
 [CreateAssetMenu(fileName = "PullAction", menuName = "State Machines/Actions/Pull Action")]
-public class PullActionSO : StateActionSO
+public class LocomotionActionSO : StateActionSO
 {
     public Locomotion state;
 
@@ -18,7 +18,7 @@ public class PullActionSO : StateActionSO
 
 public class PullAction : StateAction
 {
-    private PullActionSO _originSO => (PullActionSO)base.OriginSO;
+    private LocomotionActionSO _originSO => (LocomotionActionSO)base.OriginSO;
     private InteractionManager _interactionManager;
 	private InteractiveObject _interactiveObjectScript;
     private GameObject _owner;
