@@ -13,10 +13,6 @@ MonoBehaviour:
   m_Name: MoveOnCube
   m_EditorClassIdentifier: 
   description: 
-  speed: 4
-  wallLayerMask:
-    serializedVersion: 2
-    m_Bits: 128
-  turnSmoothTime: 0.2
-  sphereRadius: 0.5
-  sphereCastDistance: 1.5
+  moveSpeed: 1
+  edgeTransitionTime: 0.25
+  turnSmoothTime: 10
