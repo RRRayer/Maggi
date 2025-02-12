@@ -61,6 +61,7 @@ public class InteractionManager : MonoBehaviour
 
     private void OnPushInitiated()
     {
+        Debug.Log("Push Input");
         pushInput = true;
 
         // Push Effect
