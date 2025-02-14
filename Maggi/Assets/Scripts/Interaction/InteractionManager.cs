@@ -42,16 +42,6 @@ public class InteractionManager : MonoBehaviour
 
         currentInteractionType = _potentialInteractions.First.Value.type;
         currentInteractiveObject = _potentialInteractions.First.Value.interactiveObject;
-
-        // Pull Effect
-        if (currentInteractiveObject.TryGetComponent(out ToggleEffect effect))
-        {
-            effect.ToggleMaterial(true);
-        }
-        else
-        {
-            //Debug.LogWarning("There is no ToggleEffect _ InteractionManager.cs");
-        }
     }
 
     private void OnPullCancelInitiated()
@@ -62,19 +52,6 @@ public class InteractionManager : MonoBehaviour
     private void OnPushInitiated()
     {
         pushInput = true;
-
-        // Push Effect
-        if (currentInteractiveObject != null)
-        {
-            if (currentInteractiveObject.TryGetComponent(out ToggleEffect effect))
-            {
-                effect.ToggleMaterial(false);
-            }
-            else
-            {
-                //Debug.LogWarning("There is no ToggleEffect _ InteractionManager.cs");
-            }
-        }
     }
 
     private void OnPushCancelInitiated()
@@ -94,6 +71,7 @@ public class InteractionManager : MonoBehaviour
     {
         Interaction newPotentialInteraction = new Interaction(InteractionType.None, obj);
 
+        // Zone Trigger 범위에 있는 오브젝트를 가져옴
         if (obj.TryGetComponent(out InteractiveObject io))
         {
             newPotentialInteraction.type = io.m_Type;
