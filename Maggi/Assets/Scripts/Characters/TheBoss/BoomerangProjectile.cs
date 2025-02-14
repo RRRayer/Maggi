@@ -3,28 +3,22 @@ using UnityEngine;
 
 public class BoomerangProjectile : MonoBehaviour
 {
+    [SerializeField] private InputReader _inputReader = default;
+
     [Header("Movement Settings")]
     [SerializeField] private float _moveDuration = 1.0f;
     [SerializeField] private float _arcHeight = 2.0f;
 
-    [Header("References")]
-    [SerializeField] private TestBoss _boss;
-
+    private TestBoss _boss;
     private Transform _start;
     private Transform _target;
-
     private Coroutine _currentCoroutine; // 현재 진행 중인 코루틴(Throw or Return)
 
-    public void Init(TestBoss boss, Transform target, Transform start = default)
+    public void Init(TestBoss boss, Transform start, Transform target)
     {
         _boss = boss;
         _start = start;
         _target = target;
-    }
-
-    public void SetStartPoint(Transform start)
-    {
-        _start = start;
     }
 
     public void StartThrow()
@@ -44,7 +38,13 @@ public class BoomerangProjectile : MonoBehaviour
             StopCoroutine(_currentCoroutine);
 
         // 이동 코루틴 시작 (시작점/목표점을 바꿔서 사용)
-        _currentCoroutine = StartCoroutine(MoveToTarget(_target, _start));
+        _currentCoroutine = StartCoroutine(MoveToTarget(_target, _boss.transform));
+
+        // 시간 정상화
+        Time.timeScale = 1.0f;
+
+        // 우클릭 이벤트 제거
+        _inputReader.PushEvent -= StartReturn;
     }
 
     private IEnumerator MoveToTarget(Transform startPos, Transform endPos)
@@ -73,6 +73,18 @@ public class BoomerangProjectile : MonoBehaviour
         if (_boss != null)
         {
             _boss.ReturnProjectile(gameObject);
+
+            // 보스가 맞았으면 체력 깎기
+            if (endPos == _boss.transform)
+            {
+                _boss.OnDamaged();
+            }
+        }
+
+        // player가 맞았으면 카메라 쉐이크, 화면 색상 조정, 사운드 등등..
+        if (endPos == _target)
+        {
+            // Debug.Log("플레이어가 맞음");
         }
     }
 
@@ -80,10 +92,20 @@ public class BoomerangProjectile : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //// 현재 진행 중이던 Throw 코루틴을 중단하고 Return 코루틴으로
-            //StartReturn();
+            // 시간 느리게 설정
+            Time.timeScale = 0.05f;
 
-            // 카메라 쉐이크, 화면 색상 조정, 사운드 등등..
+            // 우클릭 이벤트 추가
+            _inputReader.PushEvent += StartReturn;
         }
+    }
+
+    private void OnDisable()
+    {
+        // 시간 정상화
+        Time.timeScale = 1.0f;
+
+        // 우클릭 이벤트 제거
+        _inputReader.PushEvent -= StartReturn;
     }
 }
