@@ -27,6 +27,9 @@ public class ApplyMovementVectorAction : StateAction
     public override void OnUpdate()
 	{
 		_characterController.Move(_playerScript.movementVector * Time.deltaTime);
-		_playerScript.movementVector = _characterController.velocity;
 	}
+    public override void OnStateEnter()
+    {
+        _playerScript.movementVector = Vector3.zero;
+    }
 }
