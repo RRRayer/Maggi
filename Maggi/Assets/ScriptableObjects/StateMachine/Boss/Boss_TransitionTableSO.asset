@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a3360038e184144b06331f60bf6991, type: 3}
+  m_Name: Boss_TransitionTableSO
+  m_EditorClassIdentifier: 
+  _transitions:
+  - FromState: {fileID: 11400000, guid: 90302da797560144fa1f828e55772be4, type: 2}
+    ToState: {fileID: 11400000, guid: 7fe99d1d2e9cedb4db7d2852217afba2, type: 2}
+    Conditions:
+    - ExpectedResult: 0
+      Condition: {fileID: 11400000, guid: b0e694bfe315ad445a06a169235339b9, type: 2}
+      Operator: 0
+  - FromState: {fileID: 11400000, guid: 7fe99d1d2e9cedb4db7d2852217afba2, type: 2}
+    ToState: {fileID: 11400000, guid: 90302da797560144fa1f828e55772be4, type: 2}
+    Conditions:
+    - ExpectedResult: 0
+      Condition: {fileID: 11400000, guid: 1d2e4cd41a2409545b9a8cf377b19d6d, type: 2}
+      Operator: 0
+  - FromState: {fileID: 11400000, guid: 90302da797560144fa1f828e55772be4, type: 2}
+    ToState: {fileID: 11400000, guid: 50463d5b4f52f704c8efeb1aba75a075, type: 2}
+    Conditions:
+    - ExpectedResult: 0
+      Condition: {fileID: 11400000, guid: dc25b023af91849428ec8e73c0cbe614, type: 2}
+      Operator: 0
+  - FromState: {fileID: 11400000, guid: 7fe99d1d2e9cedb4db7d2852217afba2, type: 2}
+    ToState: {fileID: 11400000, guid: 50463d5b4f52f704c8efeb1aba75a075, type: 2}
+    Conditions:
+    - ExpectedResult: 0
+      Condition: {fileID: 11400000, guid: dc25b023af91849428ec8e73c0cbe614, type: 2}
+      Operator: 0
+  - FromState: {fileID: 11400000, guid: 50463d5b4f52f704c8efeb1aba75a075, type: 2}
+    ToState: {fileID: 11400000, guid: d5af49b1418542e498307ad3c9e5b734, type: 2}
+    Conditions:
+    - ExpectedResult: 0
+      Condition: {fileID: 11400000, guid: f35f358cc3c11fb47850fb3e18e22680, type: 2}
+      Operator: 0
+  - FromState: {fileID: 11400000, guid: 50463d5b4f52f704c8efeb1aba75a075, type: 2}
+    ToState: {fileID: 11400000, guid: 90302da797560144fa1f828e55772be4, type: 2}
+    Conditions:
+    - ExpectedResult: 0
+      Condition: {fileID: 11400000, guid: 1d2e4cd41a2409545b9a8cf377b19d6d, type: 2}
+      Operator: 0
+  - FromState: {fileID: 11400000, guid: d5af49b1418542e498307ad3c9e5b734, type: 2}
+    ToState: {fileID: 11400000, guid: 90302da797560144fa1f828e55772be4, type: 2}
+    Conditions:
+    - ExpectedResult: 0
+      Condition: {fileID: 11400000, guid: 1d2e4cd41a2409545b9a8cf377b19d6d, type: 2}
+      Operator: 0
