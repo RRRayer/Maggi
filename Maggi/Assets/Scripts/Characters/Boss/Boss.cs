@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public enum Mode
 {
@@ -9,21 +10,67 @@ public enum Mode
 
 public class Boss : MonoBehaviour
 {
+    [Header("Listening to")]
+    [SerializeField] private VoidEventChannelSO _stageTransition = default;
+
     [SerializeField] private Mode _currentMode = Mode.Idle;
-    public Mode CurrentMode {  get { return _currentMode; } }
+    [SerializeField] private Transform _target;
+    private int _currentRootIndex;
+    
+    public Mode CurrentMode => _currentMode;
+    public int CurrentRootIndex { set { _currentRootIndex = value; } get { return _currentRootIndex; } }
+    public Transform Target => _target;
 
-    // patrol area¿¡ ÀúÀåµÈ À§Ä¡·Î walk ÇÑ´Ù.
-    public Transform[] patrolAreas;
+    // patrol areaì— ì €ì¥ëœ ìœ„ì¹˜ë¡œ walk í•œë‹¤.
+    [SerializeField] private List<Transform> patrolAreaRoot;
+    public List<Transform[]> patrolAreas = new List<Transform[]>();
 
-    private int _currentAreaIndex;
-    public int CurrentAreaIndex { set { _currentAreaIndex = value; } get { return _currentAreaIndex; } }
+    private void Awake()
+    {
+        foreach (var item in patrolAreaRoot)
+        {
+            Transform[] children = new Transform[item.childCount];
 
-    private float _timer;
-    private float _patrolCooltime;
+            for (int i = 0; i < item.childCount; i++)
+            {
+                children[i] = item.GetChild(i);
+            }
+
+            patrolAreas.Add(children);
+        }
+    }
+
+    private void OnEnable()
+    {
+        _stageTransition.OnEventRaised += Init;
+    }
+
+    private void OnDisable()
+    {
+        _stageTransition.OnEventRaised -= Init;
+    }
+
+    private void Init()
+    {
+        Debug.Log("ë³´ìŠ¤ ì´ˆê¸°í™”");
+        _currentMode = Mode.Idle;
+        // Patrol next area
+        _currentRootIndex = (_currentRootIndex + 1) % patrolAreaRoot.Count;
+    }
 
     public void SetMode(Mode newMode)
     {
         _currentMode = newMode;
-        Debug.Log($"ÇöÀç ¸ğµå : {newMode}");
+        Debug.Log($"í˜„ì¬ ëª¨ë“œ : {newMode}");
+    }
+
+    public void OnTriggerChangeDetected(bool entered, GameObject obj)
+    {
+        if (entered && obj.CompareTag("Player"))
+        {
+            Debug.Log("í”Œë ˆì´ì–´ ê°ì§€");
+            _target = obj.transform;
+            SetMode(Mode.Detect);
+        }
     }
 }
