@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Maggi.StateMachine;
 using Maggi.StateMachine.ScriptableObjects;
+using Maggi.Character.Boss;
 
 [CreateAssetMenu(fileName = "IsWalkingCondition", menuName = "State Machines/Conditions/Boss/Is Walking Condition", order = 0)]
 public class IsWalkingConditionSO : StateConditionSO<IsWalkingCondition> { }

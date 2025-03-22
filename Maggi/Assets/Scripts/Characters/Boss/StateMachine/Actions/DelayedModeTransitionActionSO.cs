@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Maggi.StateMachine;
 using Maggi.StateMachine.ScriptableObjects;
+using Maggi.Character.Boss;
 
 [CreateAssetMenu(fileName = "DelayedModeTransitionAction", menuName = "State Machines/Actions/Boss/Delayed Mode Transition Action", order = 0)]
 public class DelayedModeTransitionActionSO : StateActionSO<DelayedModeTransitionAction>
