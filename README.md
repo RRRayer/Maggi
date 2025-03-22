@@ -13,6 +13,8 @@
 | rename  | 파일, 폴더명 수정 혹은 이동           |
 | chore   | 그 외 패키지 추가, 설정 변경 등        |
 
+</br>
+
 ## Commit Convention
 ```
 (TAG)(있다면 ISSUE NUMBER) : 제목, 이때 영어라면 제일 앞 문자는 대문자로 시작
@@ -27,12 +29,16 @@ feat(#123) : A 기능을 구현하였다.
 chore : A 패키지 추가
 ```
 
+</br>
+
 ## PR Merge Convention
 
 ```
 title: (TAG)/(ISSUE NUMBER) (PR NUMBER)
 ex) FEAT/35 (#40)
 ```
+
+</br>
 
 ## 팀 설명
 
@@ -41,6 +47,8 @@ Rayer팀으로 두 번째 **Unity 게임 개발 프로젝트**이다.
 
 ![warehouse_capture](https://github.com/user-attachments/assets/78cf9c06-d527-482d-8cce-fcfb112a7a68)
 ![bossroom_capture](https://github.com/user-attachments/assets/88156dec-8d5b-4ba0-953a-f45cd9126d2d)
+
+</br>
 
 ## Description
 
