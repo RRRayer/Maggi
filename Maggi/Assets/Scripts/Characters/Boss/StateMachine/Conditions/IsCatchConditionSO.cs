@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Maggi.StateMachine;
 using Maggi.StateMachine.ScriptableObjects;
+using Maggi.Character.Boss;
 
 [CreateAssetMenu(fileName = "IsCatchCondition", menuName = "State Machines/Conditions/Boss/Is Catch Condition", order = 0)]
 public class IsCatchConditionSO : StateConditionSO<IsCatchCondition> { }

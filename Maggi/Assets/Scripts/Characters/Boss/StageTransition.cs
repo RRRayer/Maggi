@@ -12,9 +12,9 @@ public class StageTransition : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _stageInitializer.OnEventRaised();
-            
-            // // 필요하다면 없애자
-            //gameObject.SetActive(false);
+
+            // 필요하다면 없애자
+            gameObject.SetActive(false);
         }
     }
 }

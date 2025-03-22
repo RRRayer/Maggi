@@ -9,12 +9,12 @@ public class BoomerangProjectile : MonoBehaviour
     [SerializeField] private float _moveDuration = 1.0f;
     [SerializeField] private float _arcHeight = 2.0f;
 
-    private TestBoss _boss;
+    private CityBoss _boss;
     private Transform _start;
     private Transform _target;
-    private Coroutine _currentCoroutine; // ÇöÀç ÁøÇà ÁßÀÎ ÄÚ·çÆ¾(Throw or Return)
+    private Coroutine _currentCoroutine; // í˜„ì¬ ì§„í–‰ ì¤‘ì¸ ì½”ë£¨í‹´(Throw or Return)
 
-    public void Init(TestBoss boss, Transform start, Transform target)
+    public void Init(CityBoss boss, Transform start, Transform target)
     {
         _boss = boss;
         _start = start;
@@ -23,27 +23,27 @@ public class BoomerangProjectile : MonoBehaviour
 
     public void StartThrow()
     {
-        // È¤½Ã ÁøÇà ÁßÀÎ ÄÚ·çÆ¾ÀÌ ÀÖ´Ù¸é Áß´Ü
+        // í˜¹ì‹œ ì§„í–‰ ì¤‘ì¸ ì½”ë£¨í‹´ì´ ìˆë‹¤ë©´ ì¤‘ë‹¨
         if (_currentCoroutine != null)
             StopCoroutine(_currentCoroutine);
 
-        // ÀÌµ¿ ÄÚ·çÆ¾ ½ÃÀÛ
+        // ì´ë™ ì½”ë£¨í‹´ ì‹œì‘
         _currentCoroutine = StartCoroutine(MoveToTarget(_start, _target));
     }
 
     private void StartReturn()
     {
-        // È¤½Ã ÁøÇà ÁßÀÎ ÄÚ·çÆ¾ÀÌ ÀÖ´Ù¸é Áß´Ü
+        // í˜¹ì‹œ ì§„í–‰ ì¤‘ì¸ ì½”ë£¨í‹´ì´ ìˆë‹¤ë©´ ì¤‘ë‹¨
         if (_currentCoroutine != null)
             StopCoroutine(_currentCoroutine);
 
-        // ÀÌµ¿ ÄÚ·çÆ¾ ½ÃÀÛ (½ÃÀÛÁ¡/¸ñÇ¥Á¡À» ¹Ù²ã¼­ »ç¿ë)
+        // ì´ë™ ì½”ë£¨í‹´ ì‹œì‘ (ì‹œì‘ì /ëª©í‘œì ì„ ë°”ê¿”ì„œ ì‚¬ìš©)
         _currentCoroutine = StartCoroutine(MoveToTarget(_target, _boss.transform));
 
-        // ½Ã°£ Á¤»óÈ­
+        // ì‹œê°„ ì •ìƒí™”
         Time.timeScale = 1.0f;
 
-        // ¿ìÅ¬¸¯ ÀÌº¥Æ® Á¦°Å
+        // ìš°í´ë¦­ ì´ë²¤íŠ¸ ì œê±°
         _inputReader.PushEvent -= StartReturn;
     }
 
@@ -55,36 +55,36 @@ public class BoomerangProjectile : MonoBehaviour
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / _moveDuration);
 
-            // Á÷¼± º¸°£
+            // ì§ì„  ë³´ê°„
             Vector3 currentPos = Vector3.Lerp(startPos.position, endPos.position, t);
 
-            // Æ÷¹°¼± YÃà ¿ÀÇÁ¼Â
+            // í¬ë¬¼ì„  Yì¶• ì˜¤í”„ì…‹
             float heightOffset = Mathf.Sin(Mathf.PI * t) * _arcHeight;
             currentPos.y += heightOffset;
 
             transform.position = currentPos;
-            yield return null; // ´ÙÀ½ ÇÁ·¹ÀÓ±îÁö ´ë±â
+            yield return null; // ë‹¤ìŒ í”„ë ˆì„ê¹Œì§€ ëŒ€ê¸°
         }
 
-        // ÀÌµ¿ ¿Ï·á ÈÄ ÃÖÁ¾ À§Ä¡ º¸Á¤
+        // ì´ë™ ì™„ë£Œ í›„ ìµœì¢… ìœ„ì¹˜ ë³´ì •
         transform.position = endPos.position;
 
-        // ¿¹: ÀÌµ¿ÀÌ ³¡³ª¸é Ç®·Î µÇµ¹¸®´Â µ¿ÀÛ (º¸½º Ãø ¸Ş¼­µå)
+        // ì˜ˆ: ì´ë™ì´ ëë‚˜ë©´ í’€ë¡œ ë˜ëŒë¦¬ëŠ” ë™ì‘ (ë³´ìŠ¤ ì¸¡ ë©”ì„œë“œ)
         if (_boss != null)
         {
             _boss.ReturnProjectile(gameObject);
 
-            // º¸½º°¡ ¸Â¾ÒÀ¸¸é Ã¼·Â ±ğ±â
+            // ë³´ìŠ¤ê°€ ë§ì•˜ìœ¼ë©´ ì²´ë ¥ ê¹ê¸°
             if (endPos == _boss.transform)
             {
                 _boss.OnDamaged();
             }
         }
 
-        // player°¡ ¸Â¾ÒÀ¸¸é Ä«¸Ş¶ó ½¦ÀÌÅ©, È­¸é »ö»ó Á¶Á¤, »ç¿îµå µîµî..
+        // playerê°€ ë§ì•˜ìœ¼ë©´ ì¹´ë©”ë¼ ì‰ì´í¬, í™”ë©´ ìƒ‰ìƒ ì¡°ì •, ì‚¬ìš´ë“œ ë“±ë“±..
         if (endPos == _target)
         {
-            // Debug.Log("ÇÃ·¹ÀÌ¾î°¡ ¸ÂÀ½");
+            // Debug.Log("í”Œë ˆì´ì–´ê°€ ë§ìŒ");
         }
     }
 
@@ -92,20 +92,20 @@ public class BoomerangProjectile : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // ½Ã°£ ´À¸®°Ô ¼³Á¤
+            // ì‹œê°„ ëŠë¦¬ê²Œ ì„¤ì •
             Time.timeScale = 0.05f;
 
-            // ¿ìÅ¬¸¯ ÀÌº¥Æ® Ãß°¡
+            // ìš°í´ë¦­ ì´ë²¤íŠ¸ ì¶”ê°€
             _inputReader.PushEvent += StartReturn;
         }
     }
 
     private void OnDisable()
     {
-        // ½Ã°£ Á¤»óÈ­
+        // ì‹œê°„ ì •ìƒí™”
         Time.timeScale = 1.0f;
 
-        // ¿ìÅ¬¸¯ ÀÌº¥Æ® Á¦°Å
+        // ìš°í´ë¦­ ì´ë²¤íŠ¸ ì œê±°
         _inputReader.PushEvent -= StartReturn;
     }
 }

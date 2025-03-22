@@ -2,7 +2,7 @@ using UnityEngine;
 using Maggi.StateMachine;
 using Maggi.StateMachine.ScriptableObjects;
 using UnityEngine.AI;
-using System.Threading;
+using Maggi.Character.Boss;
 
 [CreateAssetMenu(fileName = "NextAreaMoveAction", menuName = "State Machines/Actions/Boss/Next Area Move Action")]
 public class NextAreaMoveActionSO : StateActionSO

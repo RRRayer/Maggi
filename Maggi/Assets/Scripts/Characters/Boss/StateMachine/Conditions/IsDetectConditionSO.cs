@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Maggi.StateMachine;
 using Maggi.StateMachine.ScriptableObjects;
+using Maggi.Character.Boss;
 
 [CreateAssetMenu(fileName = "IsDetectCondition", menuName = "State Machines/Conditions/Boss/Is Detect Condition", order = 0)]
 public class IsDetectConditionSO : StateConditionSO<IsDetectCondition> { }

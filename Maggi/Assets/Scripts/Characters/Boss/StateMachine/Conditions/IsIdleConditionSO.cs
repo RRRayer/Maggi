@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Maggi.StateMachine;
 using Maggi.StateMachine.ScriptableObjects;
+using Maggi.Character.Boss;
 
 [CreateAssetMenu(fileName = "IsIdleCondition", menuName = "State Machines/Conditions/Boss/Is Idle Condition", order = 0)]
 public class IsIdleConditionSO : StateConditionSO<IsIdleCondition> { }
