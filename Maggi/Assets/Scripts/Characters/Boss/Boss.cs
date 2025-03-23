@@ -27,7 +27,9 @@ namespace Maggi.Character.Boss
         public bool isTrigger = false;
 
         // Timeline
+        //[HideInInspector] 
         public TimelineAsset currentTimeline;
+        //[HideInInspector] 
         public PlayableDirector timelineDirector = default;
 
         [Header("Listening to")]
