@@ -92,13 +92,14 @@ public class CameraManager : MonoBehaviour
         _cameraShakeEvent.RaiseEvent();
     }
 
+    private int _prevCameraIndex = -1; // 초기값: 불가능한 인덱스로 설정
     private void OnValidate()
     {
-        if (_currentCamera != null)
+        if (_currentCamera != null && cameraIndex != _prevCameraIndex)
         {
             _currentCamera.index = cameraIndex;
             SwitchToCamera();
+            _prevCameraIndex = cameraIndex;
         }
-        
     }
 }
