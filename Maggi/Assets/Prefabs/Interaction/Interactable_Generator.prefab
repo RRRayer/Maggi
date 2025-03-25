@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6789853280859563240}
   - component: {fileID: 3370082648708024555}
   - component: {fileID: 5690520023332267036}
-  - component: {fileID: 5240089907973027758}
   m_Layer: 0
   m_Name: Interactable_Generator
   m_TagString: Untagged
@@ -136,25 +135,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!114 &5240089907973027758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7897942541088311750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e5c21302ba89f84ea6d24215494ba62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Type: 3
-  m_IdleScriptableActions:
-  - {fileID: 11400000, guid: 75ac96540ecd89045a584cbca129cdb8, type: 2}
-  m_WalkScriptableActions: []
-  m_JumpAscendingScriptableActions: []
-  m_JumpDescendingScriptableActions: []
-  m_PullScriptableActions:
-  - {fileID: 11400000, guid: 0b66d11ac1bddb54ea061194aa5f2a8e, type: 2}
-  m_PushScriptableActions:
-  - {fileID: 11400000, guid: 1149b10fe95652d44926c4b64216e188, type: 2}
