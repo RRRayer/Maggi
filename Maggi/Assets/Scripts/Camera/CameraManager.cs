@@ -17,6 +17,9 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private VoidEventChannelSO _onSwitchCamera = default;
     [SerializeField] private VoidEventChannelSO _cameraShakeEvent = default;
 
+    [Header("For Debug")]
+    public int cameraIndex = 0;
+
     private CinemachineVirtualCamera[] virtualCams;
 
     private void OnEnable()
@@ -77,7 +80,7 @@ public class CameraManager : MonoBehaviour
         {
             CinemachineComposer composer = virtualCams[_currentCamera.index].GetCinemachineComponent<CinemachineComposer>();
 
-            // ½º¹«½º ÇÏ°Ô ÇÏÀÚ
+            // ìŠ¤ë¬´ìŠ¤ í•˜ê²Œ í•˜ì
             composer.m_ScreenX = normalDirection.x == 0 ? 0.5f : 0.5f - 0.1f * normalDirection.x; 
             composer.m_ScreenY = normalDirection.y == 0 ? 0.65f : 0.65f + 0.3f * normalDirection.y;
         }
@@ -87,5 +90,15 @@ public class CameraManager : MonoBehaviour
     public void ShakeCamera()
     {
         _cameraShakeEvent.RaiseEvent();
+    }
+
+    private void OnValidate()
+    {
+        if (_currentCamera != null)
+        {
+            _currentCamera.index = cameraIndex;
+            SwitchToCamera();
+        }
+        
     }
 }
