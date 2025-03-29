@@ -9,7 +9,7 @@
 | refact  | 코드 리팩토링                         |
 | comment | 주석 추가(코드 변경X) 혹은 오타 수정  |
 | docs    | README와 같은 문서 수정               |
-| ART     | 아트 에셋 추가                       |
+| art     | 아트 에셋 추가                       |
 | merge   | merge                                 |
 | rename  | 파일, 폴더명 수정 혹은 이동           |
 | chore   | 그 외 패키지 추가, 설정 변경 등        |
