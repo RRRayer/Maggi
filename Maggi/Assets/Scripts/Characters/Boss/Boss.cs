@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Playables;
 using UnityEngine.Timeline;
 
@@ -12,30 +13,26 @@ namespace Maggi.Character.Boss
 
     public class Boss : MonoBehaviour
     {
-        // Logic
-        [SerializeField] private List<Transform> patrolAreaRoot; // patrol area에 저장된 위치로 walk 한다.
-        private Mode _currentMode = Mode.Idle;
-        private Transform _target;
-        private int _currentRootIndex;
-
         public List<Transform[]> patrolAreas = new List<Transform[]>();
         public Mode CurrentMode => _currentMode;
         public Transform Target => _target;
         public int CurrentRootIndex { set { _currentRootIndex = value; } get { return _currentRootIndex; } }
 
-        // Flag
-        public bool isTrigger = false;
-
         // Timeline
         //[HideInInspector] 
-        public TimelineAsset currentTimeline;
-        //[HideInInspector] 
         public PlayableDirector timelineDirector = default;
+
+        // Logic
+        [SerializeField] private List<Transform> patrolAreaRoot; // patrol area에 저장된 위치로 walk 한다.
+        [SerializeField] private Transform _target;
+        [SerializeField] private Mode _currentMode = Mode.Idle;        
+        private int _currentRootIndex;
+        private NavMeshAgent _agent;
 
         [Header("Listening to")]
         [SerializeField] private VoidEventChannelSO _stageTransition = default; // 다음 스테이지로 바꾸고 모드를 초기화 한다.
         [SerializeField] private TransformEventChannelSO _moveToTargetEvent = default; // target position으로 이동한다.
-        public TimelineAssetEventChannelSO timelineEvent = default; // 타임라인을 재생한다.
+        [SerializeField] private TimelineAssetEventChannelSO _setTimelineAssetEvent = default; // 타임라인을 재생한다.
 
         private void Awake()
         {
@@ -52,27 +49,35 @@ namespace Maggi.Character.Boss
             }
 
             timelineDirector = GetComponent<PlayableDirector>();
+            _agent = GetComponent<NavMeshAgent>();
         }
 
         private void OnEnable()
         {
             _stageTransition.OnEventRaised += Init;
-            _moveToTargetEvent.OnEventRaised += MoveToTarget;
-            timelineEvent.OnEventRaised += InitializeTimeline;
+            _moveToTargetEvent.OnEventRaised += DetectTarget;
+            _setTimelineAssetEvent.OnEventRaised += InitializeTimeline;
         }
 
         private void OnDisable()
         {
             _stageTransition.OnEventRaised -= Init;
-            _moveToTargetEvent.OnEventRaised -= MoveToTarget;
-            timelineEvent.OnEventRaised -= InitializeTimeline;
+            _moveToTargetEvent.OnEventRaised -= DetectTarget;
+            _setTimelineAssetEvent.OnEventRaised -= InitializeTimeline;
         }
 
-        private void MoveToTarget(Transform target)
+        private void Update()
+        {
+            //Debug.Log($"실시간 모드 확인 {_currentMode}");
+        }
+
+        private void DetectTarget(Transform target)
         {
             // detect action
-            _target = target;
-            SetMode(Mode.Detect);
+            if (_target != target)
+                _target = target;
+
+            SetMode(Mode.Detect, "detecttarger");
         }
 
         private void InitializeTimeline(TimelineAsset timeline)
@@ -83,40 +88,54 @@ namespace Maggi.Character.Boss
             {
                 if (track is AnimationTrack animationTrack)
                 {
-                    Debug.Log(track);
                     timelineDirector.SetGenericBinding(track, gameObject);
                 }
             }
-
-            isTrigger = true;
-
-            // 이건 trigger action에서 실행
-            //_timelineDirector.Play();
         }
 
         private void Init()
         {
-            Debug.Log("보스 초기화");
             _currentMode = Mode.Idle;
             // Patrol next area
             _currentRootIndex = (_currentRootIndex + 1) % patrolAreaRoot.Count;
         }
 
-        public void SetMode(Mode newMode)
+        public void SetMode(Mode newMode, string org)
         {
             _currentMode = newMode;
-            Debug.Log($"현재 모드 : {newMode}");
+            Debug.Log($"현재 모드 : {_currentMode}, 출처 : {org}");
         }
 
         public void OnTriggerChangeDetected(bool entered, GameObject obj)
         {
             if (entered && obj.CompareTag("Player"))
             {
-                Debug.Log("플레이어 감지");
-                _target = obj.transform;
-                SetMode(Mode.Detect);
+                // 여기서 Ray를 쏴서 장애물 없는지 확인 해야해
+                {
+                    DetectTarget(obj.transform);
+                }
             }
         }
-    }
 
+        public void OnTriggerChangeCatched(bool entered, GameObject obj)
+        {
+            if (entered && obj.CompareTag("Player"))
+            {
+                _target = obj.transform;
+                Debug.Log($"잡았다 요놈");
+                SetMode(Mode.Catch, "ontriggherchangecathed");
+            }
+        }
+
+        public bool IsStopped()
+        {
+            if (!_agent.pathPending                                         // 경로 계산이 완료되었고
+                && _agent.remainingDistance <= _agent.stoppingDistance      // 목표 지점까지 남은 거리가 stoppingDistance 이하이며
+                && (!_agent.hasPath || _agent.velocity.sqrMagnitude <= 0f)) // 이동 중이 아니면
+            {
+                return true;
+            }
+            return false;
+        }
+    }
 }

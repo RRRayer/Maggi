@@ -30,7 +30,8 @@ public class DelayedModeTransitionAction : StateAction
 	{
         if (Time.time >= _startTime + _originSO.timerLength)
         {
-            _boss.SetMode(_originSO.mode);
+            //Debug.Log("mode 설정");
+            _boss.SetMode(_originSO.mode, "delayed mode transition action");
         }
     }
 }

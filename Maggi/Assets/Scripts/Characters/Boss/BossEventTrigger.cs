@@ -9,14 +9,16 @@ public class BossEventTrigger : MonoBehaviour
 
     [Header("Broadcasting on")]
     [SerializeField] private TransformEventChannelSO _moveToTargetEvent = default;
-    [SerializeField] private TimelineAssetEventChannelSO _timelineEvent = default;
+    [SerializeField] private TimelineAssetEventChannelSO _setTimelineAssetEvent = default;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             _moveToTargetEvent.RaiseEvent(transform);
-            _timelineEvent.RaiseEvent(_timeline);
+            _setTimelineAssetEvent.RaiseEvent(_timeline);
+
+            gameObject.SetActive(false);
         }
     }
 }
