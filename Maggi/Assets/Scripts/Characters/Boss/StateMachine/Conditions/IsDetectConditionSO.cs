@@ -17,6 +17,8 @@ public class IsDetectCondition : Condition
 	
 	protected override bool Statement()
 	{
+        if (_boss.CurrentMode == Mode.Detect)
+            Debug.Log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		return _boss.CurrentMode == Mode.Detect;
 	}
 }

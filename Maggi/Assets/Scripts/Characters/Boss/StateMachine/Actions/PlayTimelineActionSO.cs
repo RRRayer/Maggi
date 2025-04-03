@@ -31,6 +31,7 @@ public class PlayTimelineAction : StateAction
     public override void OnStateExit()
     {
         _boss.timelineDirector.stopped -= OnTimelineStopped;
+        _boss.timelineDirector.Stop();
         Debug.Log("타임라인 종료");
     }
 
@@ -40,6 +41,6 @@ public class PlayTimelineAction : StateAction
 
     private void OnTimelineStopped(PlayableDirector director)
     {
-        _boss.SetMode(Mode.Idle);
+        _boss.SetMode(Mode.Idle, "play timeline action");
     }
 }
