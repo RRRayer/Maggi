@@ -16,6 +16,18 @@
 
 </br>
 
+## Branch Name Convention
+
+```
+(TAG)/(주요내용)/(있다면 ISSUE NUMBER)
+
+ex)
+feat/player/#99
+chore/package
+```
+
+</br>
+
 ## Commit Convention
 ```
 (TAG)(있다면 ISSUE NUMBER) : 제목, 이때 영어라면 제일 앞 문자는 대문자로 시작
