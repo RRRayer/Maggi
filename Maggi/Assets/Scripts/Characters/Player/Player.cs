@@ -10,11 +10,13 @@ public class Player : MonoBehaviour
     /*[HideInInspector]*/ public Vector3 movementInput;
     /*[HideInInspector]*/ public Vector3 movementVector;
     [HideInInspector] public bool jumpInput;
+    [HideInInspector] public bool runInput;
 
     private Vector2 _inputVector; // _inputVector.x : x movement, _inputVector.y : z movement
     private float _previousSpeed;
 
     public const float AIR_RESISTANCE = 5f;
+    public const float RUN_SPEED_MULTIPLIER = 1.5f;
     public const float MAX_FALL_SPEED = -50f;
     public const float MAX_RISE_SPEED = 100f;
     public const float GRAVITY_MULTIPLIER = 2f;
@@ -26,6 +28,8 @@ public class Player : MonoBehaviour
         _inputReader.MoveEvent += OnMovement;
         _inputReader.JumpEvent += OnJumpInitiated;
         _inputReader.JumpCancelEvent += OnJumpCancelInitiated;
+        _inputReader.RunEvent += OnRunInitiated;
+        _inputReader.RunCancelEvent += OnRunCancelInitiated;
     }
 
     private void OnDisable()
@@ -33,6 +37,8 @@ public class Player : MonoBehaviour
         _inputReader.MoveEvent -= OnMovement;
         _inputReader.JumpEvent -= OnJumpInitiated;
         _inputReader.JumpCancelEvent -= OnJumpCancelInitiated;
+        _inputReader.RunEvent -= OnRunInitiated;
+        _inputReader.RunCancelEvent -= OnRunCancelInitiated;
     }
 
     private void Update()
@@ -45,7 +51,7 @@ public class Player : MonoBehaviour
         float targetSpeed;
         Vector3 adjustedMovement;
 
-        // ÇÃ·¹ÀÌ¾î ±âÁØÀ¸·Î Ä«¸Þ¶ó°¡ ¾Õ(front), µÚ(back), ¿À¸¥ÂÊ(right), ¿ÞÂÊ(left) Áß ¾îµð¿¡ ÀÖ´Â°¡?
+        // í”Œë ˆì´ì–´ ê¸°ì¤€ìœ¼ë¡œ ì¹´ë©”ë¼ê°€ ì•ž(front), ë’¤(back), ì˜¤ë¥¸ìª½(right), ì™¼ìª½(left) ì¤‘ ì–´ë””ì— ìžˆëŠ”ê°€?
         Vector3 directionToCamera = Vector3.zero;
         if (_gameplayCameraTransform.isSet)
         {
@@ -56,57 +62,57 @@ public class Player : MonoBehaviour
             Debug.LogWarning("No gameplay camera in the scene. Movement orientation will not be correct.");
         }
 
-        // ÆÇº°À» À§ÇØ ÇÃ·¹ÀÌ¾îÀÇ forward, right º¤ÅÍ¿Í dot product ºñ±³
-        // dotF : Ä«¸Þ¶ó°¡ Á¤¸é(+) ÂÊÀÎÁö ÈÄ¸é(-) ÂÊÀÎÁö ÆÇ´Ü
-        // dotR : Ä«¸Þ¶ó°¡ ¿À¸¥ÂÊ(+) ÂÊÀÎÁö ¿ÞÂÊ(-) ÂÊÀÎÁö ÆÇ´Ü
+        // íŒë³„ì„ ìœ„í•´ í”Œë ˆì´ì–´ì˜ forward, right ë²¡í„°ì™€ dot product ë¹„êµ
+        // dotF : ì¹´ë©”ë¼ê°€ ì •ë©´(+) ìª½ì¸ì§€ í›„ë©´(-) ìª½ì¸ì§€ íŒë‹¨
+        // dotR : ì¹´ë©”ë¼ê°€ ì˜¤ë¥¸ìª½(+) ìª½ì¸ì§€ ì™¼ìª½(-) ìª½ì¸ì§€ íŒë‹¨
         float dotF = Vector3.Dot(directionToCamera, Vector3.forward);
         float dotR = Vector3.Dot(directionToCamera, Vector3.right);
 
-        // °¡Àå Å« Àý´ñ°ªÀ» ±âÁØÀ¸·Î "¾Õ/µÚ" ¶Ç´Â "¿À¸¥ÂÊ/¿ÞÂÊ"À» °áÁ¤
-        // ±×¸®°í ±×¿¡ ¸ÂÃç cameraForward / cameraRight¸¦ Àü¿ªÃà Áß ÇÏ³ª·Î ¼³Á¤
+        // ê°€ìž¥ í° ì ˆëŒ“ê°’ì„ ê¸°ì¤€ìœ¼ë¡œ "ì•ž/ë’¤" ë˜ëŠ” "ì˜¤ë¥¸ìª½/ì™¼ìª½"ì„ ê²°ì •
+        // ê·¸ë¦¬ê³  ê·¸ì— ë§žì¶° cameraForward / cameraRightë¥¼ ì „ì—­ì¶• ì¤‘ í•˜ë‚˜ë¡œ ì„¤ì •
         Vector3 cameraForward = Vector3.zero;
         Vector3 cameraRight = Vector3.zero;
 
-        // ¾ÕµÚ¿Í ÁÂ¿ì °áÁ¤
+        // ì•žë’¤ì™€ ì¢Œìš° ê²°ì •
         if (Mathf.Abs(dotF) >= Mathf.Abs(dotR))
         {
-            // ¾ÕµÚ ¹æÇâÀÌ ¿ì¼¼
+            // ì•žë’¤ ë°©í–¥ì´ ìš°ì„¸
             if (dotF >= 0f)
             {
-                // Ä«¸Þ¶ó°¡ ÇÃ·¹ÀÌ¾î "¾Õ" ÂÊ¿¡ ÀÖ´Â °æ¿ì
-                // forward ÀÔ·Â => back Ãâ·Â, right ÀÔ·Â => left Ãâ·Â
+                // ì¹´ë©”ë¼ê°€ í”Œë ˆì´ì–´ "ì•ž" ìª½ì— ìžˆëŠ” ê²½ìš°
+                // forward ìž…ë ¥ => back ì¶œë ¥, right ìž…ë ¥ => left ì¶œë ¥
                 cameraForward = Vector3.back;   // (0,0,-1)
                 cameraRight = Vector3.left;   // (-1,0,0)
             }
             else
             {
-                // Ä«¸Þ¶ó°¡ ÇÃ·¹ÀÌ¾î "µÚ" ÂÊ¿¡ ÀÖ´Â °æ¿ì
-                // forward ÀÔ·Â => forward Ãâ·Â, right ÀÔ·Â => right Ãâ·Â
+                // ì¹´ë©”ë¼ê°€ í”Œë ˆì´ì–´ "ë’¤" ìª½ì— ìžˆëŠ” ê²½ìš°
+                // forward ìž…ë ¥ => forward ì¶œë ¥, right ìž…ë ¥ => right ì¶œë ¥
                 cameraForward = Vector3.forward; // (0,0,1)
                 cameraRight = Vector3.right;   // (1,0,0)
             }
         }
         else
         {
-            // ÁÂ¿ì ¹æÇâÀÌ ¿ì¼¼
+            // ì¢Œìš° ë°©í–¥ì´ ìš°ì„¸
             if (dotR >= 0f)
             {
-                // Ä«¸Þ¶ó°¡ ÇÃ·¹ÀÌ¾î "¿À¸¥ÂÊ"¿¡ ÀÖ´Â °æ¿ì
-                // forward ÀÔ·Â => left Ãâ·Â, right ÀÔ·Â => forward Ãâ·Â
+                // ì¹´ë©”ë¼ê°€ í”Œë ˆì´ì–´ "ì˜¤ë¥¸ìª½"ì— ìžˆëŠ” ê²½ìš°
+                // forward ìž…ë ¥ => left ì¶œë ¥, right ìž…ë ¥ => forward ì¶œë ¥
                 cameraForward = Vector3.left;   // (-1,0,0)
                 cameraRight = Vector3.forward;   // (0,0,1)
             }
             else
             {
-                // Ä«¸Þ¶ó°¡ ÇÃ·¹ÀÌ¾î "¿ÞÂÊ"¿¡ ÀÖ´Â °æ¿ì
-                // forward ÀÔ·Â => right Ãâ·Â, right ÀÔ·Â => back Ãâ·Â
+                // ì¹´ë©”ë¼ê°€ í”Œë ˆì´ì–´ "ì™¼ìª½"ì— ìžˆëŠ” ê²½ìš°
+                // forward ìž…ë ¥ => right ì¶œë ¥, right ìž…ë ¥ => back ì¶œë ¥
                 cameraForward = Vector3.right;   // (1,0,0)
                 cameraRight = Vector3.back; // (0,0,-1)
             }
         }
-
-        // inputVector¸¦ À§¿¡¼­ Á¤ÇÑ cameraForward / cameraRight Ãà¿¡ ¸ÅÇÎ
-        // x ÀÔ·Â => cameraRight   ¹æÇâ / y ÀÔ·Â => cameraForward ¹æÇâ
+         
+        // inputVectorë¥¼ ìœ„ì—ì„œ ì •í•œ cameraForward / cameraRight ì¶•ì— ë§¤í•‘
+        // x ìž…ë ¥ => cameraRight   ë°©í–¥ / y ìž…ë ¥ => cameraForward ë°©í–¥
         adjustedMovement = cameraRight * _inputVector.x + cameraForward * _inputVector.y;
 
         // interpolate speed
@@ -116,38 +122,6 @@ public class Player : MonoBehaviour
         movementInput = adjustedMovement * targetSpeed;
         _previousSpeed = targetSpeed;
     }
-
-
-    //private void RecalculateMovement()
-    //{
-    //    float targetSpeed;
-    //    Vector3 adjustedMovement;
-
-    //    if (_gameplayCameraTransform.isSet)
-    //    {
-    //        Vector3 cameraForward = _gameplayCameraTransform.Value.forward;
-    //        cameraForward.y = .0f;
-    //        Vector3 cameraRight = _gameplayCameraTransform.Value.right;
-    //        cameraRight.y = .0f;
-
-    //        adjustedMovement = cameraRight.normalized * _inputVector.x + cameraForward.normalized * _inputVector.y;
-    //    }
-    //    else
-    //    {
-    //        Debug.LogWarning("No gameplay camera in the scene. Movement orientation will not be correct.");
-    //        adjustedMovement = new Vector3(_inputVector.x, 0f, _inputVector.y);
-    //    }
-
-    //    targetSpeed = Mathf.Clamp01(_inputVector.magnitude);
-    //    targetSpeed = Mathf.Lerp(_previousSpeed, targetSpeed, Time.deltaTime * 4.0f);
-
-    //    //if (_inputVector.sqrMagnitude == 0.0f)
-    //    //    adjustedMovement = transform.forward * (adjustedMovement.magnitude + .01f);
-
-    //    movementInput = adjustedMovement * targetSpeed;
-
-    //    _previousSpeed = targetSpeed;
-    //}
 
     /* --- Event Listener --- */
 
@@ -164,6 +138,16 @@ public class Player : MonoBehaviour
     private void OnJumpCancelInitiated()
     {
         jumpInput = false;
+    }
+
+    private void OnRunInitiated()
+    {
+        runInput = true;
+    }
+
+    private void OnRunCancelInitiated()
+    {
+        runInput = false;
     }
 
     /* --- Animation Clip Functions --- */

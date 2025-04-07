@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Maggi.StateMachine;
 using Maggi.StateMachine.ScriptableObjects;
 
@@ -26,7 +26,7 @@ public class ApplyMovementVectorAction : StateAction
 
     public override void OnUpdate()
 	{
-		_characterController.Move(_playerScript.movementVector * Time.deltaTime);
+		_characterController.Move(Time.deltaTime * _playerScript.movementVector * (_playerScript.runInput ? Player.RUN_SPEED_MULTIPLIER : 1));
 	}
     public override void OnStateEnter()
     {
