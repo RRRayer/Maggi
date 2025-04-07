@@ -10,6 +10,8 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
     public event UnityAction<Vector2> MoveEvent = delegate { };
     public event UnityAction JumpEvent = delegate { };
     public event UnityAction JumpCancelEvent = delegate { };
+    public event UnityAction RunEvent = delegate { };
+    public event UnityAction RunCancelEvent = delegate { };
     public event UnityAction PullEvent = delegate { };
     public event UnityAction PullCancelEvent = delegate { };
     public event UnityAction PushEvent = delegate { };
@@ -49,6 +51,15 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
             JumpCancelEvent.Invoke();
     }
 
+    public void OnRun(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            RunEvent.Invoke();
+        else if (context.phase == InputActionPhase.Canceled)
+            RunCancelEvent.Invoke();
+
+    }
+
     public void OnPull(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
@@ -73,11 +84,11 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
 
     public void OnCancel(InputAction.CallbackContext context)
     {
-        Debug.Log("ø©±‰ ø¿≥™?");
+        Debug.Log("Ïó¨Í∏¥ Ïò§ÎÇò?");
         if (context.phase == InputActionPhase.Performed)
         {
             MenuCloseEvent.Invoke();
-            Debug.Log("∏ﬁ¥∫ ≈©∑Œ¡Ó");
+            Debug.Log("Î©îÎâ¥ ÌÅ¨Î°úÏ¶à");
         }
     }
 
