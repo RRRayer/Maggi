@@ -1,14 +1,14 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Maggi.StateMachine;
 using Maggi.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "IsDeadCondition", menuName = "State Machines/Conditions/Is Dead Condition")]
 public class IsDeadConditionSO : StateConditionSO
 {
-	protected override Condition CreateCondition() => new IsDeadCondition1();
+	protected override Condition CreateCondition() => new IsDeadCondition();
 }
 
-public class IsDeadCondition1 : Condition
+public class IsDeadCondition : Condition
 {
 	private Damagable _damagableScript;
 
