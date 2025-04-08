@@ -18,16 +18,16 @@ namespace Maggi.Character.Boss
         public Transform Target => _target;
         public int CurrentRootIndex { set { _currentRootIndex = value; } get { return _currentRootIndex; } }
 
-        // Timeline
-        //[HideInInspector] 
-        public PlayableDirector timelineDirector = default;
+        [HideInInspector] public PlayableDirector timelineDirector = default;
+        [HideInInspector] public bool isTrigger = false;
+        public GameObject hand;
 
-        // Logic
         [SerializeField] private List<Transform> patrolAreaRoot; // patrol area에 저장된 위치로 walk 한다.
         [SerializeField] private Transform _target;
         [SerializeField] private Mode _currentMode = Mode.Idle;        
         private int _currentRootIndex;
         private NavMeshAgent _agent;
+        
 
         [Header("Listening to")]
         [SerializeField] private VoidEventChannelSO _stageTransition = default; // 다음 스테이지로 바꾸고 모드를 초기화 한다.
@@ -74,9 +74,8 @@ namespace Maggi.Character.Boss
         private void DetectTarget(Transform target)
         {
             // detect action
-            if (_target != target)
-                _target = target;
-
+            _target = target;
+            isTrigger = true;
             SetMode(Mode.Detect, "detecttarger");
         }
 
@@ -112,7 +111,8 @@ namespace Maggi.Character.Boss
             {
                 // 여기서 Ray를 쏴서 장애물 없는지 확인 해야해
                 {
-                    DetectTarget(obj.transform);
+                    _target = obj.transform;
+                    SetMode(Mode.Detect, "OnTriggerChangeDetected");
                 }
             }
         }
@@ -122,7 +122,6 @@ namespace Maggi.Character.Boss
             if (entered && obj.CompareTag("Player"))
             {
                 _target = obj.transform;
-                Debug.Log($"잡았다 요놈");
                 SetMode(Mode.Catch, "ontriggherchangecathed");
             }
         }

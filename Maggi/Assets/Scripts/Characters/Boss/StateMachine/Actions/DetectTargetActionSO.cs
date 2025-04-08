@@ -23,14 +23,10 @@ public class DetectTargetAction : StateAction
         _agent.SetDestination(_boss.Target.position);
 
         // 목적지까지 갔다면 Timeline 실행.
-        if (_boss.IsStopped())
+        if (_boss.IsStopped() && _boss.isTrigger)
         {
+            _boss.isTrigger = false;
             _boss.SetMode(Mode.Trigger, "detect target action.cs");
         }  
-    }
-
-    public override void OnStateExit()
-    {
-        Debug.Log("detect 나옴");
     }
 }
