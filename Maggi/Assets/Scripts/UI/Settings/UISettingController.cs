@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 [System.Serializable]
 public enum SettingFieldType
@@ -52,13 +49,13 @@ public class UISettingController : MonoBehaviour
 
     public void CloseScreen()
     {
-        Closed.Invoke();
+        Closed?.Invoke();
     }
 
     private void OpenSetting()
     {
         _audioComponent.Setup(_currentSettings.MasterVolume, _currentSettings.MusicVolume, _currentSettings.SfxVolume);
-        _graphicsComponent.Setup();
+        _graphicsComponent.Setup(_currentSettings.ResolutionIndex);
     }
 
     private void SaveAudioSettings(float _masterVolume, float _musicVolume, float _sfxVolume)
