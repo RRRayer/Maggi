@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,13 +7,13 @@ public class UISettingsAudioComponent : MonoBehaviour
     [SerializeField] private UISettingItemFiller _musicVolumeField;
     [SerializeField] private UISettingItemFiller _sfxVolumeField;
 
-    [SerializeField] UIGenericButton _saveButton;
-    [SerializeField] UIGenericButton _resetButton;
+    [SerializeField] private UIGenericButton _saveButton;
+    [SerializeField] private UIGenericButton _resetButton;
 
     [Header("Broadcasting on")]
-    [SerializeField] private FloatEventChannelSO _masterVolumeEventChannel = default;
-    [SerializeField] private FloatEventChannelSO _musicVolumeEventChannel = default;
-    [SerializeField] private FloatEventChannelSO _sfxVolumeEventChannel = default;
+    [SerializeField] private FloatEventChannelSO _masterVolumeEventChannel;
+    [SerializeField] private FloatEventChannelSO _musicVolumeEventChannel;
+    [SerializeField] private FloatEventChannelSO _sfxVolumeEventChannel;
 
     private float _savedMasterVolume;
     private float _savedMusicVolume;
@@ -43,8 +41,6 @@ public class UISettingsAudioComponent : MonoBehaviour
 
     private void OnDisable()
     {
-        ResetVolumes();
-
         _masterVolumeField.OnNextOption -= IncreaseMasterVolume;
         _masterVolumeField.OnPreviousOption -= DecreaseMasterVolume;
         _musicVolumeField.OnNextOption -= IncreaseMusicVolume;
@@ -163,8 +159,6 @@ public class UISettingsAudioComponent : MonoBehaviour
 
     private void SaveVolumes()
     {
-        Debug.Log("º¼·ý ÀúÀå");
-
         _savedMasterVolume = _masterVolume;
         _savedMusicVolume = _musicVolume;
         _savedSfxVolume = _sfxVolume;
@@ -174,6 +168,6 @@ public class UISettingsAudioComponent : MonoBehaviour
 
     private void ResetVolumes()
     {
-        Setup(_masterVolume, _musicVolume, _sfxVolume);
+        Setup(0.8f, 0.8f, 0.8f);
     }
 }

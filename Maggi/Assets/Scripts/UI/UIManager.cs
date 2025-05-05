@@ -13,8 +13,8 @@ public class UIManager : MonoBehaviour
     [Header("Gameplay")]
     [SerializeField] private MenuSO _mainMenu;
     [SerializeField] private InputReader _inputReader = default;
-    [SerializeField] private SaveLoadSystem _saveLoadSystem = default; // ¾ê´Â ³ªÁß¿¡ ´Ù¸¥ °÷À¸·Î ¿Å°Ü¾ß ÇÒÁöµµ
-    [SerializeField] private PointStorageSO _pointStorageSO = default; // ¾ê´Â ³ªÁß¿¡ ´Ù¸¥ °÷À¸·Î ¿Å°Ü¾ß ÇÒÁöµµ
+    [SerializeField] private SaveLoadSystem _saveLoadSystem = default; // ì–˜ëŠ” ë‚˜ì¤‘ì— ë‹¤ë¥¸ ê³³ìœ¼ë¡œ ì˜®ê²¨ì•¼ í• ì§€ë„
+    [SerializeField] private PointStorageSO _pointStorageSO = default; // ì–˜ëŠ” ë‚˜ì¤‘ì— ë‹¤ë¥¸ ê³³ìœ¼ë¡œ ì˜®ê²¨ì•¼ í• ì§€ë„
 
     [Header("Broadcasting on")]
     [SerializeField] private LoadEventChannelSO _loadMenuEvent = default;

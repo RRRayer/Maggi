@@ -45,13 +45,13 @@ public class SettingsSystem : MonoBehaviour
         _changeMusicVolumeEventChannel.RaiseEvent(_currentSettings.MusicVolume);
         _changeSfxVolumeEventChannel.RaiseEvent(_currentSettings.SfxVolume);
         Resolution currentResolution = Screen.currentResolution;
-        if (_currentSettings.ResolutionIndex < Screen.resolutions.Length)
-        {
-            currentResolution = Screen.resolutions[_currentSettings.ResolutionIndex];
-        }
-        Screen.SetResolution(currentResolution.width, currentResolution.height, _currentSettings.IsFullScreen);
-        _urpAsset.shadowDistance = _currentSettings.ShadowDistance;
-        _urpAsset.msaaSampleCount = _currentSettings.AntiAliasingIndex;
+        // if (_currentSettings.ResolutionIndex < Screen.resolutions.Length)
+        // {
+        //     currentResolution = Screen.resolutions[_currentSettings.ResolutionIndex];
+        // }
+        // Screen.SetResolution(currentResolution.width, currentResolution.height, _currentSettings.IsFullScreen);
+        // _urpAsset.shadowDistance = _currentSettings.ShadowDistance;
+        // _urpAsset.msaaSampleCount = _currentSettings.AntiAliasingIndex;
     }
 
     private void SaveSettings()
