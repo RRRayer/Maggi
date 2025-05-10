@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4425b3d278734a345b77740dea0e2914, type: 3}
+  m_Name: CountInteractionAction
+  m_EditorClassIdentifier: 
+  description: 
+  TapsToActivateGenerator: 3
+  TimeToDecreaseTaps: 2000
+  OnGeneratorActivated: {fileID: 11400000, guid: a346a4d08aefb46418fd92dcab91fd79, type: 2}

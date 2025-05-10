@@ -12,16 +12,11 @@ public class RaiseVoidEventActionSO : StateActionSO
 public class RaiseVoidEventAction : StateAction
 {
 	private RaiseVoidEventActionSO _originSO => (RaiseVoidEventActionSO)base.OriginSO;
-	private VoidEventChannelSO _voidEvent;
-
-	public override void Awake(StateMachine stateMachine)
-	{
-		_voidEvent = _originSO.VoidChannel;
-	}
+	private VoidEventChannelSO _voidEvent => _originSO.VoidChannel;
 
     public override void OnStateEnter()
     {
-        _voidEvent.RaiseEvent();
+        _voidEvent?.RaiseEvent();
     }
 
     public override void OnUpdate() { }
