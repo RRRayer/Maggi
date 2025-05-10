@@ -82,6 +82,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5194334309628646677, guid: dd08998bbb8623b468a8d08713146c15, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5427117519703338073}
+    - targetCorrespondingSourceObject: {fileID: 5194334309628646677, guid: dd08998bbb8623b468a8d08713146c15, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8401576972496623904}
+    - targetCorrespondingSourceObject: {fileID: 5194334309628646677, guid: dd08998bbb8623b468a8d08713146c15, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 304992632496157699}
   m_SourcePrefab: {fileID: 100100000, guid: dd08998bbb8623b468a8d08713146c15, type: 3}
 --- !u!1 &1383853990239636887 stripped
 GameObject:
@@ -109,6 +115,59 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 4.228362, y: 6.046981, z: 0.5556202}
   m_Center: {x: -0.000020504003, y: 0, z: -0.54789513}
+--- !u!54 &8401576972496623904
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383853990239636887}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!114 &304992632496157699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383853990239636887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5c21302ba89f84ea6d24215494ba62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Type: 3
+  m_IdleScriptableActions: []
+  m_WalkScriptableActions: []
+  m_JumpAscendingScriptableActions: []
+  m_JumpDescendingScriptableActions: []
+  m_PullScriptableActions:
+  - {fileID: 11400000, guid: 1ed06a678caf7d148ac667f23da3cf05, type: 2}
+  - {fileID: 11400000, guid: 72ef52cf8c71785418c6522b9e8522e3, type: 2}
+  m_PushScriptableActions:
+  - {fileID: 11400000, guid: 1254a36a4f8a0704a88b4702ccccedc4, type: 2}
+  - {fileID: 11400000, guid: 8aa6a2dd48f78bf47979d320033651d2, type: 2}
+  - {fileID: 11400000, guid: 5bde09847cdb4fa49bbc30ed70326dc1, type: 2}
+  - {fileID: 11400000, guid: ce28c71c3ec136c4ab3fc8bb642a1f4a, type: 2}
+  - {fileID: 11400000, guid: aaa80a6bcb8d44f49a6c38c1684fdde2, type: 2}
 --- !u!1 &4780128520393785237 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1835210009659533079, guid: dd08998bbb8623b468a8d08713146c15, type: 3}
