@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -38,32 +38,32 @@ public class UIPopup : MonoBehaviour
         case PopupType.Quit:
             isConfirmation = true;
             _titleText.text = "EXIT";
-            _descriptionText.text = "Á¤¸» °ÔÀÓÀ» ³ª°¡½Ã°Ú½À´Ï±î?";
-            _popupButton1.SetButton("¿¹", true);
-            _popupButton2.SetButton("Ãë¼Ò", false);
+            _descriptionText.text = "ì •ë§ ê²Œì„ì„ ë‚˜ê°€ì‹œê² ìŠµë‹ˆê¹Œ?";
+            _popupButton1.SetButton("ì˜ˆ", true);
+            _popupButton2.SetButton("ì·¨ì†Œ", false);
             hasExitButton = false;
             break;
         case PopupType.NewGame:
             isConfirmation = true;
             _titleText.text = "New";
-            _descriptionText.text = "»õ·Î¿î °ÔÀÓÀ» ½ÃÀÛÇÏ½Ã°Ú½À´Ï±î?";
-            _popupButton1.SetButton("¿¹", true);
-            _popupButton2.SetButton("Ãë¼Ò", false);
+            _descriptionText.text = "ìƒˆë¡œìš´ ê²Œì„ì„ ì‹œì‘í•˜ì‹œê² ìŠµë‹ˆê¹Œ?";
+            _popupButton1.SetButton("ì˜ˆ", true);
+            _popupButton2.SetButton("ì·¨ì†Œ", false);
             hasExitButton = false;
             break;
         case PopupType.BackToMenu:
             isConfirmation = true;
             _titleText.text = "Main";
-            _descriptionText.text = "¸ŞÀÎ ¸Ş´º·Î ³ª°¡½Ã°Ú½À´Ï±î?";
-            _popupButton1.SetButton("¿¹", true);
-            _popupButton2.SetButton("Ãë¼Ò", false);
+            _descriptionText.text = "ë©”ì¸ ë©”ë‰´ë¡œ ë‚˜ê°€ì‹œê² ìŠµë‹ˆê¹Œ?";
+            _popupButton1.SetButton("ì˜ˆ", true);
+            _popupButton2.SetButton("ì·¨ì†Œ", false);
             hasExitButton = false;
             break;
         case PopupType.DonePrototype:
             isConfirmation = false;
             _titleText.text = "Demo";
-            _descriptionText.text = "¿©±â±îÁö µ¥¸ğ ÇÃ·¹ÀÌ¿´½À´Ï´Ù.";
-            _popupButton1.SetButton("°¨»çÇÕ´Ï´Ù", true);
+            _descriptionText.text = "ì—¬ê¸°ê¹Œì§€ ë°ëª¨ í”Œë ˆì´ì˜€ìŠµë‹ˆë‹¤.";
+            _popupButton1.SetButton("ê°ì‚¬í•©ë‹ˆë‹¤", true);
             hasExitButton = false;
             break;
         default:

@@ -6,6 +6,8 @@ using UnityEngine.Events;
 public class UIPause : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader = default;
+    
+    [Header("Pause UI")]
     [SerializeField] private UIGenericButton _restartButton = default;
     [SerializeField] private UIGenericButton _settingsButton = default;
     [SerializeField] private UIGenericButton _controlButton = default;
@@ -53,6 +55,7 @@ public class UIPause : MonoBehaviour
 
     private void Resume()
     {
+        Debug.Log("Resume");
         Resumed.Invoke();
     }
 

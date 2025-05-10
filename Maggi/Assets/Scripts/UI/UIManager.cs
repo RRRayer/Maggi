@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,11 +6,14 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [Header("Scene UI")]
+    [SerializeField] private UIPanelSwitcher _panelSwitcher = default;
     [SerializeField] private UIPopup _popupPanel = default;
     [SerializeField] private UIPause _pauseScreen = default;
     [SerializeField] private UISettingController _settingScreen = default;
     [SerializeField] private UIControl _controlScreen = default;
-   
+    private RectTransform _settingScreenRect;
+    
+    
     [Header("Gameplay")]
     [SerializeField] private MenuSO _mainMenu;
     [SerializeField] private InputReader _inputReader = default;
@@ -19,6 +23,11 @@ public class UIManager : MonoBehaviour
     [Header("Broadcasting on")]
     [SerializeField] private LoadEventChannelSO _loadMenuEvent = default;
     [SerializeField] private VoidEventChannelSO _onContinueButton = default;
+
+    private void Awake()
+    {
+        _settingScreenRect = _settingScreen.GetComponent<RectTransform>();
+    }
 
     private void OnEnable()
     {
@@ -56,6 +65,8 @@ public class UIManager : MonoBehaviour
 
     private void CloseUIPause()
     {
+        Debug.Log("Close UI Pause");
+        
         Time.timeScale = 1.0f;
 
         _inputReader.MenuPauseEvent += OpenUIPause; // you can open UI pause menu again, if it's closed
@@ -74,8 +85,7 @@ public class UIManager : MonoBehaviour
     private void OpenSettingScreen()
     {
         _settingScreen.Closed += CloseSettingScreen;
-        _pauseScreen.gameObject.SetActive(false);
-        _settingScreen.gameObject.SetActive(true);
+        _panelSwitcher.SwitchToTarget(_settingScreenRect);
     }
 
     private void OpenControlScreen()
@@ -87,9 +97,9 @@ public class UIManager : MonoBehaviour
 
     private void CloseSettingScreen()
     {
+        Debug.Log("Close Setting Screen");
         _settingScreen.Closed -= CloseSettingScreen;
-        _pauseScreen.gameObject.SetActive(true);
-        _settingScreen.gameObject.SetActive(false);
+        _panelSwitcher.SwitchToHome();
     }
 
     private void CloseControlScreen()
