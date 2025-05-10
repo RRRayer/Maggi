@@ -22,11 +22,16 @@ public enum SettingsType
 
 public class UISettingController : MonoBehaviour
 {
+    [SerializeField] private InputReader _inputReader = default;
+    
+    [Header("Setting UI")]
+    [SerializeField] private UIGenericButton _backButton = default;
+    
+    [Header("Setting")]
     [SerializeField] private UISettingsAudioComponent _audioComponent;
     [SerializeField] private UISettingsGraphicsComponent _graphicsComponent;
     [SerializeField] private SettingsSO _currentSettings = default;
-    [SerializeField] private InputReader _inputReader = default;
-
+    
     [Header("Broadcasting on")]
     [SerializeField] private VoidEventChannelSO _saveSettingEvent = default;
 
@@ -34,21 +39,25 @@ public class UISettingController : MonoBehaviour
 
     private void OnEnable()
     {
+        _backButton.Clicked += CloseSettingScreen;
         _audioComponent._save += SaveAudioSettings;
         _graphicsComponent._save += SaveGraphicsSettings;
-        _inputReader.MenuCloseEvent += CloseScreen;
+        //_inputReader.MenuCloseEvent += CloseSettingScreen;
 
         OpenSetting();
     }
 
     private void OnDisable()
     {
+        _backButton.Clicked -= CloseSettingScreen;
         _audioComponent._save -= SaveAudioSettings;
-        _inputReader.MenuCloseEvent -= CloseScreen;
+        _graphicsComponent._save -= SaveGraphicsSettings;
+        //_inputReader.MenuCloseEvent -= CloseSettingScreen;
     }
 
-    public void CloseScreen()
+    public void CloseSettingScreen()
     {
+        Debug.Log("Close Screen");
         Closed?.Invoke();
     }
 
