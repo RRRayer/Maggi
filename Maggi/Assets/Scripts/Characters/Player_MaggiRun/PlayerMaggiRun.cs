@@ -122,7 +122,7 @@ public class PlayerMaggiRun : MonoBehaviour
     public void FlipGravity()
     {
         UpdateGravity(-GravityDirection);
-        rb.velocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
         rb.AddForce(-GravityDirection * 10f, ForceMode.VelocityChange);
         Debug.Log("중력 반전됨 → " + GravityDirection);
     }

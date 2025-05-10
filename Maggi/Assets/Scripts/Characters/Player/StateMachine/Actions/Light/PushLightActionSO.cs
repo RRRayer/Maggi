@@ -37,7 +37,7 @@ public class PushLightAction : StateAction
 			// Init Position to Player position and Add
 			_interactiveObjectRigidbody.transform.position = 
 				_interactionManager.transform.position + _interactiveObjectRigidbody.transform.forward * 0.2f;
-			_interactiveObjectRigidbody.velocity = 
+			_interactiveObjectRigidbody.linearVelocity = 
 				_interactiveObjectRigidbody.transform.forward * _originSO.pushForce + _interactiveObjectRigidbody.transform.up * _originSO.pushHeight;
 
             var randomTorque = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0) * 10f;

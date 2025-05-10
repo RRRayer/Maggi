@@ -31,7 +31,7 @@ public class MoveWithSieveWheelAction : StateAction
 
     public override void OnUpdate()
     {
-        _interactionRigid.velocity = _interactiveObject.transform.right * _player.movementInput.x * _originSO.WheelSpeed;
+        _interactionRigid.linearVelocity = _interactiveObject.transform.right * _player.movementInput.x * _originSO.WheelSpeed;
         _transform.position = _interactiveObject.transform.position - _interactiveObject.transform.up * 0.3f;
     }
 }

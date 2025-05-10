@@ -40,7 +40,7 @@ public class GravityAscendAction : StateAction
 
         _verticalVelocity += effectiveGravity * Time.deltaTime;
 
-        Vector3 horizontalVel = Vector3.ProjectOnPlane(_rb.velocity, up);
-        _rb.velocity = horizontalVel + up * _verticalVelocity;
+        Vector3 horizontalVel = Vector3.ProjectOnPlane(_rb.linearVelocity, up);
+        _rb.linearVelocity = horizontalVel + up * _verticalVelocity;
     }
 }

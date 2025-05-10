@@ -27,7 +27,7 @@ public class IdleMoveAction : StateAction
         if (_player == null || _rb == null) return;
 
         Vector3 forward = _player.transform.forward;
-        Vector3 gravityVel = Vector3.Project(_rb.velocity, Physics.gravity.normalized);
-        _rb.velocity = forward * _origin.forwardSpeed + gravityVel;
+        Vector3 gravityVel = Vector3.Project(_rb.linearVelocity, Physics.gravity.normalized);
+        _rb.linearVelocity = forward * _origin.forwardSpeed + gravityVel;
     }
 }

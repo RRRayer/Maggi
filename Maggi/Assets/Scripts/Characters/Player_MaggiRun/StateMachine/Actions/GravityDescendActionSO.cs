@@ -22,7 +22,7 @@ public class GravityDescendAction : StateAction
 
     public override void OnStateEnter()
     {
-        _verticalVelocity = Vector3.Dot(_rb.velocity, Physics.gravity.normalized);
+        _verticalVelocity = Vector3.Dot(_rb.linearVelocity, Physics.gravity.normalized);
     }
 
     public override void OnUpdate()
@@ -33,7 +33,7 @@ public class GravityDescendAction : StateAction
         _verticalVelocity += gravityForce * Time.deltaTime;
         _verticalVelocity = Mathf.Clamp(_verticalVelocity, MAX_FALL_SPEED, float.MaxValue);
 
-        Vector3 horizontalVel = Vector3.ProjectOnPlane(_rb.velocity, down);
-        _rb.velocity = horizontalVel + down * _verticalVelocity;
+        Vector3 horizontalVel = Vector3.ProjectOnPlane(_rb.linearVelocity, down);
+        _rb.linearVelocity = horizontalVel + down * _verticalVelocity;
     }
 }

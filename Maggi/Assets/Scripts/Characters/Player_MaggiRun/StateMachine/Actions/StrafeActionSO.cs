@@ -28,8 +28,8 @@ public class StrafeAction : StateAction
 
         // 좌우 이동 처리
         Vector3 right = _player.transform.right;
-        Vector3 gravityVel = Vector3.Project(_rb.velocity, Physics.gravity.normalized);
-        _rb.velocity = right * _player.movementInput.x * _origin.sideSpeed + gravityVel;
+        Vector3 gravityVel = Vector3.Project(_rb.linearVelocity, Physics.gravity.normalized);
+        _rb.linearVelocity = right * _player.movementInput.x * _origin.sideSpeed + gravityVel;
 
         // 중력 회전 처리
         if (_player.NeedsGravityRotation)

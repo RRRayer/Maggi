@@ -19,6 +19,6 @@ public class IsFallingCondition : Condition
 
     protected override bool Statement()
     {
-        return _rb.velocity.y < -0.1f;
+        return _rb.linearVelocity.y < -0.1f;
     }
 }
