@@ -2,7 +2,7 @@ using UnityEngine;
 using Maggi.StateMachine;
 using Maggi.StateMachine.ScriptableObjects;
 
-[CreateAssetMenu(fileName = "IsDeadCondition", menuName = "State Machines/Conditions/MaggiRun/Is Dead")]
+[CreateAssetMenu(fileName = "IsDeadConditionMaggiRun", menuName = "State Machines/Conditions/MaggiRun/Is Maggi Dead")]
 public class IsDeadConditionMaggiRunSO : StateConditionSO
 {
     protected override Condition CreateCondition() => new IsDeadCondition();
