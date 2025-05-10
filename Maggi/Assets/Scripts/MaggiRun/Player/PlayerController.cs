@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isDead) return;
 
-        if (Vector3.Dot(rb.velocity, GravityDirection) > 0 && !isGrounded)
+        if (Vector3.Dot(rb.linearVelocity, GravityDirection) > 0 && !isGrounded)
         {
             rb.AddForce(GravityDirection * gravityStrength * 1.5f);
         }
@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
         GravityDirection = -GravityDirection;
         Physics.gravity = GravityDirection * gravityStrength;
 
-        rb.velocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
         rb.AddForce(-GravityDirection * 10f, ForceMode.VelocityChange);
 
         MoveDirection = Vector3.ProjectOnPlane(MoveDirection, GravityDirection).normalized;
@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour
     public void Die()
     {
         isDead = true;
-        rb.velocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
         rb.isKinematic = true;
         Time.timeScale = 1f;
 
